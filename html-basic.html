@@ -93,6 +93,88 @@
         <label><input type="radio" name="gender" value="female"></label>
       </dd>
       <dt>年龄</dt>
+      <dd>
+        <select name="age">
+          <option hidden value="">请选择</option>
+          <optgroup label="少年">
+            <option value="1-6">1到6岁</option>
+            <option value="6-16">6到12岁</option>
+          </optgroup>
+          <optgroup label="青年">
+            <option value="13-19">13到19岁</option>
+            <option value="19-25">19到25岁</option>
+          </optgroup>
+          <optgroup label="壮年">
+            <option value="25-31">25到31岁</option>
+            <option value="31-36">31到36岁</option>
+          </optgroup>
+        </select>
+      <dt>生日</dt>
+      <dd>
+        <input type="date" name="birthday">
+      </dd>
+      <dt>生辰</dt>
+      <dd>
+        <input type="time" name="birthtime">
+      </dd>
+      <dt>照片</dt>
+      <dd>
+        <label><input hidden type="file" name="avatar">点击上传文件</label>
+      </dd>
+      <dt>喜欢的颜色</dt>
+      <dd><input type="color"></dd>
+      <dt>自我介绍</dt>
+      <dd>
+        <textarea name="intro" id="" cols="30" rows="10">&lt;</textarea>
+      </dd>
+      </dl>
+      <fieldset>
+        <legend>这里被禁用了</legend>
+        <input type="text">
+        <input type="text">
+        <input type="text">
+        <input type="text">
+      </fieldset>
+      <button>提交</button>
+      <button type="reset">重置</button>
+      <hr>
+      <table border="1">
+        <col>
+        <col bgcolor=red>
+        <tbody>
+          <tr>
+            <th>编号</th>
+            <th>品名</th>
+            <th>进价</th>
+            <th>出价</th>
+          </tr>
+          <tr>
+            <th>aaa</th>
+            <td>aaa</td>
+            <td rowspan="2">5</td>
+            <td>aaa</td>
+          </tr>
+          <tr>
+            <th>aaa</th>
+            <td>aaa</td>
+            <td>8</td>
+          </tr>
+          <tr>
+            <th>aaa</th>
+            <td>aaa</td>
+            <td>aaa</td>
+            <td>aaa</td>
+          </tr>
+          <tr>
+            <th>aaa</th>
+            <td>aaa</td>
+            <td>aaa</td>
+            <td>aaa</td>
+          </tr>
+        </tbody>
+      </table>
+      </select>
+      </dd>
     </dl>
   </form>
 
