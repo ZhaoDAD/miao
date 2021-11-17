@@ -8,31 +8,56 @@
   <style>
     /* 只能在这里写css，不能改变页面的HTML结构 */
 
-header nav {
-  width: 600px;
-  margin: auto;
-  background-color: blue;
-}
-header {
-  background-color: red;
-  min-width: 600px;
-}
-main {
-  margin: 20px;
-  margin: auto;
-  border: 2px solid black;
-  padding: 0px 10px;
-  width: 600px;
-  box-sizing: border box;
-}
-main div{
-  height: 50px;
-  background-color: violet;
-}
-main div:hover {
-  margin-left: -10px;
-  margin-right: -10px;
-}
+    header nav {
+      width: 600px;
+      margin: auto;
+      background-color: blue;
+    }
+
+    header {
+      background-color: red;
+
+    }
+
+    main {
+      border: 2px solid black;
+      padding: 0px 10px;
+      width: 600px;
+      box-sizing: border-box;
+      margin: 20px auto;
+
+    }
+
+    main p {
+      height: 64px;
+
+      overflow-y: scroll;
+      margin: 15 15;
+
+    }
+
+    main div {
+      height: 50px;
+      background-color: violet;
+    }
+
+    main div:hover {
+      margin-left: -10px;
+      margin-right: -10px;
+    }
+
+    body {
+      margin: 20px;
+    }
+
+    footer {
+      border: 20px solid black;
+      border-color: transparent transparent red;
+      width: 0;
+      height: 0;
+      margin: auto;
+
+    }
   </style>
 </head>
 
@@ -56,6 +81,7 @@ main div:hover {
       dignissimos dolor!
     </p>
   </main>
+  <footer></footer>
 </body>
 
 </html>
