@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <style>
+    /* 只能在这里写css，不能改变页面的HTML结构 */
+    ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .main-menu li {
+      white-space: nowrap;
+      position: relative;
+    }
+
+    .main-menu>li {
+      display: inline-block;
+    }
+
+    .main-menu ul {
+      display: none;
+      position: absolute;
+    }
+
+    li:hover>ul {
+      display: block;
+    }
+
+    .main-menu li:hover {
+      background-color: red;
+    }
+
+    ul ul ul {
+      left: 100%;
+      top: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <ul class="main-menu">
+    <li>文件
+      <ul>
+        <li>新建文件夹</li>
+        <li>新建文件夹
+          <ul>
+            <li>111</li>
+            <li>222</li>
+            <li>333</li>
+          </ul>
+        </li>
+        <li>新建文件夹</li>
+      </ul>
+    </li>
+    <li>文件
+      <ul>
+        <li>新建文件夹</li>
+        <li>新建文件夹</li>
+        <li>新建文件夹</li>
+      </ul>
+    </li>
+    <li>文件
+      <ul>
+        <li>新建文件夹</li>
+        <li>新建文件夹</li>
+        <li>新建文件夹</li>
+      </ul>
+    </li>
+  </ul>
+</body>
