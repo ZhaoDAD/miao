@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <style>
+    /* 只能在这里写css，不能改变页面的HTML结构 */
+
+    body,
+    html {
+      margin: 0;
+      height: 100%;
+    }
+
+    div {
+      min-width: 930px;
+      position: relative;
+      height: 100%;
+      background-color: #fff;
+    }
+
+    aside {
+      position: absolute;
+      width: 200px;
+      height: 100%;
+
+    }
+
+    aside.left {
+      left: 0;
+    }
+
+    aside.right1 {
+      right: 0;
+    }
+
+    aside.right2 {
+      right: 200px;
+    }
+
+    main {
+      position: absolute;
+      xheight: 100%;
+      left: 200px;
+      right: 400px;
+      top: 70px;
+      bottom: 0px;
+    }
+
+    header {
+      position: absolute;
+      height: 70px;
+      top: 0px;
+      left: 200px;
+      right: 400px;
+    }
+  </style>
+</head>
+
+<body>
+  <div>
+    <aside class="left"></aside>
+    <header></header>
+    <main></main>
+    <aside class="right1">
+    </aside>
+    <aside class="right2"></aside>
+  </div>
+</body>
