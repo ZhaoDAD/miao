@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>JS Bin</title>
+  <style>
+    /* 只能在这里写css，不能改变页面的HTML结构 */
+    body {
+      margin: 0;
+      box-sizing: border-box;
+
+    }
+
+    .img {
+      width: 100px;
+      height: 100px;
+      background-image: url(点赞.png);
+      background-repeat: no repeat;
+      background-position: 0px 0px;
+      cursor: pointer;
+    }
+
+    .img:active {
+      background-position: -2800px 0px;
+      transition: 1s steps(28)
+    }
+  </style>
+</head>
+
+<body>
+  <div class="img"></div>
+</body>
