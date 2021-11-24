@@ -7,28 +7,26 @@
   <title>JS Bin</title>
   <style>
     /* 只能在这里写css，不能改变页面的HTML结构 */
-    body {
-      margin: 0;
-      box-sizing: border-box;
-
-    }
-
-    .img {
+    label {
+      display: inline-block;
       width: 100px;
       height: 100px;
+      border: 2px solid;
+      position: relative;
+      overflow: hidden;
+      margin: auto;
       background-image: url(点赞.png);
-      background-repeat: no repeat;
-      background-position: 0px 0px;
-      cursor: pointer;
+      transition: none;
     }
 
-    .img:active {
-      background-position: -2800px 0px;
-      transition: 1s steps(28)
+    input:checked + label {
+      background-position: -2800px 0;
+      transition: 1s steps(28);
     }
   </style>
 </head>
 
 <body>
-  <div class="img"></div>
+  <input type="checkbox" name="" id="heart" hidden>
+  <label for="heart"></label>
 </body>
