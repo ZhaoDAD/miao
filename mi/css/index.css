@@ -4,6 +4,10 @@ pc端布局
 2）布局思路:从外到里div嵌套
 */
 /* 顶部栏开始 */
+body {
+  min-width: 1226px;
+}
+
 .header {
   width           : 100%;
   height          : 40px;
@@ -11,9 +15,9 @@ pc端布局
 }
 
 .top-wrap {
-  width : 1226px;
-  height: 40px;
-  margin: 0 auto;
+  width           : 1226px;
+  height          : 40px;
+  margin          : 0 auto;
   background-color: #333;
 }
 
@@ -71,14 +75,14 @@ pc端布局
   width           : 316px;
   height          : 0;
   background-color: #fff;
-  box-shadow      : 0 2px 10px rgb(0, 0, 0, .15);
+  box-shadow      : 0 2px 10px rgb(0, 0, 0, 0.15);
   position        : absolute;
   top             : 40px;
   right           : 0;
   transition      : all 0.5s;
   line-height     : 100px;
   overflow        : hidden;
-  z-index: 500;
+  z-index         : 500;
 }
 
 .cart:hover>.car-list {
@@ -94,10 +98,10 @@ pc端布局
   position        : absolute;
   top             : 40px;
   left            : 50%;
-  transform: translateX(-50%);
-  transition : all 0.5s;
+  transform       : translateX(-50%);
+  transition      : all 0.5s;
   overflow        : hidden;
-  z-index: 500;
+  z-index         : 500;
 }
 
 .download img {
@@ -114,6 +118,7 @@ pc端布局
 .header-left>li:hover>.download {
   height: 148px;
 }
+
 /* 绘制三角形 */
 .triangle {
   width        : 0;
@@ -125,11 +130,11 @@ pc端布局
   bottom       : 0;
   left         : 50%;
   transform    : translateX(-50%);
-  xdisplay : none;
+  display      : none;
 }
 
 .header-left>li:hover>.triangle {
-  xdisplay: block;
+  display: block;
 }
 
 /* 顶部栏and */
@@ -144,7 +149,6 @@ pc端布局
   width : 1226px;
   height: 100px;
   margin: 0 auto;
-
 }
 
 .logo {
@@ -183,7 +187,7 @@ pc端布局
   float           : right;
   background-color: palegreen;
   margin-top      : 25px;
-  position: relative;
+  position        : relative;
 }
 
 /* 下拉列表 */
@@ -191,17 +195,17 @@ pc端布局
   width           : 100%;
   height          : 0px;
   background-color: #fff;
-  border-top : 1px solid #fff;
+  border-top      : 1px solid #fff;
   xbox-shadow     : 0 3px 4px rgb(0 0 0 /0%);
   position        : absolute;
   top             : 100px;
   left            : 0;
   z-index         : 50;
-  transition : height .5s .2s,
-  border-top 2s .5s,
-  box-shadow 1s .5s,
-  z-index 2s;
-  overflow        : hidden;
+  transition      : height 0.5s 0.2s,
+    border-top 2s 0.5s,
+    box-shadow 1s 0.5s,
+    z-index 2s;
+  overflow: hidden;
 }
 
 .nav-bar>.product-menu:hover .nav-bar-list {
@@ -211,11 +215,10 @@ pc端布局
 }
 
 .nav-bar>.product-menu>li:hover .nav-bar-list {
-  z-index   : 100;
-  transition: height .5s .2s,
-  z-index 2s;
+  z-index: 100;
+  transition: height 0.5s 0.2s,
+    z-index 2s;
 }
-
 
 /* 下拉列表内容部分 */
 .nav-bar-list li {
@@ -256,7 +259,7 @@ pc端布局
   border-right: none;
   float       : left;
   box-sizing  : content-box;
-  transition  : all .2s;
+  transition  : all 0.2s;
 }
 
 .search>button {
@@ -266,7 +269,7 @@ pc端布局
   background-color: #fff;
   border          : 1px solid #e0e0e0;
   float           : left;
-  transition      : all .2s;
+  transition      : all 0.2s;
 }
 
 .search>input:hover,
@@ -278,8 +281,8 @@ pc端布局
 .search>input:focus+button {
   border-color: #ff6700;
 }
-/* input以及下一个兄弟按钮 点击获取焦点 边框颜色变成橘色 */
 
+/* input以及下一个兄弟按钮 点击获取焦点 边框颜色变成橘色 */
 
 .search>button:hover {
   background-color: #ff6700;
@@ -287,6 +290,7 @@ pc端布局
   color           : #fff;
   cursor          : pointer;
 }
+
 .search-list {
   width           : 243px;
   height          : 240px;
@@ -301,7 +305,7 @@ pc端布局
 }
 
 .search>input:focus~.search-list {
-  display: block
+  display: block;
 }
 
 .search-list>a {
@@ -321,55 +325,164 @@ pc端布局
 
 /* 导航栏and */
 /* banner开始 */
-.banner,
-.banner-box {
+.banner {
   width : 100%;
   height: 460px;
 }
 
-.banner-box>img {
-  width: 100%;
-}
-
-.banner-box {
+.banner-wrap {
+  width   : 1226px;
+  height  : 460px;
+  margin  : 0 auto;
   position: relative;
 }
 
-/* 滑动门 */
+.slider {
+  width: 100%;
+
+
+}
+
+.slider input {
+  display: none;
+}
+
+.slides {
+  height  : 100%;
+  width   : 100%;
+  position: relative;
+}
+
 .slide {
+  width      : 100%;
+  height     : 100%;
+  position   : absolute;
+  /* display : none; 图片透明后 slide显示出来 */
+}
+
+.slide .prev,
+.next {
+  position  : absolute;
+  width     : 41px;
+  height    : 69px;
+  background: url(../imagss/icon-slides.png) no-repeat 0 0;
+  top       : 50%;
+  transform : translateY(-50%);
+  cursor: pointer;
+
+}
+
+
+/* 哪个图片显示时，哪个图片对应的按钮是最上面的，并且不希望它 */
+.slide .prev {
+  background-position: -84.5px 0;
+  left               : 234px;
+}
+
+.slide .next {
+  background-position: -124.5px 0;
+  right              : 0;
+}
+.slide .prev:hover {
+  background-position: 0 50%;
+}
+.slide .next:hover {
+  background-position: -41.5px 50%;
+}
+
+.slides .slide img {
+  width     : 100%;
+  height    : 100%;
+  opacity   : 0;
+  /* 图片透明度为0，当它被选中的时候，透明度为1*/
+  transition: 1s;
+}
+
+.indicators {
+  position: absolute;
+  bottom  : 20px;
+  right   : 20px;
+}
+
+.indicators label {
+  float           : left;
+  width           : 6px;
+  height          : 6px;
+  margin          : 4px;
+  border          : 2px solid #fff;
+  border-color: hsla(0,0%,100%,.3);
+  background: rgba(0,0,0,.4);
+  display         : inline-block;
+
+  border-radius: 10px;
+  cursor       : pointer;
+}
+
+.indicators label:hover {
+  background: hsla(0,0%,100%,.4);
+  border-color: rgba(0,0,0,.4);
+}
+
+.slider input:nth-child(1):checked~.slides .slide:nth-child(1) img,
+.slider input:nth-child(2):checked~.slides .slide:nth-child(2) img,
+.slider input:nth-child(3):checked~.slides .slide:nth-child(3) img,
+.slider input:nth-child(4):checked~.slides .slide:nth-child(4) img {
+  opacity: 1;
+}
+
+.slider input:nth-child(1):checked~.indicators label:nth-child(1),
+.slider input:nth-child(2):checked~.indicators label:nth-child(2),
+.slider input:nth-child(3):checked~.indicators label:nth-child(3),
+.slider input:nth-child(4):checked~.indicators label:nth-child(4) {
+  background-color: #fff;
+}
+
+.slider input:nth-child(1):checked~.slides .slide:nth-child(1) label,
+.slider input:nth-child(2):checked~.slides .slide:nth-child(2) label,
+.slider input:nth-child(3):checked~.slides .slide:nth-child(3) label,
+.slider input:nth-child(4):checked~.slides .slide:nth-child(4) label {
+  z-index: 10;
+  display: block;
+}
+
+
+/* 滑动门 */
+.slide-door {
   width           : 234px;
   height          : 420px;
-  padding : 20px 0;
-  background-color: rgba(105, 101, 101, .6);
+  padding         : 20px 0;
+  background-color: rgba(105, 101, 101, 0.6);
   position        : absolute;
   top             : 0;
   left            : 0;
+  z-index         : 10;
 }
 
-.slide>ul>li {
+.slide-door>ul>li {
   height      : 42px;
   line-height : 42px;
   text-align  : left;
   padding-left: 30px;
 }
-.slide i {
+
+.slide-door i {
   float       : right;
   margin-right: 20px;
   color       : #e0e0e0;
   font-size   : 14px;
 }
 
-.slide>ul>li>a {
+.slide-door>ul>li>a {
   font-size: 14px;
   color    : #fff;
 }
 
-.slide>ul>li:hover {
+.slide-door>ul>li:hover {
   background-color: #ff6700;
 }
 
 /* 滑动列表 */
-.slide-list {
+.slide-door-list {
   width           : 992px;
   height          : 456px;
   padding-top     : 2px;
@@ -381,42 +494,44 @@ pc端布局
   top             : 0%;
   left            : 100%;
   display         : none;
-
 }
 
-.slide>ul>li:hover>.slide-list {
+.slide-door>ul>li:hover>.slide-door-list {
   display: block;
 }
 
-.slide-list>ul {
+.slide-door-list>ul {
   width: 248px;
   float: left;
 }
 
-.slide-list>ul>li {
-  width     : 100%;
-  height    : 76px;
-  padding   : 18px 0 18px 20px;
-  box-sizing: border-box;
+.slide-door-list>ul>li {
+  width        : 100%;
+  height       : 76px;
+  padding      : 18px 0 18px 20px;
+  box-sizing   : border-box;
+  text-overflow: ellipsis;
+  white-space  : nowrap;
+  overflow     : hidden;
 }
 
-.slide-list img {
+.slide-door-list img {
   margin-right: 12px;
 }
 
-.slide-list span {
+.slide-door-list span {
   font-size: 14px;
 }
 
-.slide-list li:hover span {
+.slide-door-list li:hover span {
   color: #ff6700;
 }
 
-.slide-list1 {
+.slide-door-list1 {
   width: 744px;
 }
 
-.slide-list2 {
+.slide-door-list2 {
   width: 496px;
 }
 
@@ -426,4 +541,3 @@ x.gundong {
   xwidth          : 3000px;
   background-color: blue;
 }
-
