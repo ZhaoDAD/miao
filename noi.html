@@ -4,9 +4,40 @@
   console.log(a + b);
 </script>
 
-<script id="ch0103/02">
+<script type="xxx" id="ch0103/02">
   var a = Number(prompt("a"));
   var b = Number(prompt("b"));
   var c = Number(prompt("c"));
   console.log((a + b) * c);
+</script>
+
+<script type="xxx" id="ch0103/03">
+  var a = Number(prompt("a"));
+  var b = Number(prompt("b"));
+  var c = Number(prompt("c"));
+  console.log((a + b) / c);
+</script>
+
+<script type="xxx" id="ch0103/04">
+  var a = Number(prompt("请输入被除数"));
+  var b = Number(prompt("请输入除数"));
+  var c = a % b;
+  var d = parseInt(a / b);
+  // parseInt()函数解析字符串并返回整数。
+  console.log(d, c);
+</script>
+
+<script type="xxx" id="ch0103/05">
+  var a = Number(prompt("请输入被除数"));
+  var b = Number(prompt("请输入除数"));
+  var c = a / b;
+  // .toFixed() 方法可把 Number 四舍五入为指定小数位数的数字
+  console.log(c.toFixed(9));
+</script>
+
+<script id="ch0103/06">
+  var a = Number(prompt("确诊人数"));
+  var b = Number(prompt("死亡人数"));
+  var c = (b / a) * 100;
+  console.log(c.toFixed(3) + "%");
 </script>
