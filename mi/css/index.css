@@ -640,10 +640,11 @@ body {
   font-weight: 200;
   line-height: 58px;
   color      : #333;
-  text-align : left;
+  display: inline-block;
+  float: left;
 }
 
-.home-title-box .more a {
+.home-title-box .more {
   height     : 58px;
   line-height: 58px;
   font-size  : 16px;
@@ -677,29 +678,30 @@ body {
 }
 
 /* 手机项目 */
-.phone-box {
+.box-bd {
   height: 614px;
+  margin-bottom: 22px;
 }
 
-.phone-box-left {
+.box-left {
   float : left;
   width : 234px;
   height: 614px;
   transition: all .2s linear;
 }
 
-.phone-box-left:hover{
+.box-left:hover{
   box-shadow: 0 15px 30px rgb(0 0 0 / 10%);
-  transform: translate3d(0,-2px,0);
+  transform: translateY(-2px);
 }
 
-.phone-box-right {
+.box-right {
   float : right;
   width : 992px;
   height: 614px;
 }
 
-.phone-box-right .items {
+.box-right .items {
   float           : left;
   width           : 234px;
   height          : 260px;
@@ -709,9 +711,9 @@ body {
   transition: all .2s linear;
 }
 
-.phone-box-right .items:hover {
+.box-right .items:hover {
   box-shadow: 0 15px 30px rgb(0 0 0 / 10%);
-  transform: translate3d(0,-2px,0);
+  transform: translateY(-2px);
 }
 
 .goods-img {
@@ -722,7 +724,7 @@ body {
 .items .title {
   width        : 214px;
   height       : 21px;
-  margin       : 0 auto 2;
+  margin       : 0 10px 2px;
   font-size    : 14px;
   font-weight  : 400;
   white-space  : nowrap;
@@ -730,10 +732,11 @@ body {
   text-overflow: ellipsis;
 }
 
-/* 宽度
+/* 宽度=
   white-space: nowrap;
   overflow: hidden;
-  text-overflow: ellipsis;有内容溢出会隐藏掉 */
+  text-overflow: ellipsis;有内容溢出会隐藏掉
+*/
 .items .desc {
   height   : 18px;
   font-size: 12px;
@@ -746,7 +749,36 @@ body {
   margin   : 0 10px 14px;
   color    : #ff6700;
 }
+/* 智能穿戴开始 */
+.smart-wear {
+  height: 672px;
+}
+/* .smart-wear-title-box{
+  height: 58px;
+  position: relative;
+} */
+.smart-wear-title-box h2 {
+  font-size  : 22px;
+  font-weight: 200;
+  line-height: 58px;
+  color      : #333;
+  display: inline-block;
+  float: left;
+}
+.smart-wear-box{
+  height: 58px;
+  position: relative;
+}
+.smart-wear-box>.box-left {
+  position: absolute;
+  top: 58px;
+  left: 0;
+}
 
+
+
+
+/* 智能穿戴and */
 
 
 
