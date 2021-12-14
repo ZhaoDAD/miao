@@ -35,9 +35,34 @@
   console.log(c.toFixed(9));
 </script>
 
-<script id="ch0103/06">
+<script type="xxx" id="ch0103/06">
   var a = Number(prompt("确诊人数"));
   var b = Number(prompt("死亡人数"));
   var c = (b / a) * 100;
   console.log(c.toFixed(3) + "%");
+</script>
+
+<script type="xxx" id="ch0103/07">
+  var x = Number(prompt("请输入X"));
+  var a = Number(prompt("请输入A"));
+  var b = Number(prompt("请输入B"));
+  var c = Number(prompt("请输入C"));
+  var d = Number(prompt("请输入D"));
+  var result = a * x * x * x + b * x * x + c * x + d;
+  console.log(result.toFixed(7));
+</script>
+
+<script type="xxx" id="ch0103/08">
+  var f = Number(prompt("请输入华氏温度"));
+  var c = (5 * (f - 32)) / 9;
+  console.log(c.toFixed(5));
+</script>
+
+<script id="ch0103/09">
+  var r = Number(prompt("请输入圆的半径"));
+  pi = 3.14159;
+  var diameter = (2 * r).toFixed(4);
+  var perimeter = (2 * pi * r).toFixed(4);
+  var area = (pi * r * r).toFixed(4);
+  console.log(diameter, perimeter, area);
 </script>
