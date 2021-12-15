@@ -58,11 +58,118 @@
   console.log(c.toFixed(5));
 </script>
 
-<script id="ch0103/09">
+<script type="xxx" id="ch0103/09">
   var r = Number(prompt("请输入圆的半径"));
   pi = 3.14159;
   var diameter = (2 * r).toFixed(4);
   var perimeter = (2 * pi * r).toFixed(4);
   var area = (pi * r * r).toFixed(4);
   console.log(diameter, perimeter, area);
+</script>
+
+<script type="xxx" id="ch0103/10">
+  var r1 = Number(prompt("请输入"));
+  var r2 = Number(prompt("请输入"));
+  var result = 1 / (1 / r1 + 1 / r2);
+  console.log(result.toFixed(2));
+</script>
+
+<script type="xxx" id="ch0103/11">
+  var a = Number(prompt("请输入"));
+  var b = Number(prompt("请输入"));
+  var result = a % b;
+  console.log(result.toFixed(4));
+</script>
+
+<script type="xxx" id="ch0103/12">
+  var r = Number(prompt("请输入球的体积"));
+  var pi = 3.14;
+  var result = (4 / 3) * pi * Math.pow(r, 3);
+  // Math.pow(底数,几次方)
+  console.log(result.toFixed(2));
+</script>
+
+<script type="xxx" id="ch0103/13">
+  var n = Number(prompt("请输入一个三位数"));
+  var gewei = n % 10;
+  var shiwei = (n - gewei) / 10 % 10;
+  var baiwei = (n - gewei - shiwei * 10) / 100 % 10;
+  var result = String(gewei) + String(shiwei) + String(baiwei);
+  console.log(result);
+</script>
+
+<script type="xxx" id="ch0103/14">
+  var h = Number(prompt("小圆桶的深"));
+  var r = Number(prompt("小圆桶底面半径"));
+  var pi = 3.14159;
+  var v = pi * r * r * h / 1000; //桶的容积计算方法V=πr²h（π=3.14，r是桶的半径，h是桶的高）V=3.14×（直径÷2）²×高度=（立方厘米）=（升）
+  var result = Math.ceil(20 / v);//饮水量升/桶的容积升=喝多少桶水才会解渴
+  console.log(result);
+</script>
+
+<script type="xxx" id="ch0103/15">
+  var n = Number(prompt("箱子里有多少个苹果？"));
+  var x = Number(prompt("虫子几个小时吃一个苹果？"));
+  var y = Number(prompt("过了几个小时？"));
+  var result = n - Math.ceil(y / x);
+  console.log(result);
+</script>
+
+<script type="xxx" id="ch0103/16">
+  var x1 = Number(prompt());
+  var y1 = Number(prompt());
+  var x2 = Number(prompt());
+  var y2 = Number(prompt());
+  var dx = x1 - x2; //横向差了多远
+  var dy = y1 - y2; //纵向差了多远
+  var d = Math.sqrt(dx * dx + dy * dy); //a方+b方=c方
+  console.log(d.toFixed(3));
+</script>
+
+<script type="xxx" id="ch0104/01">
+  var n = Number(prompt("输入一个整数，判断其正负。"));
+  // if (n > 0) {
+  //   console.log("positive");
+  // } else {
+  //   if (n === 0) {
+  //     console.log("zero");
+  //   } else {
+  //     console.log("negative");
+  //   }
+  // }
+  if (n > 0) {
+    console.log("positive");
+  } else if (n === 0) {
+    console.log("zero");
+  } else {
+    console.log("negative");
+  }
+</script>
+
+<script type="xxx" id="ch0104/02">
+  var n = Number(prompt("输入一个浮点数，输出这个浮点数的绝对值"));
+  if (n >= 0) {
+    console.log(n)
+  } else {
+    console.log(-n)
+  }
+</script>
+
+<script type="xxx" id="ch0104/03">
+  var n = Number(prompt("输入一个整数，判断该数是奇数还是偶数"));
+  if (n % 2 == 0) {
+    //对2取0为偶数
+    console.log("even");
+  } else {
+    console.log("odd");
+  }
+</script>
+
+<script id="ch0104/04">
+  var n = prompt("输入一个字符，判断其ASCII是否是奇数");
+  if (n.charCodeAt(0) % 2 == 0) {
+    console.log("NO");
+  } else {
+    console.log("YES");
+  }
 </script>

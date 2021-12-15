@@ -6,38 +6,155 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <script type="text/javascript" src=""></script>
-    <script>
-      // console.log(2021);
-      // console.log(2021 * 2);
-      // console.log(2021 * 2021);
-      // console.log(2021 * 2021 * 2021 * 2021 * 2021);
-      // console.log(201 > 50 && 2021 > 100);
-      // console.log(2021 % 2 == 1);
-      // console.log(2021 % 2 == 0);
-      // console.log(2021 % 10);
-      // console.log(2021 % 100);
-      // console.log(2021 > 200 && 2021 % 3 && 2021 % 7 != 0);
-      // console.log((1864 - (1864 % 100)) / 100 + 1);
-</script>
+    <script type="xxx">
+      console.log(2021);
+      console.log(2021 * 2);
+      console.log(2021 * 2021);
+      console.log(2021 * 2021 * 2021 * 2021 * 2021);
+      console.log(201 > 50 && 2021 > 100);
+      console.log(2021 % 2 == 1);
+      console.log(2021 % 2 == 0);
+      console.log(2021 % 10);
+      console.log(2021 % 100);
+      console.log(2021 > 200 && 2021 % 3 && 2021 % 7 != 0);
+      console.log((1864 - (1864 % 100)) / 100 + 1);
+    </script>
+    <script type="">
       // 控制浏览器弹出一个警告框
-      // alert("这是我的第一行js代码");
+      alert("这是我的第一行js代码");
       // 输出在浏览器窗口
 
       // 让计算机在页面中输出一个内容
       // document(文档的意思，一个网页就是一个文档)
 
-      // document.write("写一个文档 看我出不出来");
+      document.write("写一个文档 看我出不出来");
       // 输出在在body 页面中
 
       // 向控制台输出一个内容
-      // console.log("你猜我在哪儿出来呢？");
+      console.log("你猜我在哪儿出来呢？");
       // 输出在控制台
 
       // js代码指令是从上到下一条一条执行的;
-      // alert("这是我的第一行代码");
-      // document.write("写一个文档 看我出不出来");
-      // console.log("你猜我在哪儿出来呢？");
+      alert("这是我的第一行代码");
+      document.write("写一个文档 看我出不出来");
+      console.log("你猜我在哪儿出来呢？");
       // 以上三个都是输出语句
+    </script>
+    <script type="字面量和变量">
+      /*
+        字面量 都是一些不可改变的值 例如:1 2 3 4 5 6
+        字面量都是可以直接使用的,但是我们一半不会直接使用字面量
+
+        *变量 可以保存我们的字面量 例如:x=1;
+        而且变量的值是可以任意改变的，变量更加方便我们使用，所以在开发中都是通过变量去保存一个字面量
+        变量还可以对字面量进行描述 例如 age=80;
+
+        *声明变量
+        在js中使用var关键字来声明一个变量 例如:var a;
+
+        *为变量赋值
+        a=123;
+
+        *声明变量和赋值同时进行
+        var age = 80;
+        age = 81;(赋值后面的这个有效)
+        console.log(age)
+      */
+    </script>
+    <script type="标识符">
+      /*
+        *标识符
+         在js中所以可以由我们自主命名的都叫标识符 例如:var a;这个a就是我们给它起的名字标识符
+         变量名、函数名、属性名都属于标识符
+         命名一个标识符时，需要遵守如下规则
+           1.标识符中可以含有字母、数字、_、%、     例如: var s_1_$ = 123; console.log(s_1_$);
+           2.标识符不能以数字开头
+           3.标识符不能是JS中的关键字或保留字       例如:var var=123;
+           4.标识符一般采用驼峰命名法
+             首字母小写，后面每个单词的开头字母大写，其余字母小写 例如:helloWorld
+         JS底层保存标识符时 实践上采用的是Unicode编码(UTF-8),所以理论上讲 所有的utf-8中所有的内容都可以作为标识符
+      */
+    </script>
+    <script type="数据类型">
+      /*
+        *数据类型指的就是字面量的类型
+        *在JS中一共有六种数据类型
+          String 字符串
+          Number 数值
+          Boolean 布尔值
+          Null 空值
+          Undefined 未定义
+          Object 对象
+        *其中 String Number Boolean Null Undefined属于基本数据类型
+          而Object属于引用数据类型
+      */
+      /*
+        *String字符串
+          在JS中字符串需要使用""引起来 var str="hello"; "hello"字符串赋值给了str这个变量 那么str它也是一个字符串
+          使用单引号或双引号都可以，但是不要混着用
+          引号不能嵌套 双引号里不能放双引号 同理，单引号里不能有单引号
+          在字符串中我们可以使用\作为转义字符。 例如:\n表示换行。\t表示制表符，相当于按了个tab键。
+      */
+      /*
+        *Number
+          在JS中所有的数值都是Number类型，包括整数和浮点数(小数)
+
+            var a = 123;
+            var b = "123";
+
+          JS中可以使用一个运算符 typeof 来检查一个变量的类型。语法:
+            console.log(typeof a);表示检查a这个变量的类型并输出
+            检查数值时，会返回Namber
+            检查字符串时 会返回String
+
+          JS中可以表示数字的最大值 Number.MAX_VALUE。语法:
+            console.log(Number.MAX_VALUE);
+            如果使用Number表示的数字超过了最大值，则会返回一个Infinity，表示正无穷。Infinity就是一个字面量，不需要加双引号。
+              a = Infinity；
+              console.log(typeof a);使用typeof检查Infinity也会返回Number
+
+          JS中可以表示数字0以上的最小值 Number.MIN_VALUE。语法:
+            console.log(Number.MIN_VALUE);
+            大于0的最小正值
+
+          NaN 是一个特殊的数字，表示Not a Namber
+              a = NaN
+              console.log(typeof a);使用typeof检查NaN也会返回number
+
+          计算:
+              var c = 123 + 456;
+              console.log(c);
+              把123+456的结果赋值给变量c
+            在JS中整数的运算基本可以保证精确
+
+              var c = 0.1 + 0.2;
+            如果使用js进行浮点运算，可能得到的是一个不精确的结果,所以千万不要使用JS进行精确度要求比较高的运算。
+
+        *Boolean布尔值
+          布尔值只有两个，主要用来做逻辑判断
+          true
+            表示逻辑上的真
+          false
+            表示逻辑上的假
+          var bool = true;
+          console.log(bool);控制台显示为true
+          console.log(typeof bool);使用typeof检查bool也会返回Boolean
+
+        *Null空值
+          Null的值只有一个，就是null
+            null这个值专门来表示一个为空的对象
+          var a = null;
+          console.log(a);控制台显示为null
+          console.log(typeof a);使用typeof检查null时会返回object，因为它专门来表示一个为空的对象
+
+        *Undefined 未定义
+          Undefined的值也是只有一个，就是undefined
+            当我们声明一个变量，但不给变量赋值时，它的值就是undefined
+          var b;
+          console.log(b);控制台显示为undefined
+          console.log(typeof b);使用typeof检查undefined时会返回undefined
+      */
+    </script>
 
   <!-- </head> -->
   <body>
