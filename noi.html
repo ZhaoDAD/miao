@@ -165,11 +165,51 @@
   }
 </script>
 
-<script id="ch0104/04">
+<script type="xxx" id="ch0104/04">
   var n = prompt("输入一个字符，判断其ASCII是否是奇数");
   if (n.charCodeAt(0) % 2 == 0) {
     console.log("NO");
   } else {
     console.log("YES");
+  }
+</script>
+
+<script type="xxx" id="ch0104/05">
+  var x = Number(prompt("输入x，与y比较它们之间的大小"));
+  var y = Number(prompt("输入y，与x比较它们之间的大小"));
+  if (x > y) {
+    console.log(">");
+  } else if (x == y) {
+    console.log("=");
+  } else (x < y) {
+    console.log("<");
+  }
+</script>
+
+<script type="xxx" id="ch0104/06">
+  var x = Number(prompt("输入一个正整数,判断它是否是两位数（即大于等于10且小于等于99）"));
+  if (x >= 10 && x <= 99) {
+    console.log("1");
+  } else {
+    console.log("0");
+  }
+</script>
+
+<script type="xxx" id="ch0104/07">
+  var xingYun = Number(prompt("持印有幸运瓶盖数量"));
+  var guLi = Number(prompt("持印有鼓励瓶盖数量"));
+  if (xingYun >= 10 || guLi >= 20) {
+    console.log("1");
+  } else {
+    console.log("0");
+  }
+</script>
+
+<script type="xxx" id="ch0104/08">
+  var x = Number(prompt("输入一个数 判断它能否同时被3和5整除"));
+  if (x % 3 == 0 && x % 5 == 0) {
+    console.log("YES");
+  } else {
+    console.log("NO");
   }
 </script>
