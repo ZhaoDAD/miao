@@ -213,3 +213,76 @@
     console.log("NO");
   }
 </script>
+
+<script type="xxx" id="ch0104/09">
+  var n = Number(prompt());
+  if (n % 3 == 0 || n % 5 == 0 || n % 7 == 0) {
+    if (n % 3 == 0) {
+      console.log(3);
+    } //能被3整除不代表说它就不能被别的整除，所以这里没有写else if,如果写else if 能被3整除，就一定不会判断后面的能不能被5整除了。
+    //所以这两个if条件并不是互斥的，不要把它俩用else if连接起来。
+    if (n % 5 == 0) {
+      console.log(5);
+    }
+    if (n % 7 == 0) {
+      console.log(7);
+    }
+  } else {
+    console.log("n");
+  }
+</script>
+<script type="xxx" id="ch0104/09">
+  var n = Number(prompt());
+  if (n % 3 != 0 && n % 5 != 0 && n % 7 != 0) {
+    console.log("n");
+  } else {
+    if (n % 3 == 0) {
+      console.log(3);
+    }
+    if (n % 5 == 0) {
+      console.log(5);
+    }
+    if (n % 7 == 0) {
+      console.log(7);
+    }
+  }
+</script>
+
+<script type="xxx" id="ch0104/10">
+  var a = Number(prompt("语文成绩"));
+  var b = Number(prompt("数学成绩"));
+  if ((a < 60 && b >= 60) || (a >= 60 && b < 60)) {
+    console.log("1");
+  } else {
+    console.log("0");
+  }
+</script>
+<script type="xxx" id="ch0104/10.1">
+  var a = Number(prompt("语文成绩"));
+  var b = Number(prompt("数学成绩"));
+  var c = Number(prompt("数学成绩"));
+  var 不及格门数 = 0;
+  if (a < 60) {
+    不及格门数 = 不及格门数 + 1;
+  }
+  if (b < 60) {
+    不及格门数 = 不及格门数 + 1;
+  }
+  if (b < 60) {
+    不及格门数 = 不及格门数 + 1;
+  }
+  if (不及格门数 === 3) {
+    console.log("yes"); //若该生恰好有一门课不及格，输出yes；否则输出no。
+  } else {
+    console.log("no");
+  } //变量是统计有多少门科目不及格
+</script>
+
+<script type="xxx" type="" id="ch0104/11">
+  var day = Number(prompt("下周几去看展览？"));
+  if (day != 1 && day != 3 && day != 5) {
+    console.log("YES");
+  } else {
+    console.log("NO");
+  }
+</script>
