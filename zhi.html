@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -155,6 +155,590 @@
           console.log(typeof b);使用typeof检查undefined时会返回undefined
       */
     </script>
+    <script id="强制类型转换">
+      /*
+        *强制类型转换
+          指的是讲一个数据类型强制转换为其他数据类型
+            类型转换主要指，将其它类型转换为String Number Boolean
+
+        *将其它数据类型转换为String
+          方式一:
+                调用被转换数据类型的toString()方法。
+                该方法不会影响到源变量，它会将转换的结果返回
+                但是注意：null和undefined这两个值没有toString()方法。如果调用它俩，会报错。
+          方式二:
+                调用String()函数，并将被转换的数据作为参数传递给函数
+                使用String()函数做强制类型转换时，对于number和boolean实际上调用的就是toString()方法
+                  但是对于null和undefined，就不会调用toString()方法。它会将字面量的null直接转换为字符号的"null",会将字面量的undefined直接转换为字符号的"undefined"
+
+
+          var a = 123;
+          console.log(typeof a); 输出类型为Number
+          console.log(a);        输出值为123
+
+          (1)调用a的toString方法:
+            a = a.toString();    强制类型转换为String了
+          (2)调用String()函数，来将A转换成字符串
+            a = String(a)            转谁就把谁放到括号里，那括号里的a就叫参数。a作为参数传到我们的括号里，表示我们要把a转换成字符串。
+
+        *将其它数据类型转换为Number
+          方式一：
+                使用Number()函数
+                  字符串转数字
+                    如果是纯数字的字符串，则直接转换成数字
+                    如果字符串中有非数字的内容，则转换成NaN
+                    如果字符串是个空串或者是全是空格的字符串""，则转成0
+                  布尔转数字
+                    true转成1
+                    false转成0
+                  null转数字 转成0
+                  undefined转数字 转成NAN
+          方式二：
+                这种方式专门对付字符串
+                parseInt() 把一个字符串转换成一个整数。
+                parseFloat() 把一个字符串转换成一个浮点数。
+                如果对非String使用parseInt()或parseFloat()，它会先将其转换成String再操作，有时可以利用这一点间接的对浮点数parseInt()取整
+
+          var a = "123";
+          console.log(typeof a); 输出类型为String
+          console.log(a);        输出值为"123"
+
+          (1)调用Number()函数，来将A转换成Number
+            a = Number(a)
+
+          var a = "123px";
+          (2)调用parseInt()函数，把一个字符串转换成一个整数
+            a = parseInt()    parseInt()可以将一个字符串中的有效的整数内容取出来，然后转换成Number
+          var a = "123.456px";
+          (2)调用parseFloat()函数，把一个字符串转换成一个浮点数。
+            a = parseFloat()  parseFloat()可以将一个字符串中的有效的浮点数内容取出来，然后转换成Number
+
+        *将其它数据类型转换为Boolean
+          方式一：
+                使用Boolean()函数
+                  数字转布尔
+                    除了0和NAN，其余的则都是直接转换成true
+                  字符串转布尔
+                    除了空串，其余的则都是直接转换成true
+                  null和undefined转布尔
+                    都会转换为false
+                  对象转布尔
+                    也会转换为true
+
+          var a = 123;
+          console.log(typeof a); 输出类型为Number
+          console.log(a);        输出值为"123"
+
+          (1)调用Boolean()函数，来讲a转为布尔值
+            a = Boolean(a)       显示为true
+      */
+    </script>
+    <script id="算数运算符">
+      /*
+        *运算符(也叫操作符)
+          通过运算符可以对一个值或多个值进行运算，并获取运算结果
+            例如:typeof就是一个运算符，可以获得一个值的类型
+              它会讲该值的类型以字符串的形式返回
+              number  string  boolean  undefined  object
+            var a = 123
+            var result = typeof a; 声明了result这个变量，result这个变量接收typeof这个运算符的运算结果
+            console.log(result)
+            console.log(typeof a)
+
+        *算数运算符
+          当对非number类型的值进行运算时，会将这些值转换为number，然后再运算.
+            任何数和NaN做结果都是NaN
+
+          + 可以对两个值进行加法进行运算，并将结果返回
+              如果对两个字符串进行加法运算，则会做拼串。什么时拼串？(会将两个字符串拼接成一个字符串，并返回)
+                result = "123" + "456"; 结果为123456
+                result = "你好" + "大帅哥"; 结果为你好大帅哥
+                result str = "锄禾日当午，" +
+                             "汗滴禾下土，" +
+                             "谁知盘中餐，" +
+                             "粒粒皆辛苦";多字符串换行以后 后面添加+ 拼到一起成为一行里的四句
+            任何的值和字符串做加法运算，都会先转换为字符串，然后再和字符串做拼串的操作
+                result = 123 + "1"; 结果为1231
+                result = true + "hello"; 结果为truehello
+              我们可以利用这一点，来将任意类型的数据转换为String。只需要为任意的数据类型做+ ""即可将其转换为String
+              这是一种隐式的类型转换，由浏览器自动完成，实际上它也是调用String()函数
+                var c = 123
+                c = c + ""
+                console.log(c)
+                控制台输出的结果是123，那它是谁的值呢我看不出来，所以我希望不仅输出的结果是123，还希望告诉我这个123是谁的值。所以我们经常采用这样一种写法
+                console.log("c = "+c)
+
+
+            result = true + 1; 结果为2
+            result = true + false;  结果为1
+            result = 2 + null; 结果为2
+            result = 2 + NaN;
+            result = 1 + 2 + "3"; 结果为33
+            result = "3" + 1 + 2; 结果为312
+
+          - 可以对两个值进行加法运算，并将结果返回
+            result = 100 - "3"; 结果为97，和100 - 3是一样的。所以注意，只有字符串的+法这种特殊情况转String，其余的运算符对字符串进行运算时都是转成Number
+          * 可以对两个值进行乘法运算
+          / 可以对两个值进行除法运算
+            任何值做 - * / 运算时都会转换成number
+              我们可以利用这一特点做隐式的类型转换
+                可以通过一个值 -0 *1 /1 来将其转换为number。原理和Number()函数一样，使用起来更加简单
+                var d = "123"
+                d = d - 0
+
+          % 取模运算(取余数)
+            result = 9 % 3; 9和3相除，取余数。9除3等于3，余数为0。结果为0
+            result = 9 % 4; 9和4相除，取余数。9除4等于2，余数为1。结果为1
+            result = 9 % 5; 9和5相除，取余数。9除5等于1，余数为4。结果为4
+      */
+    </script>
+    <script id="一元运算符">
+      /*
+        *一元运算符,只需要一个操作数。(什么时操作数？1 + 1 就是两个操作数)
+          +正号
+            正号不会对数值产生影响
+              var a = 123
+              a = +a
+              console.log("a = "+a) 控制台输出结果还是123
+          -负号
+            负号可以对数字进行符号的取反
+
+            对于非number类型的值
+              它会将会先转换为number,然后再运算
+                a = true true转换成number为1
+                a = -a   结果为-1
+              可以对任意的的数据类型使用+ ，来将其转换为Number
+              它的原理和number()函数一样
+                a = "18"
+                a = +a
+
+                var result = 1 + "2" + 3        结果为字符串123
+                console.log("result = "+result) 控制台结果为数值123
+
+                var result = 1 + +"2" + 3       结果为数值6
+                console.log("result = "+result)
+      */
+    </script>
+    <script id="自增和自减 ">
+      /*
+        *自增
+          通过自增可以使变量在自身的基础上增加1
+            var a = 1
+            a = a + 1;
+            console.log(a) 控制台输出结果为2
+          对于一个变量自增后，原变量的值会立即自增1
+            var a = 1
+            a++;//使a自身增1,后每调一次自身增1
+            a++;
+            a++;
+            a++;
+            console.log(a) 控制台输出结果为5
+          自增分为两种:后++(a++) 前++(++a)
+            无论是a++ 还是++a,都会立即使原变量a的值+1，这两种自增方式对于原变量a来说是没有任何区别的
+            不同的是a++ 和 ++a的值不同
+              a++的值等于原变量的值(自增前的值)
+                var a = 1
+                console.log(a++)       a++它是表达式的值 控制台结果为1
+                console.log("a = "+a)  a它是变量的值     控制台结果为2
+              ++a的值等于原变量自增后的值
+                var a = 1
+                console.log(++a)       控制台结果为2
+                console.log("a = "+a)  控制台结果为2
+
+              var c = 10
+              c++                      第一次c++,是在10的基础上自增
+              console.log(c++)         第二次c++,是在11的基础上自增，所以控制台结果为11
+
+              var d = 20
+              ++c                      ++d是新值，第一次自增是在20的基础上自增 自增后变成21
+              console.log(++c)         第二次自增是在21的基础上自增，控制台结果为22
+
+              var d = 20
+              var resulst = d++ + ++d + d
+                          //20 + 22 + 22
+              console.log("resulst = "+resulst) 结果为64
+
+        *自减
+            通过自增可以使变量在自身的基础上减1
+              var num = 10
+              num--
+              console.log("num = "+num)   控制台结果为9
+
+              var num = 10
+              --num
+              console.log("num = "+num)   控制台结果为9
+          自增分为两种:后--(a--) 前--(--a)
+            不论是a--还是--a，都会立即使原变量的值自减1
+            不同的是a-- 和 --a的值不同
+              var num = 10
+                a--的值等于原变量的值(自减前的值)
+                  console.log(num--)        num--它是表达式的值 控制台结果为10
+                  console.log("num = "+num) num它是变量的值     控制台结果为9
+                --a的值等于原变量自减后的值
+                  console.log(--num)        控制台结果为9
+                  console.log("num = "+num) 控制台结果为9
+      */
+      /*
+        *练习
+        var n1 = 10, n2 = 20;
+        var n = n1++;
+        console.log("n = "+n);        10
+        console.log("n = "+n1);       11
+        n = ++n1
+        console.log("n = "+n);        12
+        console.log("n1 = "+n1);      12
+        n = n2--
+        console.log("n = "+n);        20
+        console.log("n2 = "+n2);      19
+        n = --n2
+        console.log("n = "+n);        18
+        console.log("n2 = "+n2)       18
+      */
+    </script>
+    <script id="逻辑运算符">
+      /*
+        *JS中为我们提供了三种逻辑运算符
+        * ! 非 可以用来对一个值进行非运算
+            所谓非运算就是指对一个布尔值进行取反操作，true变false，false变true
+              var a = true;
+              a = !a
+              console.log("a = "+a)    控制台结果为a=false
+
+              var a = false;
+              a = !a;
+              console.log("a = "+a)    控制台结果为a=true
+            如果对一个值进行两次取反，它不会变化，还是那个值
+            如果对非布尔值进行运算，则会将其先转换成布尔值，然后取反
+              var b = 10               对非布尔值取反先将非布尔值转换成Boolean true
+              b = !b;                  再取反
+              console.log("a = "+b)    控制台结果为false
+            所以我们可以利用该特点，将一个任意的数据类型 取两次反，来将其转换成Boolean。原理和Boolean()函数一样。
+              var b = 10               对非布尔值取反先将非布尔值转换成Boolean true
+              b = !！b;                对一个值进行两次取反，它不会变化，还是那个值
+              console.log("a = "+b)    控制台结果为true
+        * && 与 可以对&&符号两侧的值进行与运算 并返回结果
+            运算规则
+            两个值中只要有一个值是false,就返回false.只有两个值都是true时，才会返回true
+              只要有一个值都是false,就返回false
+                var result = true && false
+                console.log("result ="+result)  运算结果为result=false
+
+              如果两个值都是true,则返回第二个true
+                var result = true && true
+                console.log("result ="+result)  运算结果为result=true
+
+            JS中的"与"属于短路的与，如果第一个值为false，则不会看第二个值(因为我已经判断出结果了)
+              第一个值为true，会检查第二个值
+              true && alert("看我出不出来");     弹窗出来
+
+              第一个值为false，不会检查第二个值
+              false && alert("看我出不出来");    弹窗没有出来
+        * || 或 可以对||符号两侧的值进行与运算 并返回结果
+            运算规则
+            两个值中只要有一个值是true,就返回true.只有两个值都是false时，才会返回false
+              只要有一个值都是true,就返回true
+                var result = false || true
+                console.log("result ="+result)      运算结果为result=true
+                var result = true || false
+                console.log("result ="+result)      运算结果为result=true
+                var result = true || true
+                console.log("result ="+result)      运算结果为result=true
+
+              如果两个值都是false,则返回false
+                var result = false || false
+                console.log("result ="+result)      运算结果为result=false
+            JS中的"或"属于短路的或，如果第一个值为true，则不会看第二个值(因为我已经判断出结果了)
+              第一个值为false，会检查第二个值
+              false && alert("看我出不出来");        弹窗出来
+              第一个值为true，不会检查第二个值
+              true && alert("看我出不出来");         弹窗没有出来
+      */
+    </script>
+    <script id="非布尔值的与或运算">
+      /*
+       *  && || 非布尔值的情况
+            对于非布尔值进行与或运算时，会先将其转换为布尔值，然后再运算,并且返回原值
+            与运算
+              如果第一个值为true,则必然返回第二个值
+              如果第一个值为false,则直接返回第一个值
+
+              与运算，如果两边都是true，则返回后面的
+                var result = 1 && 2                  转换为布尔值true && true,那返回1还是返回2呢？
+                console.log("result = "+result)      运算结果为2
+                var result = 2 && 1                  转换为布尔值true && true,那返回1还是返回2呢？
+                console.log("result = "+result)      运算结果为1
+
+              与运算，只要有一个值都是false,就返回false
+                var result = 0 && 2                  转换为布尔值false && true  与运算，只要有一个值都是false,就返回false
+                console.log("result = "+result)      运算结果为0
+                var result = 2 && 0                  转换为布尔值true && false
+                console.log("result = "+result)      运算结果为0
+              与运算，如果两边都是false，则返回前面的
+                var result = NaN && 0                  转换为布尔值false && false,那返回哪个false呢？
+                console.log("result = "+result)      运算结果为NaN
+                var result = 0 && NaN                  转换为布尔值false && false,那返回哪个false呢？
+                console.log("result = "+result)      运算结果为0
+            或运算
+              如果第一个值为true,则直接返回第一个值
+                var result = 1 || 2                  转换为布尔值true || true
+                console.log("result = "+result)      运算结果为1
+                var result = 2 || NaN                  转换为布尔值true || true
+                console.log("result = "+result)      运算结果为2
+
+              如果第一个值为false,则直接返回第二个值
+                var result = 0 || 2                  转换为布尔值false || true
+                console.log("result = "+result)      运算结果为2
+                var result = NaN || 0                  转换为布尔值true || true
+                console.log("result = "+result)      运算结果为0
+
+                var result = "" || "hello"           转换为布尔值第一个空串为false
+                console.log("result = "+result)      运算结果为hello
+                var result = -1 || "hello"           转换为布尔值第一个值为true
+                console.log("result = "+result)      运算结果为-1
+      */
+    </script>
+    <script id="赋值运算符">
+      /*
+       * = 可以将符号右侧的值赋值给符号左侧的变量
+          var a = 123
+          console.log(a)            控制台结果为123
+
+         += a += 5等价于a = a + 5
+          var a = 10
+          a = a + 5可以写成a += 5
+          console.log("a = "+a)            控制台结果为a = 15
+
+         -= a -= 5等价于a = a - 5
+          var a = 10
+          a = a - 5可以写成a -= 5
+          console.log("a = "+a)            控制台结果为a = 5
+
+         *= a *= 5等价于a = a * 5
+          var a = 10
+          a = a * 5可以写成a *= 5
+          console.log("a = "+a)            控制台结果为a = 50
+
+         /= a /= 5等价于a = a / 5
+          var a = 10
+          a = a / 5可以写成a /= 5
+          console.log("a = "+a)            控制台结果为a = 2
+
+         %= a %= 5等价于a = a % 5
+          var a = 10
+          a = a % 5可以写成a %= 5
+          console.log("a = "+a)            控制台结果为a = 0
+      */
+    </script>
+    <script id="关系运算符">
+      /*
+       *  通过关系运算符可以比较两个值之间的大小关系
+            如果关系成立会返回true,如果关系不成立则返回false
+
+          >大于号
+            判断符号左侧的值是否大于右侧的
+            如果关系成立，则返回true. 如果关系不成立，则返回false
+            var result = 5 > 10                   关系不成立
+            console.log("result = "+result)       控制台结果为false
+
+            var result = 5 > 4                    关系成立
+            console.log("result = "+result)       控制台结果为true
+
+            var result = 5 > 5                    关系不成立
+            console.log("result = "+result)       控制台结果为false
+
+          >=大于等于
+            判断符号左侧的值是否大于或等于
+            如果关系成立，则返回true. 如果关系不成立，则返回false
+            var result = 5 >=  5                    关系成立
+            console.log("result = "+result)       控制台结果为true
+
+            var result = 5 >=  4                    关系成立
+            console.log("result = "+result)       控制台结果为true
+
+          <小于号
+            判断符号左侧的值是否小于右侧的
+            如果关系成立，则返回true. 如果关系不成立，则返回false
+            var result = 5 < 10                   关系成立
+            console.log("result = "+result)       控制台结果为true
+
+            var result = 5 < 4                    关系不成立
+            console.log("result = "+result)       控制台结果为false
+
+          <小于等于
+            判断符号左侧的值是否小于或等于
+            如果关系成立，则返回true. 如果关系不成立，则返回false
+            var result = 5 <=  5                  关系成立
+            console.log("result = "+result)       控制台结果为true
+
+            var result = 5 <=  4                  关系不成立
+            console.log("result = "+result)       控制台结果为false
+
+          非数值的情况
+          对于非数值进行比较时，会将其转换为数值，然后再比较
+            console.log(1 > true)                  控制台结果为false
+            console.log(1 >= true)                 控制台结果为true
+            console.log(1 > "0")                   控制台结果为true
+            console.log(10 > null)                 控制台结果为true
+            console.log(true > false)              控制台结果为true
+
+            任何值和NaN做比较都是false
+            console.log(10 > "hello")      hello转换为数字是NaN       控制台结果为false
+            console.log(10 > "undefined")  undefined转换为数字是NaN   控制台结果为false
+
+            如果符号两侧的值都是字符串，不会将其转换成数字将其比较，而会分别比较字符串中字符的Unicode编码
+            console.log("1" < "5")       Unicode编码0031<0035         控制台结果为true
+            console.log("11" < "5")                  控制台结果为true
+            console.log("a" < "b")                   控制台结果为true
+
+            比较字符编码时是一位一位进行比较的，第一位a小于b，后面的bc就不比了，直接返回结果true
+            console.log("abc" < "b")                 控制台结果为true
+            console.log("11" < "5")      Unicode编码0031,0031<0035    控制台结果为true
+
+            比较字符编码时是一位一位进行比较的，如果两位一样，则比较下一位(所以可以借用它来进行英文排序)
+            console.log("bbc" < "b")                 控制台结果为false
+
+            如果比较的两个字符串型的数字，可能会得到不可预期的结果
+            所以注意，在比较两个字符串型的数字时，一定一定要转型
+            console.log("1258965445687542" < +"5")   控制台结果为false
+      */
+    </script>
+    <script id="相等运算符">
+      /*
+       *  相等运算符用来比较两个值是否相等，如果相等会返回true，否则会返回false
+          使用==来做相等运算
+          console.log(1 == 1)      控制台结果为true
+
+          var a = 10
+          console.log(a == 4)      控制台结果为false
+
+          当使用==比较两个值时，如果值的类型不同，则会自动进行类型转换，将其转换为相同的类型，然后再比较
+          console.log("1" == 1)      控制台结果为true
+          console.log("true" == "1") 控制台结果为true
+
+          也有一个特殊情况null == 0 ,null没有转换为number
+          console.log(null == 0)     控制台结果为false
+      */
+      /*
+       *  undefined衍生自null
+            所以这两个值做相等判断时，会返回true
+            console.log(undefined == null)      控制台结果为true
+      */
+      /*
+       *  NaN不和任何值相等，包括它本身
+          console.log(NaN == NaN)      控制台结果为false
+
+          var b = NaN (那我现在想判断b的值是否时NaN)
+          console.log(NaN == NaN)      控制台结果为false，这个方法不行
+
+          我们可以通过isNaN()函数来判断一个值是否时NaN
+          如果该值时NaN，则返回true，否则返回false
+          var b = NaN
+          console.log(isNaN(b))        控制台结果为true
+      */
+      /*  不相等
+       *  不相等运算符用来比较两个值是否不相等，如果不相等会返回true，否则会返回false
+          使用!=来做不相等运算
+          console.log(10 != 5)      控制台结果为true
+
+          var a = 10
+          console.log(10 != 10)      控制台结果为false
+
+          console.log("abcd" != "abcd")      控制台结果为false
+
+          !=也会对变量进行自动的类型转换，如果转换后相等，它会返回false
+          console.log("1" != 1)      控制台结果为false
+      */
+      /*  全等
+          判断两个值是否全等，它和相等类似，不同的是它不会做类型的自动转换
+            如果两个值的类型不同，直接返回false
+          使用===来做相等运算
+          console.log("123" === 123)      控制台结果为false
+          console.log(undefined === null)      控制台结果为false
+      */
+      /*  不全等
+          判断两个值是否不全等，它和不等类似，不同的是它不会做类型的自动转换
+            如果两个值的类型不同，直接返回true
+          使用!==来做相等运算
+          console.log("123" === 123)      控制台结果为true
+      */
+    </script>
+    <script id="条件运算符">
+      /*  条件运算符也叫三元运算符
+            语法：
+                条件表达式?语句1:语句2
+              执行流程：
+                      条件运算符在执行时，首先对条件表达式进行求值，
+                        如果该值为true，则执行语句1，并返回执行结果
+                        如果该值为false，则执行语句2，并返回执行结果
+
+              true?alert("语句1"):alert("语句2")  执行结果为语句1
+              false?alert("语句1"):alert("语句2")  执行结果为语句2
+
+              var a = 10
+              var b = 20
+              a > b ?alert("a大"):alert("b大")  执行结果为b大
+              var a = 30
+              var b = 20
+              a > b ?alert("a大"):alert("b大")  执行结果为a大
+
+                        如果条件表达式的求值结果是一个非布尔值
+                            会将其转换为布尔值，然后再进行运算
+
+              "hello"?alert("语句1"):alert("语句2")  执行结果为语句1
+              ""?alert("语句1"):alert("语句2")       执行结果为语句2
+
+              获取a 和 b中的最大值
+              var a = 10
+              var b = 20
+              var c = 40
+              var max = a > b ? a : b;  (我要判断a是否大于b 如果a大于b我执行a，把变量a赋值给max.如果a小于b我执行b，把b赋值给max.最后max就是谁大就是谁)
+              console.log("max = "+max)
+
+              获取a b c中的最大值
+              (接上一步接着比较最终得出结果)var max = max > c ? max : c  (我再拿max和c比，如果max大返回max，如果c大，那么c赋值给max)
+
+              (一步到位获取a b c中的最大值)  //这种写法不推荐使用，不方便阅读
+              var a = 10
+              var b = 20
+              var c = 40
+              var max = a > b ? (a > c ? a : c) : (b > c ? b : c)     (如果a大于b则a大，a大执行第一个表达式 比较a和c谁大，如果a比c大那么a就是最大的了，如果a比c小那么c就是最大的了)
+                                                                      (如果a大于b不成立，那就执行第二个表达式 比较b和c谁大，如果b比c大那么b就是最大的了，如果b比c小那么c就是最大的了)
+              console.log("max = "+max)
+      */
+    </script>
+    <script id="逗号运算符">
+      /*  , 使用可以分割多个语句，一半可以在声明多个变量时使用
+            var a;
+            var b;
+            var c;
+          使用,运算符同时声明多个变量
+            var a , b , c;
+          可以声明多个变量并赋值
+            var a = 1 , b = 2 , c = 3;
+      */
+    </script>
+    <script id="运算符的优先级">
+      /*  就和数学中一样，在JS中也有优先级，
+          比如：先乘除 后加减
+
+          var result = 1 + 2 * 3   结果为7
+
+          如果||的优先级高，或者两个一样高(应从左往右算) 第一个为true就不看第二个了，1&&3，第一个true返回第二个 返回3
+          如果&&的优先级高，那么先算2 && 3，第一个true返回第二个 返回3，1 || 3 第一个为true就不看第二个了 返回1
+          var result = 1 || 2 && 3
+          console.log("result = "+result) 控制台结果为result = 1 所以&&的优先级高
+
+          在JS中有一个运算符优先级的表
+            在表中越靠上优先级越高，优先级越高越优先计算
+            如果优先级一样，则从左往右计算
+          但是这个表我们并不需要记忆，如果遇到优先级不清楚
+            可以使用()来改变优先级
+
+          var result = (1 || 2) && 3        控制台结果为3
+      */
+
+    </script>
+
 
   <!-- </head> -->
   <body>
