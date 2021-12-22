@@ -398,3 +398,65 @@
   }
   console.log(max - min);
 </script>
+<script type="xxx" id="ch0105/07">
+  //2008年北京奥运会，A国的运动员参与了n天的决赛项目(1≤n≤17)。现在要统计一下A国所获得的金、银、铜牌数目及总奖牌数。
+  //输入n＋1行，第1行是A国参与决赛项目的天数n，其后n行，每一行是该国某一天获得的金、银、铜牌数目，以一个空格分开。
+  //输出1行，包括4个整数，为A国所获得的金、银、铜牌总数及总奖牌数，以一个空格分开。
+  var day = Number(prompt("运动员参与了几天的决赛项目？"));
+  var count = 0;
+  var goldMedalTotal = 0; //金牌数量总计
+  var silverMedalTotal = 0; //银牌数量总计
+  var bronzeMedalTotal = 0; //铜牌数量总计
+  while (count < day) {
+    var goldMedal = Number(prompt("请输入获得的金牌数量"));
+    var silverMedal = Number(prompt("请输入获得的银牌数量"));
+    var bronzeMedal = Number(prompt("请输入获得的铜牌数量"));
+    goldMedalTotal = goldMedalTotal + goldMedal;
+    silverMedalTotal = silverMedalTotal + silverMedal;
+    bronzeMedalTotal = bronzeMedalTotal + bronzeMedal;
+    count = count + 1;
+  }
+  var total = goldMedalTotal + silverMedalTotal + bronzeMedalTotal;
+  console.log(goldMedalTotal, silverMedalTotal, bronzeMedalTotal, total);
+</script>
+<script type="xxx" id="ch0105/07">
+  //在欧几里德几何中，n边形的内角和是(n-2)*180°。已知其中(n-1)个内角的度数，就能计算出剩下的一个未知内角的度数。请编写一个程序，来解决这个问题。
+  //输入它的边数 再输入其n-1条边的内角
+  var n = Number(prompt("请输入几变形"));
+  var total = (n - 2) * 180; //内角和
+  var count = 0;
+  while (count < n - 1) {
+    var angle = Number(prompt("请输入内角的度数"));
+    total = total - angle;
+    count++;
+  }
+  console.log(total);
+</script>
+<script type="xxx" id="ch0105/07">
+  //计算非负整数 m 到 n（包括m 和 n ）之间的所有奇数的和，其中，m 不大于 n，且n 不大于300。例如 m=3, n=12, 其和则为：3+5+7+9+11=35。
+  var m = Number(prompt());
+  var n = Number(prompt());
+  var x = m;
+  var sum = 0;
+  while (x <= n) {
+    if (x % 2 != 0) {
+      sum = sum + x;
+    }
+    x = x + 1;
+  }
+  console.log(sum);
+</script>
+<script>
+  //将正整数 m 和 n 之间（包括 m 和 n）能被 17 整除的数累加。其中，0 < m < n < 1000。
+  var m = Number(prompt());
+  var n = Number(prompt());
+  var x = m;
+  sum = 0;
+  while (x <= n) {
+    if (x % 17 == 0) {
+      sum = sum + x;
+    }
+    x++;
+  }
+  console.log(sum);
+</script>
