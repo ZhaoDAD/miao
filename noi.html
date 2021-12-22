@@ -278,11 +278,123 @@
   } //变量是统计有多少门科目不及格
 </script>
 
-<script type="xxx" type="" id="ch0104/11">
+<script type="xxx" id="ch0104/11">
   var day = Number(prompt("下周几去看展览？"));
   if (day != 1 && day != 3 && day != 5) {
     console.log("YES");
   } else {
     console.log("NO");
   }
+</script>
+<script type="xxx" id="ch0105/01">
+  //班上有学生若干名，给出每名学生的年龄（整数），求班上所有学生的平均年龄，保留到小数点后两位。
+
+  var n = Number(prompt("班级有多少个学生"));
+  var counter = 0;
+  var ageSum = 0; //保存所有学生年龄之和
+  while (counter < n) {
+    var age = Number(prompt()); //学生年龄 输入完这个数我们只能有固定的变量 我只能把这个数累加起来，每次输入的这个数我都要加起来求和
+    counter = counter + 1;
+    ageSum = ageSum + age;
+  }
+  console.log((ageSum / n).toFixed(2));
+</script>
+
+<script type="xxx" id="ch0105/02">
+  // Larry今年毕业并找到了一份工作。他赚很多钱，但似乎总是不够。Larry认为他需要控制他的投资以解决自己的财务问题。
+  // Larry拿到了自己的银行账户详单，想看看自己有多少钱。请帮助Larry写一个程序，通过过去12个月中每月的月末结余，计算平均结余。
+  var count = 0;
+  var sum = 0; //保存每月结余之和
+
+  while (count < 12) {
+    var n = Number(prompt());
+    count = count + 1;
+    sum = sum + n;
+  }
+  var result = sum / count;
+  console.log("$" + result.toFixed(2));
+</script>
+
+<script type="xxx" id="ch0105/03">
+  //给出一组样本数据，计算其均值。
+  var n = Number(prompt("一组数据有几行？"));
+  var count = 0;
+  var sum = 0; //保存每行数字之和
+  while (count < n) {
+    var num = Number(prompt()); //每一行的数字
+    count = count + 1;
+    sum = sum + num;
+  }
+  var result = sum / n;
+  console.log(result.toFixed(4));
+</script>
+
+<script type="xxx" id="ch0105/04">
+  //读入n（1 <= n <= 10000）个整数，求它们的和与均值
+  var n = Number(prompt("请读入n个整数，求它们的和与均值"));
+  var count = 0;
+  var sum = 0; //保存整数之和
+  while (count < n) {
+    var num = Number(prompt()); //输入的整数
+    count++;
+    sum = sum + num;
+  }
+  var result = sum / n;
+  console.log(sum, result.toFixed(5));
+</script>
+
+<script type="xxx" id="ch0105/05">
+  //孙老师讲授的《计算概论》这门课期中考试刚刚结束，他想知道考试中取得的最高分数。
+  //因为人数比较多，他觉得这件事情交给计算机来做比较方便。你能帮孙老师解决这个问题吗？
+  var n = Number(prompt("请输入班级学生总数:"));
+  var counter = 0;
+  var max = Number(prompt()); //先输入第一个人的成绩当作最高分
+  while (counter < n - 1) {
+    var score = Number(prompt()); //输入的分数
+    counter++;
+    if (score > max) {
+      //如果说输入的这个人他的分数比最高分还要高的话
+      max = score; //那么max就被替换掉
+    }
+  }
+  console.log(max);
+</script>
+
+<script type="xxx" id="ch0105/05">
+  var n = Number(prompt("请输入班级学生总数:"));
+  var counter = 0;
+  var max = -Infinity; //我们先让最高分等于0，任何人输入完后，第一次循环后一定进来，分数都会高于0，然后就会把max=0替换掉，后续就会比最大分数。但是有一个问题，如果这不是考试成绩而是任何一个数该怎么办？就是我输入任何一个数你找到一个最大值，我能让max=0吗？我如果输入数的范围是-500怎么办？那就让max为-Infinity
+  while (counter < n) {
+    var score = Number(prompt()); //输入的分数
+    counter++;
+    if (score > max) {
+      //我希望我这里输入任何一个正常的数字都要比max大，什么时候都比max大呢？那就让max为-Infinity，任何一个数都比负无穷大
+      //如果说输入的这个人他的分数比最高分还要高的话
+      max = score; //那么max就被替换掉
+    }
+  }
+  console.log(max);
+</script>
+
+<script type="xxx" id="ch0105/06">
+  //给定一个长度为n的非负整数序列，请计算序列的最大跨度值（最大跨度值 = 最大值减去最小值）。
+  var n = Number(prompt("请输入非负整数序列的长度:"));
+  var count = 0;
+  var max = -Infinity;
+  var min = Infinity;
+  while (count < n) {
+    var span = Number(prompt());
+    if (span > max) {
+      //我希望我这里输入任何一个正常的数字都要比max大，什么时候都比max大呢？那就让max为-Infinity，任何一个数都比负无穷大
+      //如果说输入的这个人他的分数比最高分还要高的话
+      max = span; //那么max就被替换掉
+    }
+    if (span < min) {
+      //我希望我这里输入任何一个正常的数字都要比min小，什么时候都比min小呢？那就让min为Infinity，任何一个数都比无穷大小
+      //如果说输入的这个人它的分数比最低分还要低的话
+      min = span; //那么min就会被替换掉
+    }
+    count = count + 1;
+  }
+  console.log(max - min);
 </script>

@@ -736,9 +736,874 @@
 
           var result = (1 || 2) && 3        控制台结果为3
       */
+    </script>
+    <script id="代码块">
+      /*
+       整体了，一个{}中的语句我们也称为一个代码块
+              {}后不用编写;
+            JS中的代码块，只具有分组的作用，没有其它的用途
+              代码块内部的内容，在外部是完全可见的
+            {
+              alert("hello")
+              console.log("你好")*  我们的程序是由一条一条语句构成的
+            语句是按照自上向下的顺序一条一条执行的
+            alert("hello")
+            console.log("你好")
+            document.write("语句")
+
+            在JS中可以使用{}为语句分组，同一个{}中的语句我们称为是一组语句，它们要么都执行，要么都不执行
+              换句话说它们就是一个
+              document.write("语句")
+            }
+      */
+    </script>
+    <script id="if语句">
+      /*
+       *  流程控制语句
+            JS中的程序时从上到下一条一条执行的
+              alert("hello")
+              console.log("你好")
+              但从上到下一点也不智能，很傻。(就像一个傻小子，他爸让他出门买酒，傻小子开门一看天上正下刀子呢，但一想他爸让他买酒，还是迈开脚出门了，刚走两步被天上掉下的刀子插死了)
+            通过流程控制语句可以控制程序执行流程
+              使程序可以根据一定的条件来选择执行
+            语句的分类:
+              1:条件判断语句(我要对一个条件进行判断，如果条件成立执行，如果条件不成立则不执行)
+              2:条件分支语句(满足条件一的话我执行条件一路线，满足条件二我执行条件二路线)
+              3:循环语句(反复执行某一条语句)
+
+       *  条件判断语句：
+            使用条件判断语句可以在执行某个语句之前进行判断，
+              如果条件成立，才会执行语句，如果条件不成立则语句不执行
+            if语句
+            语法一：
+              if(条件表达式){
+                语句
+              }
+
+              if语句在执行时，会先对条件表达式进行求值判断，
+                如果条件表达式的值为true，则执行if后的语句
+                如果条件表达式的值为false，则不会执行if后的语句
+                if(true) alert("你猜我出来吗")                   执行
+                if(false) alert("你猜我出来吗")                  不执行
+
+                var a = 10
+                if (a > 10) alert("a比10大")                    不执行
+
+                var a = 11
+                if (a > 10)
+                    alert("a比10大")                    执行
+                    alert("谁也管不了我")                执行
+
+              if语句只能控制紧随其后的那个语句
+                var a = 10
+                if (a > 10)
+                    alert("a比10大")                    不执行
+                    alert("谁也管不了我")                执行
+
+              如果希望if语句可以控制多条语句，可以将这些语句统一放到代码块中
+                如果if这个条件表达式成立，则代码块里的代码都会执行，如果条件不成立，都不执行
+                  var a = 10
+                  if (a > 10){
+                      alert("a比10大")
+                      alert("谁也管不了我")
+                  }                                     都不执行
+
+              if语句后的代码块不是必须的，但是我们在开发中还是尽量写上代码块，即使if后只有一条语句
+
+              与&& 需要同时满足多个条件时才会执行
+              或|| 只要有一个满足就行
+              var a = 25
+              if (a > 10 && a <= 25){
+                  alert("a大于10，并且a小于等于25")
+              }                                         执行
+
+            if语句
+            语法二：
+              if(表达式){
+                语句
+              }else{
+                语句
+              }
+
+              if...else...语句
+                当该语句执行时，会先对if后的条件表达式求值判断
+                  如果该值为true,则执行if后的语句
+                  如果该值为false,则执行esle后的语句
+
+                  var age = 50
+                  if(age >= 60){
+                    alert("你已经退休了")
+                  } else{
+                    alert("你还没有退休")
+                  }                                      你还没有退休
+
+            if语句
+            语法三：
+              if(表达式){
+                语句
+              }else if{
+                语句
+              }else if{
+                语句
+              }else{
+                语句
+              }
+
+              if...else if...else语句
+                当该语句执行时，会从上到下依次对条件表达式进行求值判断
+                  如果值为true,则执行当前语句。
+                  如果值为false,则继续向下判断
+                  如果所有的条件都不满足，则执行最后else后的语句
+                  该语句中，只会有一个代码块被执行，一旦代码块执行了，则直接结束语句
+                  var age = 70
+                  if(age > 100){
+                    alert("活着挺没意思的")
+                  } else if(age > 80){
+                    alert("你也老大不小的了")
+                  } else if(age > 60){
+                    alert("你已经退休了")
+                  } else if(age > 30){
+                    alert("你已经中年了")
+                  } else if(age > 18){
+                    alert("你已经成年了")
+                  } else{
+                    alert("你还是个小孩子")
+                  }                                      你已经退休了
+      */
+    </script>
+    <script id="if练习">
+      /*  从键盘输入小明的期末成绩
+          当成绩为100时，奖励一辆BMW
+          当成绩为(80~99)时，奖励一台iphone13pro
+          当成绩为(60~80)时，奖励一本参考书
+          其它时，什么奖励都没有
+
+          prompt()可以弹出一个提示框，该提示框中会带有一个文本框，
+            用户可以在文本框中输入一段内容，该函数需要一个字符串""作为参数
+            该字符串会作为提示框的提升文字
+          用户输入的内容将会作为函数的返回值返回，可以定义一个变量来接收该内容
+
+       *  var score = Number(prompt("请输入小明的期末成绩(0~100):"));
+          if (score > 100 || score < 0 || isNaN(score)) {
+            alert("请输入范围内的分数");
+          } else {
+            if (score == 100) {
+              alert("奖励一辆BMW");
+            } else if (score >= 80) {
+              alert("奖励一台iphone13pro");
+            } else if (score >= 60) {
+              alert("奖励一本参考书");
+            } else{
+              alert("什么奖励都没有");
+            }
+          }
+
+       *  大家知道，男大当婚，女大当嫁，那么女方家长要嫁女儿，当然要提出一定的条件
+          高：180cm以上；
+          富：1000万以上；
+          帅：500以上；
+          如果这三个条件同时满足，则："我一定要嫁给他"
+          如果这三个条件有为真的情况，则："嫁把，比上不足比下有余"
+          如果这三个条件都不满足，则："不嫁"
+
+          var height = prompt("请输入身高(cm):")
+          var money = prompt("请输入财富(万):")
+          var face = prompt("请输入颜值(px):")
+          if (height > 180 && money > 1000 && face > 500){
+            alert("我一定要嫁给他")
+          } else if(height || 180 && money || 1000 && face || 500){
+            alert("嫁把，比上不足比下有余")
+          } else{
+            alert("不嫁")
+          }
+
+       *  编写程序，由键盘输入三个整数分别存入变量num1、num2、num3,
+          对它们进行排序，并且从小到大输出。
+          //prompt()函数的返回值时string类型的，直接在prompt()函数前加一个+，可以将它的返回值统一转换为number类型
+          var num1 = +prompt("请输入第一个数")
+          var num2 = +prompt("请输入第一个数")
+          var num3 = +prompt("请输入第一个数")
+          //找到3个数中最小的数
+          if(num1 < num2 && num1 < num 3){
+            //num1最小，比较num2和num3
+            if(num2 < num3){
+              alert(num1 + "," num2 + ","+num3)
+            }else{
+              alert(num1 + "," num3 + ","+num2)
+            }
+          } else if(num2 < num1 && num2 < num3){
+            //num2最小，比较num1和num3
+            if(num1 < num3){
+              alert(num2 + "," num1 + ","+num3)
+            } else{
+              alert(num2 + "," num3 + ","+num1)
+            }
+          } else(num3 < num1 && num3 < num2){
+            //num3最小，比较num1和num2
+            if(num1 > num2){
+              alert(num3 +"," num1 + ","+num2)
+            } else{
+              alert(num3 + "," num2 + ","+num1)
+            }
+          }
+      */
+    </script>
+    <script id="条件分支语句">
+      /*
+       *  条件分支语句也叫switch语句
+            语法：
+              switch(条件表达式){
+                case表达式:
+                  语句
+                  break
+                case表达式:
+                  语句
+                  break
+                default:
+                  语句
+                  break
+              }
+            执行流程：
+              switch...case...语句
+              在执行时会依次将case后的表达式和switch后的条件表达式的值进行全等比较
+                如果比较结果为true,则从当前case处开始执行代码(当前case后的所有的代码都会执行)，我们可以在case的语句后面跟着一个break关键字，这样可以确保只会执行当前case后的语句，而不会执行其它的代码
+                如果比较结果为flase,则继续向下比较
+                如果所以的比较结果都为false，则只执行default语句
+              switch语句和if语句的功能实际上有重复的，使用switch可以实现if的功能，同样使用if也可以实现switch的功能，所以我们使用时，可以根据自己的习惯选择
+
+          根据num的值，输出对应的中文
+          var num = 3
+          if(num == 1){
+            console.log("一")
+          }else if(num == 2){
+            console.log("二")
+          }else if(num == 3){
+            console.log("三")
+          }                       这样做对是对的，只是太麻烦，每一个都在和num做相等的比较
+
+          var num = 1
+          switch(num){
+            case 1:
+              console.log("一")
+          }
+
+          var num = 2
+          switch(num){
+            case 1:               在执行时会依次将case后的表达式和switch后的条件表达式的值进行全等比较
+              console.log("一")
+            case 2:               比较结果为true,则从当前case处开始执行代码(当前case后的所有的代码都会执行)
+              console.log("二")
+            case 3:
+              console.log("三")
+            case 4:
+              console.log("四")   控制台输出二 三 四
+          }
+
+       *  使用break可以退出switch语句
+          如下所例，num = 2和case 2是全等的，全等则执行case 2后面的所有代码
+            我们可以在case 2的语句后面跟着一个break关键字，这样可以确保只会执行当前case后的语句，而不会执行后面的代码
+
+          var num = 2
+          switch(num){
+            case 1:               在执行时会依次将case后的表达式和switch后的条件表达式的值进行全等比较
+              console.log("一")
+            case 2:               比较结果为true,则从当前case处开始执行代码(当前case后的所有的代码都会执行)
+              console.log("二")
+              break;
+            case 3:
+              console.log("三")
+            case 4:
+              console.log("四")   控制台输出二 三 四
+            default:
+              console.log("非法数字")
+          }
+      */
+    </script>
+    <script id="switch练习">
+      /*
+
+       *  对于成绩大于60分的，输出"合格"。低于60分的，输出"不合格"
+          方法一：
+          var score = 60
+          switch(score){
+            case 60:
+            case 61:
+            case 62:
+              console.log("合格")
+              break;
+          }
+
+          6x等于60几
+          7x
+          8x
+          9x
+          100
+          这几种情况都是合格
+          从60~100数很多，一个个写不现时，那想想能不能把情况合并一下呢？
+          6x / 10 = 6x
+          7x / 10 = 7x
+          8x / 10 = 8x
+          9x / 10 = 9x      无论是91还是99/10 都得9，只不过不同的是91除9余1，99除9余9
+          100 / 10 = 10
+
+          var score = Number(prompt("请输入你的分数"));
+          switch (parseInt(score / 10)) {
+            case 10:
+            case 9:
+            case 8:
+            case 7:
+            case 6:
+              console.log("合格");
+              break;
+            default:
+              console.log("不合格");
+              break;
+          }
+
+          方法二：
+            var score = Number(prompt("请输入你的分数"));
+            switch (true) {
+              case score >= 60:           拿case后面的score >= 60:和true做比较，如果我case后面的值是true则执行下面的合格。>= 60如果成立那么返回true 和它全等 执行下面的合格。
+                console.log("合格");
+                break;
+              default:
+                console.log("不合格");
+                break;
+            }
+      */
+    </script>
+    <script id="循环语句">
+      /*
+       *  向页面中输出连续的数字
+          document.write(1);
+          document.write(2);  但是这样写完这两个连一块了12，我希望我写完 1在一行，2在一行
+
+          document.write(1+"<br />");
+          document.write(2+"<br />");
+          document.write(3+"<br />");
+          document.write(4+"<br />");  在网页中输出，我们可以使用br标签，进行换行
+
+          但是写1234有点麻烦，我还得一个个写，看这个数一直在自增，那不如这么写
+          var n = 1
+          document,write(n++ +"<br />")
+          document,write(n++ +"<br />")
+          document,write(n++ +"<br />")
+          document,write(n++ +"<br />")
+          document,write(n++ +"<br />")
+          document,write(n++ +"<br />")
+
+          但发现这块有个问题，输出半天，向页面输出这6个数字，每一行输出一个，每一行执行的都是一摸一样的 这样做太麻烦了，不方便
+          那我现在希望 反复的执行这一条语句多少多少次，这时候我们就可以用到循环语句
+
+       *  循环语句：
+            通过循环语句可以反复的执行一段代码多次
+       *  while循环
+            语法：
+              while(条件表达式){
+                语句
+              }
+            while语句在执行时，
+              先对条件表达式进行求值判断，
+                如果值为true，则执行循环体
+                  循环体执行完毕之后，继续对表达式进行判断
+                  如果为true，则继续执行循环体，以此类推
+                如果值为false，则终止循环
+
+            //像这种将条件表达式写死 为true的循环，叫做死循环
+            //该循环不会停止，除非浏览器关闭，死循环在开发中慎用
+                var n = 1
+                while(true){
+                  alert(n++)
+                }                对话框 1 2 3 4 5 6以此类推一直在执行，不停的在往外冒
+
+            //我想循环停止怎么办呢？可以使用break来终止循环
+                var n = 1
+                while(true){
+                  alert(n++)
+                  break;
+                }                这么写的话，执行1后直接退出，那我写循环就没有了
+
+
+            //我们可以在break来个判断，只有n等于10的时候才终止
+                var n = 1
+                while(true){
+                  alert(n++)
+                  if(n == 10){
+                    break;
+                  }
+                }
+            while循环更常见的一个写法，我们来看看
+            //创建一个循环，往往需要三个步骤
+              //1.初始化一个变量
+                var i = 0
+              //2.在循环中设置一个条件表达式 //以下为例，判断i是否小于10，只有i小于10循环才会执行
+                while(i < 10){
+                  alert(i)
+                  //3.定义一个更新表达式，每次更新初始化变量. //i++ 循环每执行一次 i自增一个.执行第一次i变成1，执行第二次i变成2，直到执行到10循环停止，所以这样我们的循环变成了一个执行10次的一个循环
+                  i++;
+                }                对话框 1 2 3 4 5 6 7 8 9没了，到10不执行
+
+       *  do while循环
+            语法：
+              do{
+                语句
+              }while(条件表达式)
+            执行流程：
+              do while语句在执行时，会先执行循环体，
+              循环体执行完毕以后，会对while后的条件表达式进行判断，
+                如果结果为true，则继续执行循环体，执行完毕以后继续判断 以此类推
+                如果结果为false，则终止循环
+
+              while和do while实际上这两个语句功能类似，不同的是while是先判断后执行，而do while是先执行，后判断
+              do while可以保证循环体至少执行一次，而while不能
+      */
+    </script>
+    <script id="while练习">
+      /*
+       *  假如投资的年利率为5%，试求从一千块增长到五千块，需要花费多少年
+          1000 1000*1.05
+          1050 1050*1.05
+
+          定义一个变量，表示钱的钱数
+          var money = 1000;
+          //第一年投资的钱数
+          money = money * 1.05
+          //第二年投资的钱数
+          money = money * 1.05
+          //第三年投资的钱数
+          money = money * 1.05
+          console.log(money)
+
+          定义一个while循环来计算每年的钱数
+          while(money < 5000){               //判断钱是否小于5000，到了5000循环停止
+            money = money * 1.05             //循环每执行一次过了一年，每执行一次增长一次
+          }
+          console.log(money)
+
+          年数怎么求？
+          我们需要在循环体外定义一个计数器变量，统计保存我们代码的执行次数
+          var money = Number(prompt("请输入你投资的本金"));
+          var money = 1000;
+          var count = 0
+          while(money < 5000){               //判断钱是否小于5000，到了5000循环停止
+            money = money * 1.05             //循环每执行一次过了一年，每执行一次增长一次
+            count++;                         //循环每执行一次我们让count自增一个
+          }
+          console.log("一共需要"+count+"年")  一共需要三十三年
+
+
+       *  从键盘输入小明的期末成绩
+          当成绩为100时，奖励一辆BMW
+          当成绩为(80~99)时，奖励一台iphone13pro
+          当成绩为(60~80)时，奖励一本参考书
+          其它时，什么奖励都没有
+
+          //用户输入错误 我希望用户可以再输入一遍，那我们可以将prompt放入到循环中
+          while (true) {
+            var score = prompt("请输入小明的期末成绩(0~100):");
+            //判断用户输入的值是否合法，用户输入合法则退出循环
+            if (score >= 0 && score <= 100) {
+              break;
+            }
+            alert("请输入有效的分数");
+          }
+          if (score > 100 || score < 0 || isNaN(score)) {
+            alert("请输入范围内的分数");
+          } else {
+            if (score == 100) {
+              alert("奖励一辆BMW");
+            } else if (score >= 80) {
+              alert("奖励一台iphone13pro");
+            } else if (score >= 60) {
+              alert("奖励一本参考书");
+            } else {
+              alert("什么奖励都没有");
+            }
+          }
+      */
+    </script>
+    <script id="for循环">
+      /*
+       *  for语句，也是一个循环语句，也称为for循环
+            在for循环中，为我们提供了专门的位置来摆放三个表达式：
+              1.初始化表达式
+              2.条件表达式
+              3.更新表达式
+            for循环的语法：
+              for(①初始化表达式;②条件表达式;④更新表达式){
+                ③语句
+              }
+              for(var i = 0 ; i < 10 ; i++){
+                alert(i)
+              }
+            for循环的执行流程：
+              ①执行初始化表达式，初始化变量(初始化表达式只会执行一次，就是在第一次的时候执行的)
+              ②执行初始化表达式，判断是否执行循环
+                如果为true,则执行循环体③
+                如果为false,则终止循环
+              ④执行更新表达式，更新表达式执行完毕 继续重复②
+            for循环中的三个部分可以省略，也可以写在外部
+              var i = 0
+              for(;i < 10;){
+                alert(i++)
+              }
+            如果在for循环中不写任何的表达式，只有两个;
+              此时循环是一个死循环 会一直执行下去，所以慎用
+              for(;;){
+                alert("hello")
+              }
+      */
+    </script>
+    <script id="for循环练习">
+      /*
+       *  打印1-100之间所有奇数之和
+          ①//打印1-100之间的数
+            for(var i = 1 ; i <= 100 ; i++){
+              alert(i)
+            }
+          ②//判断i是否为奇数。不能被2整除的数就是奇数。如果i除以2有余数则证明i是奇数
+            for(var i = 1 ; i <= 100 ; i++){
+              if(i % 2 != 0){
+                console.log(i)
+              }
+            }
+          ③//那我现在的i有多少个？好多呀，那我需要把这些i一个一个加起来。加的话是不是得有一个地方保存这个结果呀
+           //所以我们在循环的外面，创建一个变量，用来保存奇数之和
+            var sum = 0
+            for(var i = 1 ; i <= 100 ; i++){
+              if(i % 2 != 0){
+                sum = sum + i
+              }
+            }
+            console.log("奇数之和为："+sum)
+
+
+       *  打印1-100之间所有7的倍数的个数及总和
+          ①//打印1-100之间的数
+            for(var i = 1 ; i <= 100 ; i++){
+              alert(i)
+            }
+          ②//判断i是否是7的倍数。i能被7整除，就意味着i是7的倍数
+            for(var i = 1 ; i <= 100 ; i++){
+              if(i % 7 == 0){
+                console.log(i)
+              }
+            }
+          ③//在循环的外面，创建一个变量，用来保存7的倍数之和
+            var sum = 0
+            var count = 0
+            for(var i = 1 ; i <= 100 ; i++){
+              if(i % 7 == 0){
+                sum = sum + i
+                count++
+              }
+            }
+            console.log("7的倍数之和为："+sum)      //输出语句写在循环外面，因为我们只需要输出一次
+            console.log("7的倍数的个数为："+count)  //使计数器自增1
+
+       *  水仙花数
+          水仙花数是值一个三位数，它的每 个位上的数字3次幂之和等于它的本身。
+          (例如：13 + 53 + 33 = 153)，请打印所有的水仙花数
+          ①//打印所有的三位数
+          for(var i = 100 ; i < 1000 ; i++){
+            console.log(i)parseInt()
+          }
+          ②//获取i的百位 十位 个位的数字
+            //获取百位的数字
+            var bai = parseInt(i / 100)                  //我们要的是整数位，小数位不要，所以我需要对它取整parseInt()
+            //获取十位的数字
+            var shi = parseInt((i - bai * 100)/10)       //355-百位等于55 55/10等于5.5 取整为5
+            //获取各位的数字
+            var ge  = i % 10
+          ③//判断i是否是水仙花数
+          if(bai * bai * bai + shi * shi * shi + ge * ge * ge == i){
+            console.log(i)
+          }
+
+       *  在页面中接收一个用户输入的数字，并判断该数是否是质数
+            质数：只能被1和它自身整除的数，1不是质数也不是合数，质数必须是大于1的自然数
+          var num = prompt("请输入一个大于1的整数")                    //判断该值是否合法
+          var flag = true                                            //创建一个变量来保存当前数的状态.为什么等于true呢?我们默认当前num是质数
+          if(num <= 1){
+            alert("该值不合法")
+          }else{                                                     //判断num是否是质数  //获取2~num之间的数(把用户输入的num这些有可能整除的数取出来)
+            for(i = 2 ; i < num ; i++){                              //i=2 i小于num(i从2开始 如果num是10，i就是2到9这些数)
+              if(num % i == 0){                                      //判断num是否能被i整除.如果num能被i整除，则说明num一定不是质数
+                flag = false
+              }
+            }
+            //如果num是质数则输出                                                         //输出不能在循环体里面输出，因为结果是再for循环执行完了才出来的，得再for循环外输出。
+            if(flag){                                                                   //所以我需要在这输出，但是问题又来了，我在这儿能不能知道for循环结果 不能。我需要结果从for循环里传出来，需要for循环的结果告诉下面num是不是质数，所以我在外面创建了一个变量，我默认当前num是质数，到了for循环体判断能否被i整除 能被整除一定不是质数，故flag变成false.变成false后，一到下面 我就知道它不是质数了
+              alert(num + "是质数！")
+            }else{
+              alert(num + "不是质数！")
+            }
+          }
+      */
+    </script>
+    <script id="嵌套的for循环">
+      /*  需求
+            通过程序，在页面中输出如下图形
+            *****
+            *****
+            *****
+            *****
+            *****
+          //通过一个for循环来输出图形
+          //这个for循环执行几次，图形的高度就是多少
+          //它可以控制图形的高度
+          for (i = 0; i < 5; i++) {
+            document.write("*****<br />");     我想高度是20，我可以把i<5改成i<20
+          }
+          //可是高度灵活 宽度不灵活
+
+       *  在循环的内部再创建一个循环，用来控制图形的宽度
+          目前我们外部的for循环执行1次，内部的就会执行5次
+          内层循环可以决定图形的宽度 执行几次，图形的宽度就是多少
+          for (i = 0; i < 5; i++) {
+            for (j = 0; j < 5; j++) {    里面的for循环我想宽度是20，我可以把i<5改成i<20
+              document.write("*");
+            }
+            document.write("<br />");    执行换行
+          }
+          现在输出的图形，我感觉不太好看 它们行与行之间距离有点远，*与*之间的距离几句为0，我希望它们之间距离远一点
+            那我们在document.write("* ");加了个空格，有用。再加空格就没用了，因为最终是写到网页里的，写多少空格都当成一个 所以想要它起作用就不能这么写了
+            document.write("*&nbsp;&nbsp;");
+
+       *  需求
+            通过程序，在页面中输出如下图形
+            *               1(第一行)     <1(宽度一个*, j<1)     i=0(i+1正好等于行号)
+            **              2     <2      i=1
+            ***             3     <3      i=2
+            ****            4     <4      i=3
+            *****           5     <5      i=4
+
+          for (i = 0; i < 5; i++) {
+            for (j = 0; j < i + 1; j++) {         j < i + 1这样 第一次执行的时候i是0，j < 1，小于1那么第一行输出一个*。第二行的时候i是1，j < 2，小于2那么第二行输出两个*
+              document.write("*");
+            }
+            document.write("<br />");    执行换行
+          }
+
+      */
 
     </script>
+    <script id="函数">
+      /*
+       *  函数function
+            函数也是一个对象
+            函数中可以封装一些功能(代码)，在有需要的时候可以执行这些功能(代码)
+            函数中可以保存一些代码在需要的时候使用
+            使用typeof检查函数对象时，会返回function
 
+          //创建一个函数对象
+            var fun = new Function()
+            console.log(typeof fun)
+          //可以将要封装的代码以字符串的形式传递给构造函数    //(换句话说 在构造函数里 我可以传一个字符串)
+            var fun = new function("console.log('hello 这是我的第一个函数');")    //我这个函数构造里传的是一个字符串，但是这字符串有特点了，这字符串是一段js代码，等于是我现在把这一段代码存到了我们函数对象里
+            console.log(fun)                                                    //控制台显示console.log('hello 这是我的第一个函数');
+          //封装到函数中的代码不会立即执行                  //(也就是说我仅仅把它给存起来了，就像枪一样 我把子弹给装上了，它得等我开枪)
+          //函数中的代码会在函数调用的时候执行
+          //调用函数 语法：
+              函数对象()
+              fun()
+          //当调用函数时，函数中封装的代码会按照我编写的顺序执行
+            var fun = new function("console.log('hello 这是我的第一个函数');")
+            fun()                                                               //控制台显示 hello 这是我的第一个函数
+          //调用几次执行几次
+            var fun = new function("console.log('hello 这是我的第一个函数');")
+            fun()                                                               //控制台显示 hello 这是我的第一个函数
+            fun()                                                               //控制台显示 hello 这是我的第一个函数
+            fun()                                                               //控制台显示 hello 这是我的第一个函数
+            //这有什么好处？假如我想重复的去执行这行代码，我在24行想用我调用一下，我在240行想用我调一下，用起来比较方便。并且我想修改的话不用分别修改
+          不过我们在实际开发中很少使用构造函数来创建一个函数对象
+
+       *  使用函数声明来创建一个函数
+            语法：
+              function 函数名([形参1，形参2...形参n]){                            //[]意思表示可选的，里面的写不写都行,{}里函数体
+                语句
+              }
+
+              function fun2 (){
+
+              }
+              console.log(fun2)                                       //控制台显示function fun2 (){}里没有代码，因为我还没有往里填
+          //那现在我要封装代码怎么封装啊?直接写在函数体里
+              function fun2 (){
+                console.log("这是我的第二个函数")
+              }
+              fun2()                                                  //控制台显示这是我的第二个函数(我可以在函数体里封装大量的代码，调用的时候只需要调用变量名fun2()一行代码搞定)
+
+       *  使用函数表达式来创建一个函数
+            语法：
+              var 函数名 = function ([形参1，形参2...形参n]){
+                语句
+              }
+              //匿名函数
+              function(){
+                console.log("我是匿名函数中封装的代码")
+              }                                                       //匿名函数无意义，因为没用名，写完也用不了它
+              //所谓函数表达式就是创建一个匿名函数，然后将匿名函数的对象赋值给变量
+              var fun3 = function ([形参1，形参2...形参n]){
+                console.log("我是匿名函数中封装的代码")
+              };
+              fun3()
+      */
+    </script>
+    <script id="函数的参数">
+      /*  上面我们知道函数的方式及使用，但是函数的里面是封装的一些功能，封装的一些可执行的代码的，但我们发现 现在我们的功能没有实际上的意义，所以这里面我们要有有那么一点意义的函数
+       *  函数的参数
+          在函数的参数之前呢，我们先创建一个函数
+          那既然我们说了，函数的里面是封装的一些功能的，那我就要定一个具有一定功能的函数
+          比如说：定义一个求两个数和的函数
+            function sum(){
+              console.log(1+1)
+            }                            //现在保存 没执行?调用
+            sum()                        //保存 控制台结果位2.
+          //现在的问题是我这是求两个和的函数，但只会算1+1 写死了
+          function sum(){
+              var a = 1
+              var b = 1
+              console.log(a+b)
+            }
+            sum()                        //保存 控制台结果位还是2.这比刚才还麻烦了，但是已经有进步了，我知道使用变量了
+          //但是问题来了，我这变量的值是死的呀，那还不如不写呢，那我这两个值什么时候定啊，在调用的时候定。如果在调用的时候我希望是2+3，那就是a=2 b=3。
+          //我希望在我调用的时候，我才决定我要算谁+谁。定义的时候不定，在调用的时候定
+       *  可以在函数的()中来指定一个或多个形参(形式参数) //什么是形式参数 形式上的，它没有值 我先给你占个地儿
+          多个形参之间使用,隔开。声明形参就相当于在函数的内部声明了对应的变量
+            但是并不赋值
+            function sum(a,b){
+              console.log(a+b)
+            }
+       *  在调用函数时，可以在()中指定实参(实际参数)
+              实参将会赋值给函数中对应的形参
+            sum(1,2)    //控制台结果位还是3        所以(1，2)就相当于在函数体中写了一个var a = 1 ();var b = 2
+
+       *  调用函数时 解析器不会检查实参的类型
+             所以要注意，是否有可能会接收到非法的参数，
+               如果有可能，则需要对参数进行类型的检查
+          函数的实参可以是任意的数据类型
+           function sum(a,b){
+              console.log(a+b)
+            }
+           sum(123,"hello")            //控制台结果是123hello
+           function sum(a,b){
+              console.log(a+b)
+            }
+           sum(true,false)             //控制台结果是1
+
+       *  调用函数时，解析器也不会检查实参的数量
+            多余实参不会被赋值
+          如果实参的数量少于形参的数量，则没有对应实参的形参将时undefined
+          function sum(a,b){
+              console.log(a+b)
+            }
+           sum(1,2,true,false)             //控制台结果是3
+      */
+    </script>
+    <script id="返回值">
+      /*  首先 我们先创建一个函数，用来计算三个数的和
+          function sum(a,b,c){
+            console.log(a+b+b)
+          }
+          sum(4,7,8)   //控制台结果19
+          //算完的结果就给我输出出来了，你说这种东西它好不好啊？
+          //这个19的值是不是我想输出的呢？不一定。结果算出来我可能想干别的去用。就像你去称体重，刚站秤上 旁边有一人看见了给你念出来了说他体重两百！
+            那你是不希望他念出来啊？不用 我希望我称完这个体重 知道结果就行了。
+            同理 我只需要一个结果，而不需要你替我来处理这个结果
+            往往执行一个函数时，是需要将这个结果返回的，而不是输出。那问题来了 我们怎么将这个结果返回呢?
+
+       *  可以使用return,来设置返回的值
+            语法：
+              return 值
+              return //如果return后面不跟值，就相当于return undefined
+            return后的值将会作为函数的执行结果返回，
+              可以定义一个变量，来接收该结果
+
+
+          function sum(a,b,c){
+            //console.log(a+b+b)
+            var d = a + b + c
+            return d
+          }
+          //调用函数
+          //变量result的值就是函数的执行结果
+          //函数返回什么result的值就是什么
+          var result = sun(4,7,8)
+          console.log("result = "+result)            //控制台结果是result=19
+
+          在函数中return下面的语句都不会执行
+            function sum(a,b,c){
+            var d = a + b + c
+            return d
+            alery=t("hello")                         //控制台结果是result=19，alert没有执行
+            }
+            var result = sun(4,7,8)
+            console.log("result = "+result)
+
+          如果return语句后面不跟值，就相当于返回一个undefined
+            function sum(a,b,c){
+            var d = a + b + c
+            return
+            }
+            var result = sun(4,7,8)
+            console.log("result = "+result)          //控制台结果是result undefined
+
+          如果函数中不写return，则也会返回undefined
+            function sum(a,b,c){
+            var d = a + b + c
+            }
+            var result = sun(4,7,8)
+            console.log("result = "+result)          //控制台结果是result undefined
+
+          return语句后可以跟任意类型的值
+            function sum(a,b,c){
+            var d = a + b + c
+            return "hello"
+            }
+            var result = sun(4,7,8)
+            console.log("result = "+result)          //控制台结果是result=hello
+       *
+      */
+
+
+    </script>
+    <script id="函数练习">
+      // 判断一个数是不是素数
+      //  是的话返回true
+      //  不是的话返回false
+      var n = Number(prompt("请输入一个属是不是素数:"));
+      function isPrime(n) {
+        for (var i = 2; i * i <= n; i++) {
+          if (n % i == 0) {
+            return false; //return 语句会终止函数的执行并返回函数的值。
+          }
+        }
+        return true;
+      }
+      var result = isPrime(n);
+      console.log(result);
+    </script>
+
+    <script id="函数练习">
+      // 如果一个数与7有关就返回真，否则返回假
+      //    (与7有关，是7的倍数或任意位上有7)
+      var n = Number(prompt("请输入"));
+      function qiao7(n) {
+        if (n % 7 == 0) {
+          return true; //但它不是7的倍数也不代表它就与7无关，因为还要考虑它各个位上是不是7
+        }
+        while (n > 0) {
+          var digit = n % 10; //123 3   12 2
+          if (digit == 7) {
+            return true;
+          }
+          n = (n - digit) / 10; //123-3/10=12   12-2/10=1
+        }
+        return false;
+      }
+      console.log(qiao7(n));
+    </script>
 
   <!-- </head> -->
   <body>
