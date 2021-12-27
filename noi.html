@@ -460,3 +460,250 @@
   }
   console.log(sum);
 </script>
+<script type="xxx" id="ch0105/11">
+  //给定k（1< k < 100）个正整数，其中每个数都是大于等于1，小于等于10的数。写程序计算给定的k个正整数中，1，5和10出现的次数。
+  var k = Number(prompt());
+  var count = 0;
+  一的数量 = 0;
+  五的数量 = 0;
+  十的数量 = 0;
+  while (count < k) {
+    var number = Number(prompt());
+    if (number === 1) {
+      一的数量 = 一的数量 + 1;
+    }
+    if (number === 5) {
+      五的数量 = 五的数量 + 1;
+    }
+    if (number === 10) {
+      十的数量 = 十的数量 + 1;
+    }
+    count = count + 1;
+  }
+  console.log(一的数量, 五的数量, 十的数量);
+</script>
+
+<script type="xxx" id="ch0105/12">
+  //输出一个整数序列中与指定数字相同的数的个数。
+  var n = Number(prompt("请输入一个整数序列的长度"));
+  var target = Number(prompt("你要找数字几？"));
+  var count = 0;
+  var target的数量 = 0;
+  while (count < n) {
+    var number = Number(prompt("请输入数字"));
+    if (target === number) {
+      target的数量 = target的数量 + 1;
+    }
+    count = count + 1;
+  }
+  console.log(target);
+</script>
+
+<script type="xxx" id="ch0105/13">
+  //给出一个整数a和一个正整数n，求乘方 a的n次方。
+  var a = Number(prompt("给出一个整数:"));
+  var n = Number(prompt("给定一个次方(正整数):"));
+  var result = 1;
+  for (var i = 0; i < n; i++) {
+    result = result * a;
+  }
+  console.log(result);
+</script>
+
+<script type="xxx" id="ch0105/14">
+  //我国现有x亿人口，按照每年0.1%的增长速度，n年后将有多少人？
+  var x = Number(prompt("我国当前的人后基数为:"));
+  var n = Number(prompt("请输入要计算的年数:"));
+  for (var i = 0; i < n; i++) {
+    x = x * (1 + 0.001);
+  }
+  console.log(x.toFixed(4));
+</script>
+
+<script type="xxx" id="ch0105/15">
+  //农夫约翰在去年赚了一大笔钱！他想要把这些钱用于投资，并对自己能得到多少收益感到好奇。
+  //已知投资的复合年利率为R（0到20之间的整数）。约翰现有总值为M的钱（100到1,000,000之间的整数）。
+  //他清楚地知道自己要投资Y年（范围0到400）。请帮助他计算最终他会有多少钱，并输出它的整数部分。数据保证输出结果在32位有符号整数范围内。
+  var r = Number(prompt("投资的复合年利率为:"));
+  var m = Number(prompt("现有钱的总值是:"));
+  var y = Number(prompt("要投资多少年"));
+  for (var i = 0; i < y; i++) {
+    m = m * (1 + r / 100);
+  }
+  console.log(parseInt(m));
+</script>
+
+<script type="xxx" id="ch0105/16">
+  //某程序员开始工作，年薪N万，
+  // 他希望在中关村公馆买一套60平米的房子，现在价格是200万，
+  // 假设房子价格以每年百分之K增长，并且该程序员未来年薪不变，且不吃不喝，不用交税，
+  // 每年所得N万全都积攒起来，问第几年能够买下这套房子？（第一年年薪N万，房价200万）
+
+  //   输入
+  // 一行，包含两个正整数N（10 <= N <= 50）, K（1 <= K <= 20），中间用单个空格隔开。
+
+  //   输出
+  // 如果在第20年或者之前就能买下这套房子，则输出一个整数M，表示最早需要在第M年能买下，否则输出Impossible。
+  var N = Number(prompt("程序员年薪为多少万？"));
+  var K = Number(prompt("房子价格以百分之多少增长？"));
+
+  var sum = 0; //记录工资攒下来的钱
+  var housePrice = 200;
+  var buyed = false;
+
+  for (var i = 1; i <= 20; i++) {
+    //如果在第20年或者之前就能买下这套房子，则输出一个整数M,那么这个时候i等于0的话，不存在第0年这样的写法，所以这样的话我们可以i=1 i<=20,这样当买得起的时候直接把i输出就可以了
+    sum += N; //每过一年攒下来的钱
+    if (sum >= housePrice) {
+      //对比攒的钱与房价
+      console.log(i);
+      buyed = true;
+      break;
+    }
+    housePrice = housePrice * (1 + K / 100); //每年房子涨价
+  }
+  if (!buyed) {
+    console.log("Impossible");
+  }
+</script>
+
+<script type="xxx" id="ch0105/17">
+  //菲波那契数列是指这样的数列: 数列的第一个和第二个数都为1，接下来每个数都等于前面2个数之和。(1,1,2,3,5,8,13,21,34,55)
+  // 给出一个正整数k，要求菲波那契数列中第k个数是多少。
+  // 输入
+  // 输入一行，包含一个正整数k。（1 <= k <= 46）
+  // 输出
+  // 输出一行，包含一个正整数，表示菲波那契数列中第k个数的大小
+  var k = Number(prompt());
+  var a = 0;
+  var b = 1;
+  var c;
+  for (var i = 0; i < k; i++) {
+    c = a + b;
+    a = b;
+    b = c;
+  }
+  console.log(a);
+</script>
+
+<script type="xxx" id="ch0105/17">
+  // 描述
+  // 鸡尾酒疗法，原指“高效抗逆转录病毒治疗”（HAART），由美籍华裔科学家何大一于1996年提出，是通过三种或三种以上的抗病毒药物联合使用来治疗艾 滋病。
+  // 该疗法的应用可以减少单一用药产生的抗药性，最大限度地抑制病毒的复制，使被破坏的机体免疫功能部分甚至全部恢复，从而延缓病程进展，延长患者生 命，提高生活质量。
+  // 人们在鸡尾酒疗法的基础上又提出了很多种改进的疗法。为了验证这些治疗方法是否在疗效上比鸡尾酒疗法更好，可用通过临床对照实验的方式 进行。
+  // 假设鸡尾酒疗法的有效率为x，新疗法的有效率为y，如果y-x大于5%，则效果更好，如果x-y大于5%，则效果更差，否则称为效果差不多。
+  // 下面给 出n组临床对照实验，其中第一组采用鸡尾酒疗法，其他n-1组为各种不同的改进疗法。请写程序判定各种改进疗法效果如何。
+
+  // 输入
+  // 第一行为整数n（ 1 < n <= 20）；
+  // 其余n行每行两个整数，第一个整数是临床实验的总病例数(小于等于10000)，第二个疗效有效的病例数。
+  // 这n行数据中，第一行为鸡尾酒疗法的数据，其余各行为各种改进疗法的数据。
+  // 输出
+  // 有n-1行输出，分别表示对应改进疗法的效果：
+  // 如果效果更好，输出better；如果效果更差，输出worse；否则输出same
+  var n = Number(prompt("多少组临床对照实验")); //5
+  var total = Number(prompt("鸡尾酒疗法临床实验总病例数")); //125
+  var effective = Number(prompt("鸡尾酒疗法治疗有效的病例数:")); //99
+  var ratio = effective / total; //鸡尾酒疗法的有效率比例=疗效有效的病例数/临床对照实验总数           //79.2%
+  for (var i = 1; i < n; i++) {
+    var t = Number(prompt("改进疗法的临床实验总病例数"));
+    var e = Number(prompt("改进疗法治疗有效的病例数"));
+    var r = e / t; //改进疗法的有效率比例
+    if (r - ratio > 0.05) {
+      //改进疗法治疗有效的病例数 / 改进疗法的临床实验总病例数 - 鸡尾酒疗法临床实验总病例数 = 0.26%
+      console.log("better");
+    } else if (ratio - r > 0.05) {
+      //鸡尾酒疗法临床实验总病例数 - 改进疗法治疗有效的病例数 / 改进疗法的临床实验总病例数 = 0.26%
+      console.log("worse");
+    } else {
+      console.log("same");
+    }
+  }
+</script>
+
+<script type="xxx" id="练习">
+    //给你一个整数 n ，请你判断 n 是否为 丑数 。如果是，返回 true ；否则，返回 false 。
+    //丑数 就是只包含质因数 2、3 和/或 5 的正整数。
+    //解题思路 怎样判断呢？
+    //就拿这个n除以2 除以3 除以5，要是能除我就一直除 除到最后的话能把2、3、5这些数除完只剩1
+    var isUgly = function(n) {
+      while (n % 2 == 0){ //如果n % 2 == 0说明它可以除以2，n就等于n除以2。除一次是不够的，比如20。20/2=10，10还能再除以2，所以while循环。
+          n = n / 2
+      }
+      while (n % 3 == 0) {
+          n = n / 3
+      }
+      while (n % 5 == 0){
+          n = n / 5
+      }
+      return n == 1 //最后它真的能够在上面的一直除来除去的过程中 把2、3、5的因子除完并且它真的是丑数的话，那么它只会剩1
+  };
+</script>
+
+<script>
+  //给定一个非负整数 num，反复将各个位上的数字相加，直到结果为一位数。
+
+  //示例:
+
+  // 输入: 38
+  // 输出: 2
+  // 解释: 各位相加的过程为:3 + 8 = 11, 1 + 1 = 2。 由于 2 是一位数，所以返回
+  // 解题思路 如果num是19274 那我要把1+9+2+7+4和算出来 和为33，33不是个位，那么继续相加。3+ 3=6。ok把6返回
+
+  var addDigits = function (num) {
+    while (true) {
+      var sum = 0;
+      while (num > 0) {
+        var dight = num % 10; //我们把个位数取出来
+        sum = sum + dight;
+        num = (num - dight) / 10; //循环结束后sum=num每位数之和 对应带如果我把n带到19274，sum就等于33了，33是不能直接返回的
+      }
+      if (sum < 10) {
+        return sum;
+      } else {
+        //否则我再把sum求一遍，或者反过来 我应该求sum这个数的各位数和
+        num = sum;
+      }
+    }
+  };
+</script>
+
+<script>
+  //给定一个非负整数 num，反复将各个位上的数字相加，直到结果为一位数。
+
+  //示例:
+
+  // 输入: 38
+  // 输出: 2
+  // 解释: 各位相加的过程为:3 + 8 = 11, 1 + 1 = 2。 由于 2 是一位数，所以返回
+
+  var addDigits = function (num) {
+    while (true) {
+      var sum = 0;
+      while (num > 0) {
+        var dight = num % 10; //我们把个位数取出来
+        sum = sum + dight;
+        num = (num - dight) / 10; //循环结束后sum=num每位数之和 对应带如果我把n带到19274，sum就等于33了，33是不能直接返回的
+      }
+      if (sum < 10) {
+        return sum;
+      } else {
+        return addDigits(sum);
+      }
+    }
+  };
+</script>
+
+<script>
+  //给定一个非负整数 num，反复将各个位上的数字相加，直到结果为一位数。
+
+  //示例:
+
+  // 输入: 38
+  // 输出: 2
+  // 解释: 各位相加的过程为:3 + 8 = 11, 1 + 1 = 2。 由于 2 是一位数，所以返回
+  // 解题思路 如果num是19274 那我要把1+9+2+7+4和算出来 和为33，33不是个位，那么继续相加。3+ 3=6。ok把6返回
+  //   进阶:
+  // 你可以不使用循环或者递归，且在 O(1) 时间复杂度内解决这个问题吗？
+  // 解题思路 99992 % 9 = 2
+</script>
