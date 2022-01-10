@@ -1,16 +1,20 @@
 var zhaodad = {
-  chunk: function (array, size = 1) {
-    var temp = new Array(Math.ceil(array.length / size))
-    var a = 0
-    for (var i = 0; i < array.length; i++){
-      temp[a] ? temp[a] : temp[a] = []
-      temp[a].push(array[i])
-      if (temp.length == size) {
-        a++
+  chunk : function chunk(array, size = 1){
+    var res = []
+    var count = 0
+    var temp = []
+    for(var i = 0; i < array.length;i++){
+      temp.push(array[i])
+      count++
+      if(count == size || i == array.length - 1){
+        res.push(temp)
+        temp = []
+        count = 0
       }
     }
-    return temp
+    return res
   }
+
 
 
 
