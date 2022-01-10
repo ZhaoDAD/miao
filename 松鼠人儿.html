@@ -1,0 +1,666 @@
+<script type="" id="松鼠人">
+  //分子上1*76 - 4*9 = 40
+  //根号下76+4=80 * 4+1=5 * 9+1=10 * 76+9=85
+
+  //我们可以用一维数组[76,9,4,1]来表示一张2乘2的表格
+  //有人会说，你为什么不使用二维数组呢？
+  // t = [
+  //   [76, 9],
+  //   [4, 1],
+  // ];
+  // t[0][1]; 控制台为9
+  //二维数组写起来符号很多，如果有一百行，一百列，那用二维数组还是比较好的。但是我只要四个元素，用二维数组有点浪费。
+  // t2 = {
+  //   '00': 76,
+  //   '01': 9,
+  //   '10': 4,
+  //   '11': 1,
+  // }
+  // t2['00'] 控制台为76
+  //也可以使用一个对象，在其中包含一些属性，并将其取名为"00" "01" "10" "11"，但是这样写也很累
+
+  //综合以上方法，一维数组很简单，也更容易操作
+  //列子：第几行第几列在第哪个位置？
+  //假如10*10的格子，第三行第七列在第几个下标？ 在第26
+  //  (行-1)*行的数量   (r-1)*R
+  //  +列-1            +c-1
+  //当你把它理解为10*10的表格的时候，你想取其中第几行第几列的时候就很容易取出来，只需公式算出从0开始，前往后数的第几个，那么拿下标取出即可
+  //而且用一维数组还有一个好处，你既可以把它看作10*10，还可以把它看作5*20，5行每行有20列。
+  //实际上一维数组更灵活，而且更容易去把它当作不同的维度来存
+  //所以拿4个元素的一维数组来表示二维数组是可行的。
+  //当表示2*2数组的时候，[79,9,4,1] 我要访问第二行第二列 (2-1)*2 + 2-1 =3 下标3最后一个元素
+
+  //我们可以把表格的下标理解成一个两位的二进制数，而二进制数的第一位和第二位分别代表了行和列，分别代表了两个变量的真和假
+  //  0  1  2  3 (十进制)
+  //  00 01 10 11(二进制)
+  //  76 9 4 1
+  /*
+  左边一位(高位)数字表示变量"是否变成松鼠"，右边一位(低位)数字表示事件变量
+   例如，若二进制数字为10，表示雅克变成了松鼠，但事件并未发生(比如说吃披萨)。这种情况发生了4次。
+   由于二进制数字10的十进制表示法是2，因此我们将存储到数组中 下标为2的位置上
+  */
+
+  //0 1  //76 9
+  //2 3  //4  1
+  function phi(table) {
+    return (
+      (table[0] * table[3] - table[1] * table[2]) /
+      Math.sqrt(
+        (table[0] + table[1]) *
+          (table[1] + table[3]) *
+          (table[3] + table[2]) *
+          (table[2] + table[0])
+      )
+    );
+  }
+  // 控制台输入phi([76,9,4,1])，得到的结果是0.06859943405700354
+</script>
+<script>
+  //雅克花了三个月的时间记录日志
+  var JOURNAL = [
+    { events: ["carrot", "exercise", "weekend"], squirrel: false },
+    {
+      events: ["bread", "pudding", "brushed teeth", "weekend", "touched tree"],
+      squirrel: false,
+    },
+    {
+      events: ["carrot", "nachos", "brushed teeth", "cycling", "weekend"],
+      squirrel: false,
+    },
+    {
+      events: [
+        "brussel sprouts",
+        "ice cream",
+        "brushed teeth",
+        "computer",
+        "weekend",
+      ],
+      squirrel: false,
+    },
+    {
+      events: [
+        "potatoes",
+        "candy",
+        "brushed teeth",
+        "exercise",
+        "weekend",
+        "dentist",
+      ],
+      squirrel: false,
+    },
+    {
+      events: [
+        "brussel sprouts",
+        "pudding",
+        "brushed teeth",
+        "running",
+        "weekend",
+      ],
+      squirrel: false,
+    },
+    {
+      events: ["pizza", "brushed teeth", "computer", "work", "touched tree"],
+      squirrel: false,
+    },
+    {
+      events: ["bread", "beer", "brushed teeth", "cycling", "work"],
+      squirrel: false,
+    },
+    { events: ["cauliflower", "brushed teeth", "work"], squirrel: false },
+    { events: ["pizza", "brushed teeth", "cycling", "work"], squirrel: false },
+    { events: ["lasagna", "nachos", "brushed teeth", "work"], squirrel: false },
+    { events: ["brushed teeth", "weekend", "touched tree"], squirrel: false },
+    {
+      events: ["lettuce", "brushed teeth", "television", "weekend"],
+      squirrel: false,
+    },
+    { events: ["spaghetti", "brushed teeth", "work"], squirrel: false },
+    { events: ["brushed teeth", "computer", "work"], squirrel: false },
+    { events: ["lettuce", "nachos", "brushed teeth", "work"], squirrel: false },
+    { events: ["carrot", "brushed teeth", "running", "work"], squirrel: false },
+    { events: ["brushed teeth", "work"], squirrel: false },
+    { events: ["cauliflower", "reading", "weekend"], squirrel: false },
+    { events: ["bread", "brushed teeth", "weekend"], squirrel: false },
+    {
+      events: ["lasagna", "brushed teeth", "exercise", "work"],
+      squirrel: false,
+    },
+    {
+      events: ["spaghetti", "brushed teeth", "reading", "work"],
+      squirrel: false,
+    },
+    {
+      events: ["carrot", "ice cream", "brushed teeth", "television", "work"],
+      squirrel: false,
+    },
+    { events: ["spaghetti", "nachos", "work"], squirrel: false },
+    {
+      events: ["cauliflower", "ice cream", "brushed teeth", "cycling", "work"],
+      squirrel: false,
+    },
+    { events: ["spaghetti", "peanuts", "computer", "weekend"], squirrel: true },
+    {
+      events: ["potatoes", "ice cream", "brushed teeth", "computer", "weekend"],
+      squirrel: false,
+    },
+    {
+      events: ["potatoes", "ice cream", "brushed teeth", "work"],
+      squirrel: false,
+    },
+    {
+      events: ["peanuts", "brushed teeth", "running", "work"],
+      squirrel: false,
+    },
+    { events: ["potatoes", "exercise", "work"], squirrel: false },
+    { events: ["pizza", "ice cream", "computer", "work"], squirrel: false },
+    { events: ["lasagna", "ice cream", "work"], squirrel: false },
+    { events: ["cauliflower", "candy", "reading", "weekend"], squirrel: false },
+    {
+      events: ["lasagna", "nachos", "brushed teeth", "running", "weekend"],
+      squirrel: false,
+    },
+    { events: ["potatoes", "brushed teeth", "work"], squirrel: false },
+    { events: ["carrot", "work"], squirrel: false },
+    { events: ["pizza", "beer", "work", "dentist"], squirrel: false },
+    { events: ["lasagna", "pudding", "cycling", "work"], squirrel: false },
+    {
+      events: ["spaghetti", "brushed teeth", "reading", "work"],
+      squirrel: false,
+    },
+    {
+      events: ["spaghetti", "pudding", "television", "weekend"],
+      squirrel: false,
+    },
+    {
+      events: ["bread", "brushed teeth", "exercise", "weekend"],
+      squirrel: false,
+    },
+    { events: ["lasagna", "peanuts", "work"], squirrel: true },
+    { events: ["pizza", "work"], squirrel: false },
+    { events: ["potatoes", "exercise", "work"], squirrel: false },
+    { events: ["brushed teeth", "exercise", "work"], squirrel: false },
+    {
+      events: ["spaghetti", "brushed teeth", "television", "work"],
+      squirrel: false,
+    },
+    { events: ["pizza", "cycling", "weekend"], squirrel: false },
+    { events: ["carrot", "brushed teeth", "weekend"], squirrel: false },
+    { events: ["carrot", "beer", "brushed teeth", "work"], squirrel: false },
+    { events: ["pizza", "peanuts", "candy", "work"], squirrel: true },
+    {
+      events: ["carrot", "peanuts", "brushed teeth", "reading", "work"],
+      squirrel: false,
+    },
+    {
+      events: ["potatoes", "peanuts", "brushed teeth", "work"],
+      squirrel: false,
+    },
+    {
+      events: ["carrot", "nachos", "brushed teeth", "exercise", "work"],
+      squirrel: false,
+    },
+    {
+      events: ["pizza", "peanuts", "brushed teeth", "television", "weekend"],
+      squirrel: false,
+    },
+    {
+      events: ["lasagna", "brushed teeth", "cycling", "weekend"],
+      squirrel: false,
+    },
+    {
+      events: [
+        "cauliflower",
+        "peanuts",
+        "brushed teeth",
+        "computer",
+        "work",
+        "touched tree",
+      ],
+      squirrel: false,
+    },
+    {
+      events: ["lettuce", "brushed teeth", "television", "work"],
+      squirrel: false,
+    },
+    {
+      events: ["potatoes", "brushed teeth", "computer", "work"],
+      squirrel: false,
+    },
+    { events: ["bread", "candy", "work"], squirrel: false },
+    { events: ["potatoes", "nachos", "work"], squirrel: false },
+    {
+      events: ["carrot", "pudding", "brushed teeth", "weekend"],
+      squirrel: false,
+    },
+    {
+      events: [
+        "carrot",
+        "brushed teeth",
+        "exercise",
+        "weekend",
+        "touched tree",
+      ],
+      squirrel: false,
+    },
+    { events: ["brussel sprouts", "running", "work"], squirrel: false },
+    { events: ["brushed teeth", "work"], squirrel: false },
+    {
+      events: ["lettuce", "brushed teeth", "running", "work"],
+      squirrel: false,
+    },
+    { events: ["candy", "brushed teeth", "work"], squirrel: false },
+    {
+      events: ["brussel sprouts", "brushed teeth", "computer", "work"],
+      squirrel: false,
+    },
+    { events: ["bread", "brushed teeth", "weekend"], squirrel: false },
+    { events: ["cauliflower", "brushed teeth", "weekend"], squirrel: false },
+    {
+      events: ["spaghetti", "candy", "television", "work", "touched tree"],
+      squirrel: false,
+    },
+    { events: ["carrot", "pudding", "brushed teeth", "work"], squirrel: false },
+    { events: ["lettuce", "brushed teeth", "work"], squirrel: false },
+    {
+      events: ["carrot", "ice cream", "brushed teeth", "cycling", "work"],
+      squirrel: false,
+    },
+    { events: ["pizza", "brushed teeth", "work"], squirrel: false },
+    { events: ["spaghetti", "peanuts", "exercise", "weekend"], squirrel: true },
+    {
+      events: ["bread", "beer", "computer", "weekend", "touched tree"],
+      squirrel: false,
+    },
+    { events: ["brushed teeth", "running", "work"], squirrel: false },
+    {
+      events: ["lettuce", "peanuts", "brushed teeth", "work", "touched tree"],
+      squirrel: false,
+    },
+    {
+      events: ["lasagna", "brushed teeth", "television", "work"],
+      squirrel: false,
+    },
+    {
+      events: ["cauliflower", "brushed teeth", "running", "work"],
+      squirrel: false,
+    },
+    { events: ["carrot", "brushed teeth", "running", "work"], squirrel: false },
+    { events: ["carrot", "reading", "weekend"], squirrel: false },
+    { events: ["carrot", "peanuts", "reading", "weekend"], squirrel: true },
+    {
+      events: ["potatoes", "brushed teeth", "running", "work"],
+      squirrel: false,
+    },
+    {
+      events: ["lasagna", "ice cream", "work", "touched tree"],
+      squirrel: false,
+    },
+    {
+      events: ["cauliflower", "peanuts", "brushed teeth", "cycling", "work"],
+      squirrel: false,
+    },
+    { events: ["pizza", "brushed teeth", "running", "work"], squirrel: false },
+    { events: ["lettuce", "brushed teeth", "work"], squirrel: false },
+    {
+      events: ["bread", "brushed teeth", "television", "weekend"],
+      squirrel: false,
+    },
+    {
+      events: ["cauliflower", "peanuts", "brushed teeth", "weekend"],
+      squirrel: false,
+    },
+  ];
+
+  //现在的问题是 我们光要这个数据没有用，我们来看第一天数据记录吃了面包 false没变松鼠，第二天数据记录没吃面包  false没变松鼠
+  //我得把吃没吃面包 和变没变松鼠 统计出上面的2*2表格
+  //然后计算出表格的phi值
+  //每一种事件都要记录
+
+  //indexOf()在数组里面查找括号里的元素存在，它能返回你要在这个数组中查找的值的下标
+  // a = [1, 2, 4, 5, 15, 20, 1, 3];
+  // a.indexof(15);
+  // 4;
+  //includes()在数组中查找括号里的元素是否存在，如果有true,如果没有false
+  // a = [1, 2, 4, 5, 15, 20, 1, 3]
+  // a.includes(1)
+  // true
+
+  //控制台我们传两个参数，第一个参数是数组，第二个参数是值，在这个数组里找值得下标，找到了就返回它的下标，找不到就返回-1
+  // function indexOf(array, value, fromIndex = 0) {
+  //   //fromIndex起始值
+  //   for (var i = fromIndex; i < array.length; i++) {
+  //     if (array[i] === value) {
+  //       return i;
+  //     }
+  //   }
+  //   return -1;
+  // }
+
+  // {
+  //     events: ["cauliflower", "peanuts", "brushed teeth", "weekend"],
+  //     squirrel: false,
+  //   }(这个是entry，某天的记录)
+
+  // ["cauliflower", "peanuts", "brushed teeth", "weekend"](这个是events，数组)
+
+  //数组上运用方法 indexOf(event) 可以找到某件事的位置
+  function hasEvent(event, entry) {
+    //某天没有做某事情
+    // return entry.events.indexOf(event) >= 0; //数组里面(entry.events)是否包含(event)    // >=0能找到，说明那天有做这件事。
+    return entry.events.includes(event); //也可以这样写
+  }
+  /*//控制台输入entry = JOURNAL[10]  //得到第9天的数据
+        //控制台输出 {events: Array(4), squirrel: false}events: (4) ['lasagna', 'nachos', 'brushed teeth', 'work']squirrel: false[[Prototype]]: Object
+      //控制台输入 entry
+        //控制台输出 {events: Array(4), squirrel: false}events: (4) ['lasagna', 'nachos', 'brushed teeth', 'work']squirrel: false[[Prototype]]: Object
+      //控制台输入hasEvent("bread",entry)  //第十天有没有吃面包?
+        //控制台输出 false
+      //控制台输入hasEvent("bread",JOURNAL[1]) //第二天有没有吃面包?
+        //控制台输出 true
+    */
+
+  //从统计数据中得到某事件与变松鼠之间的表格，一旦有了表格，把表格传给function phi(table) {...}，就能算出来了。
+  function tableFor(event, journal) {
+    var table = [0, 0, 0, 0]; //表格一开始4个0
+    // 然后我们要遍历每一天。这一天如果发生了这个事情，或者说没发生 任何一种组合 我们都要把表格中的某个位置+1
+    for (var i = 0; i < journal.length; i++) {
+      //这里journal是个形参，所以我们一会儿要把外面的JOURNAL传给tableFor，再传一个事件名称event
+      //那这里怎么判断呢？有四种情况呀
+      //左边一位(高位)数字表示变量"是否变成松鼠"，右边一位(低位)数字表示事件变量。
+      //例如，若二进制数字为10，表示雅克变成了松鼠，但事件并未发生(比如说吃披萨)。这种情况发生了4次。
+      //由于二进制数字10的十进制表示法是2，因此我们将存储到数组中 下标为2的位置上
+      var entry = journal[i];
+      var index = 0; //高位低位都为0
+      if (entry.squirrel) {
+        index += 2; //如果变成了松鼠，高位就表示是否变成松鼠。高位加一，但是高位在十进制下是2
+      }
+      if (hasEvent(event, entry)) {
+        index += 1; //如果那天发生了这个事情，低位就表示是否发生了某事，低位加1
+      }
+      //这个时候 index代表的二进制高位和低位已经被加好了，我们正好拿index来取表格里的某一项，或者是定位表格里面的某一项给那项++。//如果两件事情都发生+3 下标变3正好是最后一个。
+      table[index]++;
+    }
+    //当这个循环完成的时候，我们就从每天的记录里得到了某件事情跟跟变成松鼠间的统计数据，我们把统计数据给它返回
+    return table;
+  }
+  //控制台输入tableFor('pizza',JOURNAL) 注意我们传的是实参，实参是要传存在的变量的
+  //控制台输出(4) [76, 9, 4, 1]
+  //控制台输入phi ([76, 9, 4, 1])       我们拿这个数据来算一下phi值
+  //控制台输出 0.06859943405700354
+  //debugger;tableFor('pizza',JOURNAL) 调试一下
+  //控制台输入tableFor('carrot',JOURNAL)
+  //控制台输出(4) [70, 15, 4, 1]
+  //控制台输入phi ([70, 15, 4, 1])      我们拿这个数据来算一下phi值
+  //控制台输出 0.014097096860865023   说明吃胡萝卜跟变松鼠的相关性比吃披萨还低，当然了两者都非常接近于0，所以它们和变松鼠是没什么关系的
+  //控制台输入phi(tableFor('ice cream',JOURNAL))
+  //控制台输出 -0.08084520834544433     反相关的，也就是说越吃冰淇淋，越不会变成松鼠
+  /*函数tableFor中的循环体会检查记录中是否包含某个特定事件，并检查发生的事件是否伴随变身成松鼠一起发生，然后计算出表格当中相应格子中的数字。
+      每当发生某个特定事件时，就把表格当中对应格子中的数字+1
+    */
+
+  /*现在我们手上就有了计算单个关联性的工具函数。我们接下来只需要找出记录中每类事件的相关系数，并查看它们之间的关系程度。
+      那我们该如何把计算出来的结果保存呢？
+    */
+  // for (var i = 0; i < JOURNAL.length; i++) {
+  //   var entry = JOURNAL[i]; //这是某一天的日志
+  //   var events = entry.events; //这是某一天日志中记录的所有事件
+  //   for (var j = 0; j < events.length; j++) {
+  //     //这个在循环事件中的每一个具体的事件
+  //     var event = events[j];
+  //     var table = tableFor(event, JOURNAL);
+  //     var p = phi(table);
+  //     console.log(event, p);
+  //   }
+  // }
+
+  /* 控制台输出
+  xiugai.html:412 exercise 0.06859943405700354
+  xiugai.html:412 weekend 0.13719886811400708                重复
+  xiugai.html:412 bread -0.07575540190785703
+  xiugai.html:412 pudding -0.06482037235521644
+  xiugai.html:412 brushed teeth -0.3805211953235953          重复
+  xiugai.html:412 weekend 0.13719886811400708                重复
+  xiugai.html:412 touched tree -0.08084520834544433
+  xiugai.html:412 carrot 0.014097096860865023
+  xiugai.html:412 nachos -0.07043451251197408
+  xiugai.html:412 brushed teeth -0.3805211953235953          重复
+  xiugai.html:412 cycling -0.08084520834544433
+  xiugai.html:412 weekend 0.13719886811400708                重复
+  xiugai.html:412 brussel sprouts -0.05230657809659414
+  xiugai.html:412 ice cream -0.0808452083454443
+    */
+  //我们现在的情况是算出来后只是把它log出来了，我不想把它存起来吗？log出来我也得不到，所以需要先把信息存起来。后续读取存好的继续分析
+  //如果不使用对象的话，数组ps=[]
+  //然后呢每拿到一个之后 事件名称和phi值我通过这两个元素我构造一个数组[event,p]
+  //数组的第一项是事件，第二项是变松鼠的相关性，把它往ps里面push ps.push([event,p])
+  //循环结束以后直接输出这个数组
+
+  // var ps = [];
+  // for (var i = 0; i < JOURNAL.length; i++) {
+  //   var entry = JOURNAL[i]; //这是某一天的日志
+  //   var events = entry.events; //这是某一天日志中记录的所有事件
+  //   for (var j = 0; j < events.length; j++) {
+  //     //这个在循环事件中的每一个具体的事件
+  //     var event = events[j];
+  //     var table = tableFor(event, JOURNAL);
+  //     var p = phi(table);
+  //     ps.push([event, p]);
+  //   }
+  // }
+  // console.log(ps);
+  /* 控制台输出
+  Array(348)
+  [0 … 99]
+  0: (2) ['carrot', 0.014097096860865023]            重复
+  1: (2) ['exercise', 0.06859943405700354]
+  2: (2) ['weekend', 0.13719886811400708]            重复
+  3: (2) ['bread', -0.07575540190785703]
+  4: (2) ['pudding', -0.06482037235521644]
+  5: (2) ['brushed teeth', -0.3805211953235953]
+  6: (2) ['weekend', 0.13719886811400708]
+  7: (2) ['touched tree', -0.08084520834544433]
+  8: (2) ['carrot', 0.014097096860865023]            重复
+  9: (2) ['nachos', -0.07043451251197408]
+  10: (2) ['brushed teeth', -0.3805211953235953]
+  11: (2) ['cycling', -0.08084520834544433]
+  12: (2) ['weekend', 0.13719886811400708]           重复
+    */
+
+  //我们的数据还有一个问题，它重复计算了。因为我们是遍历每一天，对于每一天我们遍历数组里的每一项，那么当第二天继续遍历第二天的数组时，就有重复了。
+  //①首先我想去重，这就很麻烦
+  //②我想要读取到某个事件的相关性，由计算结果找还是不好找，因为我得遍历这348个元素的数组，看数组的第一项是不是我要找的事件，是的话读取它的第二项才能拿到，比较麻烦
+  //一种方法是把所以计算出来的相关系数保存在一个数组中，每条记录使用一个对象来保存，其中包含name和value两个属性
+
+  // var ps = [];
+  // for (var i = 0; i < JOURNAL.length; i++) {
+  //   var entry = JOURNAL[i];
+  //   var events = entry.events;
+  //   for (var j = 0; j < events.length; j++) {
+  //     var event = events[j];
+  //     var table = tableFor(event, JOURNAL);
+  //     var p = phi(table);
+  //     //这样数组就存入一个对象了，每个对象有两个属性，第一个属性呢表示这个对象存的是什么事件，第二个value值 这个事件的相关性
+  //     ps.push({
+  //       name: event,
+  //       value: p,
+  //     });
+  //   }
+  // }
+  // console.log(ps);
+  // function getPhi(event) {
+  //   //遍历ps数组，如果这个数组里某个对象的name就是getPhi(event)
+  //   for (var i = 0; i < ps.length; i++) {
+  //     if (ps[i].name == event) {
+  //       return ps[i].value;
+  //     }
+  //   }
+  //   return 0; //找不到返回0
+  // }
+  //控制台输入getPhi('work') //getphi在数组里结果里查，不会再重新遍历循环整个数组。
+  //控制台输出-0.13719886811400708
+  //虽然我们可以讲这个查询过程封装成一个函数，但我们还是要去编写更多的代码，而且对于计算机来说这些操作有些多余(因为它要做更多的事情)
+
+  //一种更好的解决方法是用事件类型作为对象的属性名称
+  var ps = [];
+  var obj = {};
+  for (var i = 0; i < JOURNAL.length; i++) {
+    var entry = JOURNAL[i];
+    var events = entry.events;
+    for (var j = 0; j < events.length; j++) {
+      //由于算过一遍再算第二遍结果也是一样的，所以再算第二遍就不用算了。
+      //所以拿到event看event有没有被算过，计算过它会出现在obj对象的属性名上。已经计算过event的phi值就不算了
+      var event = events[j];
+      if (!(event in obj)) {
+        var table = tableFor(event, JOURNAL);
+        var p = phi(table);
+        obj[event] = p;
+        ps.push({
+          name: event,
+          value: p,
+        });
+      }
+    }
+  }
+  console.log(ps);
+  console.log(obj);
+  /* 控制台输出
+  Array(Array(26)                                  //数组没有之前那么长了，已经计算过event的phi值就不算了，也不会再次push了
+  0: {name: 'carrot', value: 0.014097096860865023}
+  1: {name: 'exercise', value: 0.06859943405700354}
+  2: {name: 'weekend', value: 0.13719886811400708}
+  3: {name: 'bread', value: -0.07575540190785703}
+  4: {name: 'pudding', value: -0.06482037235521644}
+  5: {name: 'brushed teeth', value: -0.3805211953235953}
+  6: {name: 'touched tree', value: -0.08084520834544433}
+  7: {name: 'nachos', value: -0.07043451251197408}
+  8: {name: 'cycling', value: -0.08084520834544433}
+  9: {name: 'brussel sprouts', value: -0.05230657809659414}
+  10: {name: 'ice cream', value: -0.08084520834544433}
+  11: {name: 'computer', value: 0.06859943405700354}
+  12: {name: 'potatoes', value: -0.08574929257125442}
+  13: {name: 'candy', value: 0.12964074471043288}
+  14: {name: 'dentist', value: -0.036563621206356534}
+  15: {name: 'running', value: -0.09050203323329065}
+  16: {name: 'pizza', value: 0.06859943405700354}
+  17: {name: 'work', value: -0.13719886811400708}
+  18: {name: 'beer', value: -0.05230657809659414}
+  19: {name: 'cauliflower', value: -0.08084520834544433}
+  20: {name: 'lasagna', value: 0.08084520834544433}
+  21: {name: 'lettuce', value: -0.07043451251197408}
+  22: {name: 'television', value: -0.08084520834544433}
+  23: {name: 'spaghetti', value: 0.242535625036333}
+  24: {name: 'reading', value: 0.11068280537595927}
+  25: {name: 'peanuts', value: 0.59026798116852}
+  Object
+    beer: -0.05230657809659414                     //自动去重，一个属性在一个对象里只能出现一次
+    bread: -0.07575540190785703
+    brushed teeth: -0.3805211953235953
+    brussel sprouts: -0.05230657809659414
+    candy: 0.12964074471043288
+    carrot: 0.014097096860865023
+    cauliflower: -0.08084520834544433
+    computer: 0.06859943405700354
+    cycling: -0.08084520834544433
+    dentist: -0.036563621206356534
+    exercise: 0.06859943405700354
+    ice cream: -0.08084520834544433
+    lasagna: 0.08084520834544433
+    lettuce: -0.07043451251197408
+    nachos: -0.07043451251197408
+    peanuts: 0.59026798116852
+    pizza: 0.06859943405700354
+    potatoes: -0.08574929257125442
+    pudding: -0.06482037235521644
+    reading: 0.11068280537595927
+    running: -0.09050203323329065
+    spaghetti: 0.242535625036333
+    television: -0.08084520834544433
+    touched tree: -0.08084520834544433
+    weekend: 0.13719886811400708
+    work: -0.13719886811400708
+  */
+
+  //如果说计算机它没有控制它或者说控制台不能把对象展示成这个样子我怎么办？我怎么知道我算出的所有事件 也就是我怎么知道对象里有什么。
+  //注意有的浏览器控制台就不能展示这些 我怎么知道对象里有多少个属性 以及每个属性的值是多少
+  //把对象作为一种映射关系。
+  //现在我们建立的映射由事件名称映射到事件与变松鼠相关性的数值。
+  // 如果我们想要找到在对象里存储的所有phi值该怎么办呢？对象它的属性名并不形成可以预测的序列。就是说不像数组 数组一旦知道它的长度为8 映射到01234567
+  // 但是对象不是这样的，属性名是任意起的 我也不知道它属性名
+  // 如何能够遍历对象的所有属性名以及把属性名对应的属性值取出来呢
+  // js提供了一个专门为遍历一个对象所有属性设计的循环 有点像for循环但区别在于它用了in这个关键字 简称for in循环
+  // 循环多少次取决于对象有多少个属性 有多少个属性就循环多少次 每次循环会把对象的每个属性赋给当前变量 所以循环每次运行的时候event值会发生变化
+  /* 控制台输入
+  debugger
+  for (var event in obj){
+      debugger
+      console.log(event,obj[event])
+  }
+  */
+  // 控制台输出
+  // carrot 0.014097096860865023
+  // exercise 0.06859943405700354...
+  /* 控制台输入
+  a =[1,2,2,3]
+  for(var i in a){
+    console.log(i)
+  }
+  */
+  /* 控制台输出
+  0
+  1
+  2
+  3
+  */
+  /* 控制台输入
+  a =[1,2,2,3]
+  for(var i in a){
+    console.log(a[i])
+  }
+  */
+  /* 控制台输出
+  0 1//第0项的值为1
+  1 2
+  2 2
+  3 3
+  */
+
+  //绝大多数相关系数都趋近于0.显然 吃胡萝卜、面包、或布丁不会引发变成松鼠
+  //但是似乎在周末变身成松鼠的概率更高。让我们来过滤一下结果，看看相关系数大于0.1和小于0.1的事件
+  /* 控制台输入
+  for (var event in obj) {
+    var co = obj[event];
+    if (co > 0.1 || co < -0.1)
+    console.log(event, co);
+  }
+  */
+  /* 控制台输出
+  weekend 0.13719886811400708
+  VM133:4 brushed teeth -0.3805211953235953
+  VM133:4 candy 0.12964074471043288
+  VM133:4 work -0.13719886811400708
+  VM133:4 spaghetti 0.242535625036333
+  VM133:4 reading 0.11068280537595927
+  VM133:4 peanuts 0.59026798116852
+  */
+  //这里明显有两项因素的相关系数比其它的高，吃花生 越有可能引发变成松鼠，而刷牙则恰好相反
+  //这太有意思了，让我们再仔细看看这些数据
+
+  /* 控制台输入
+  for (var i = 0; i < JOURNAL.length; i++) {
+    var entry = JOURNAL[i];
+    if (hasEvent("peanuts", entry) && !hasEvent("brushed teeth", entry)) {
+      entry.events.push("吃了花生没刷牙"); //如果这天吃了花生但没刷牙的话，我往这天的事件中添加一项吃了花生没刷牙
+    }
+  }
+  */
+  /* 控制台输入
+  JOURNAL  //我们会发现所有true变身松鼠的那天都是吃了花生没刷牙，
+  */
+
+  //我们来看看这个事件(吃了花生没刷牙)，它的表格
+  //控制台输入tableFor('吃了花生没刷牙',JOURNAL) //tableFor传的是事件名称和大的数据集
+  //控制台输出(4) [85, 0, 0, 5]                //没发生吃了花生没刷牙 也没变成松鼠是85次，有五次吃了花生没刷牙 但同时那天也变成了松鼠
+  //控制台输入phi([85, 0, 0, 5])
+  //控制台输出1
+  //说明他就是吃了花生没刷牙 才引发变成了松鼠
+</script>

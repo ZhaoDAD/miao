@@ -1372,22 +1372,776 @@
 
        *  需求
             通过程序，在页面中输出如下图形
-            *               1(第一行)     <1(宽度一个*, j<1)     i=0(i+1正好等于行号)
-            **              2     <2      i=1
-            ***             3     <3      i=2
-            ****            4     <4      i=3
-            *****           5     <5      i=4
+            *               1(第一行)     j<1(宽度一个*           i=0(i+1正好等于行号)
+            **              2            j<2                    i=1
+            ***             3            j<3                    i=2
+            ****            4            j<4                    i=3
+            *****           5            j<5                    i=4
 
-          for (i = 0; i < 5; i++) {
-            for (j = 0; j < i + 1; j++) {         j < i + 1这样 第一次执行的时候i是0，j < 1，小于1那么第一行输出一个*。第二行的时候i是1，j < 2，小于2那么第二行输出两个*
+          for (var i = 0; i < 5; i++) {
+            for (var j = 0; j < i + 1; j++) {         //。这样 第一次执行的时候i是0，j < i + 1，j小于1那么第一行输出一个*。第二行的时候i是1，1+1=2 j < 2，小于2那么第二行输出两个*
+              document.write("*&nbsp;&nbsp;&nbsp;");
+            }
+            document.write("<br />");    //执行换行
+          }
+
+       *  需求
+            通过程序，在页面中输出如下图形
+            *****           1(第一行)     j<5(5-0)     i=0(i+1正好等于行号)
+            ****            2            j<4(5-1)       i=1
+            ***             2            j<3(5-2)       i=2
+            **              2            j<2(5-3)       i=3
+            *               2            j<1(5-4)       i=4
+
+          for (var i = 0; i < 5; i++) {
+            for (var j = 0; j < 5 - i; j++) {
               document.write("*");
             }
-            document.write("<br />");    执行换行
+            document.write("<br />");
           }
+      */
+    </script>
+
+    <script id="练习">
+       /*
+        *  练习1：打印99乘法表
+               1*1=1
+               1*2=2 2*2=4
+               1*3=3 2*3=6 3*3=9
+               1*4=4 2*4=8 3*4=12 4*4=16
+               ......9*9=81
+
+
+            //创建外层循环，用来控制乘法表的高度
+            for (i = 1; i < 10; i++) {
+              //创建内层循环，用来控制内层图形的宽度
+              for (j = 1; j <= i; j++) {
+                document.write(j + "*" + i + "=" + i * j + "&nbsp;" + "&nbsp" + "&nbsp" + "&nbsp");
+              }
+              //在循环外输出一个换行(注意是在内层循环执行完以后执行换行)
+              document.write("<br />");
+            }
+
+
+            //但是现在写完有的地方没有对齐，有点不好看 我希望能好看些
+            for (i = 1; i < 10; i++) {
+              for (j = 1; j <= i; j++) {
+                document.write("<span>" + j + "*" + i + "=" + i * j + "</span>"); //现在公式都在span标签里套着，有span了我们就可以给它设置样式了
+              }
+              document.write("<br />");
+            }
+            <style type="text/css">
+              span{
+                width: 100px;                     //span是个内联元素，我们要让它生效需给它换成行内块元素
+                display: inline-block;            //现在就对齐了，挺好看
+              }
+            这样做好处比较灵活，假如我想换10*10乘法表 只需修改i i<11即可
+            </style>
+
+
+
+        *  练习2：打印出1~100间所有的质数
+           //1我们知道它不是质数，打印2-100之间所有的数
+            for (var i = 2; i <= 100; i++) {
+              //判断i是否是质数
+              //先要获取到2到i之间所有的数。假设i是3，我就要获取到2，看看3能不能被2整除，如果不能整除，证明3就是质数。
+              for(var j =2;j<i;j++){  //j是多少？假设i是3,j就是2.假设i是4,j就是2、3.
+                //判断i是否能被j整除
+                if(i % j == 0) {//如果证明i是质数这个比较麻烦，所以我们反着证明i不是质数，一旦进入我们这个判断，就一定能证明我们i不是质数，我们把所有的不是质数的数取出来剩下的都是质数
+                  //如果进入判断则证明i不是质数
+                }
+              }
+              //如果是质数，则打印i的值(在这我知道i是质数吗？不知道。我们需要创建一个变量保存结果)
+              console.log(i)
+            }
+
+
+
+            //创建一个布尔值，用来保存结果，默认i是质数
+            for (var i = 2; i <= 100; i++) {
+              var flag = true
+              for(var j =2;j<i;j++){
+                if(i % j == 0) {
+                  //如果进入判断则证明i不是质数，修改flag值位false
+                  flag = false
+                }
+              }
+              //如果是质数，则打印i的值(在这我知道i是质数吗？不知道。我们需要创建一个变量保存结果)
+              if(flag){
+                console.log(i)
+              }
+            }
+       */
+    </script>
+
+    <script id="break和continue">
+      /*
+       *  break关键字可以用来退出switch或循环语句
+            不能在if语句中使用break和continue
+
+          例:
+              for (var i = 0; i < 5; i++) {
+                console.log(i);
+              }                                        //控制台0 1 2 3 4
+              for (var i = 0; i < 5; i++) {
+                console.log(i);
+                break;
+              }                                        //控制台0，因为添加执行break关键字 循环立即结束
+              //我不希望它只执行一次 我希望它执行几次
+                for (var i = 0; i < 5; i++) {
+                  console.log(i);
+                  if (i == 2) {
+                    break;                   //这个break是对for循环起作用的，并不是对if语句起作用的。
+                  }
+                }                                      //控制台0 1 2
+
+                for (var i = 0; i < 5; i++) {
+                  if (i == 2) {
+                    break;                   //这个break是对for循环起作用的，并不是对if语句起作用的。
+                  }
+                  console.log(i);
+                }                                      //控制台0 1
+
+                for (var i = 0; i < 5; i++) {
+                  console.log("外层循环:" + i);
+                  for (var j = 0; j < 5; j++) {
+                    console.log("内层循环:" + j);
+                  }
+                }                                      //控制台一个外层循环后边跟着五个内层循环
+
+                //那现在来看，我在内层循环里写个break，也就是说内层循环一执行就停止，那会不会对外层循环产生影响？
+                for (var i = 0; i < 5; i++) {
+                  console.log("外层循环:" + i);
+                  for (var j = 0; j < 5; j++) {
+                    break;
+                    console.log("内层循环:" + j);
+                  }
+                }                                      //控制台外层循环0 1 2 3 4。对外层循环没有影响。所以注意，break只对离它最近的产生影响。在这里只结束内层循环，而没有结束外层循环。
+
+                //那现在我有这样一个需求，我觉得这样做不方便，希望break也可以终止外层循环
+              我们可以为循环语句创建一个名字,来标识当前的循环
+              lable:循环语句 //表示我这个循环的名字叫lable
+              使用break语句时，可以在break后面跟着一个lable，这样break将会结束指定的循环，而不是最近的。
+                lable:
+                for (var i = 0; i < 5; i++) {
+                    console.log("外层循环:" + i);
+                    for (var j = 0; j < 5; j++) {
+                      break lable;
+                      console.log("内层循环:" + j);
+                    }
+                  }                                    //控制台 外层循环0
+       *  continue关键字可以用来跳过当次循环
+            同样continue也是默认只会对离它最近的循环起作用
+          例:
+              for (var i = 0; i < 5; i++) {
+                  if (i == 2) {                        //i等于2，2跟2相等，执行continue。continue一旦执行，这次循环直接跳过。换句话说，continue下的内容不执行 直接执行i++，i自增完执行条件表达式，再执行下次循环。说白了 continue的作用就是跳过当次循环
+                    continue;
+                  }
+                  console.log(i);
+                }                                      //控制台0 1 3 4
+
+                for (var i = 0; i < 5; i++) {
+                  for (var j = 0; j < 5; j++) {
+                    console.log("--->" + j);
+                  }
+                  console.log("@--->" + i);
+                }                                      //控制台五个内层循环后面跟着一个外层循环
+
+                for (var i = 0; i < 5; i++) {
+                  for (var j = 0; j < 5; j++) {
+                    if (j == 1) {
+                      continue;
+                    }
+                    console.log("--->" + j);
+                  }
+                  console.log("@--->" + i);
+                }                                      //控制台0 2 3 4四个内层循环后面跟着一个外层循环。内层循环没有1了。对外层循环没有影响。所以注意，continue只对离它最近的产生影响。
+
+                for (var i = 0; i < 5; i++) {
+                  for (var j = 0; j < 5; j++) {
+                    continue;
+                    console.log("--->" + j);
+                  }
+                  console.log("@--->" + i);
+                }                                      //控制台外层循环0 1 2 3 4。内层循环不执行了，因为每一次都跳过了。但是不会对外层循环产生影响
+
+                想对外层循环产生影响怎么办呢？
+                lable:循环语句 //表示我这个循环的名字叫lable
+              使用continue语句时，可以在continue后面跟着一个lable，这样continue将会跳过指定的循环，而不是最近的。
+                lable:
+                for (var i = 0; i < 5; i++) {
+                  for (var j = 0; j < 5; j++) {
+                    continue lable;
+                    console.log("--->" + j);
+                  }
+                  console.log("@--->" + i);
+                }                                 //控制台什么也没有
+
+
+       *  质数练习补充
+          在以后的开发中，很多的精力需要放在程序性能的提升。什么是性能？代码的执行时间。同样的程序同样的功能 一个程序执行需要花费10秒钟，另一个需要花费1分钟，那我们说哪个性能好？ 10秒钟的那个。也就是说我程序执行越快，性能越好
+          for (var i = 2; i <= 100; i++) {
+            var flag = true;
+            for (var j = 2; j < i; j++) {
+              if (i % j == 0) {
+                //判断是不是质数，如果进入判断那么证明这个数不是质数
+                flag = false;
+                //一旦进入判断，则证明i不可能是质数了，此时循环再执行已经没有任何意义，可以使用break来结束循环
+                break;
+              }
+            }
+            if (flag) {
+              console.log(i);
+            }
+          }
+
+       *  测试如下的程序性能
+          在程序执行前，开启计时器
+          console.time("计时器的名字")可以用来开启一个计时器 //一个页面里可能有多个计时器，所以我们通过名字来区分一下
+          它需要一个字符串作为参数，这个字符串会作为计时器的标识
+          console.time("test")
+          for (var i = 2; i <= 100; i++) {
+            var flag = true;
+            for (var j = 2; j < i; j++) {
+              if (i % j == 0) {
+                //判断是不是质数，如果进入判断那么证明这个数不是质数
+                flag = false;
+                //一旦进入判断，则证明i不可能是质数了，此时循环再执行已经没有任何意义，可以使用break来结束循环
+                break;
+              }
+            }
+            if (flag) {
+              console.log(i);
+            }
+          }
+          //终止计时器
+          //console.timeEnd()用来停止一个计时器，需要一个计时器名字作为参数
+          console.timeEnd("test")
+          //加break,test: 0.801025390625 ms
+
+          console.time("test")
+          for (var i = 2; i <= 100; i++) {
+            var flag = true;
+            for (var j = 2; j < i; j++) {
+              if (i % j == 0) {
+                flag = false;
+              }
+            }
+            if (flag) {
+              console.log(i);
+            }
+          }
+          console.timeEnd("test")
+          //不加break,test: 2.7080078125 ms
+      */
+    </script>
+    <script id="质数练习补充">
+      /*
+       *  质数100以内最大的是97，那我们来想一想，对于97这种情况，也就是说我i的值是97，那i的值是97的时候我的j应该是几？
+          2~96
+          我要分别检查2~96之间这些数是不是能整除97。那我们想 这些数是不是有点多啊？
+          多
+          那96还用不用看了？
+          不用看了 96压根就不可能了呀，我除了1最小 是不就剩2了，2*96将近200了，所以是不可能的
+          那咱再说一个稍微小一点的数，比如说19
+          我要分别检查2-18这件这些数
+          那我们假设 如果19检查完2了，19/2=9.5    9.5以后的值有没有可能是19的因数？10有没有可能？
+          一点可能也没有，为什么呀？最小的是1，然后是2，10跟什么乘也不可能得19
+          所以9.5以后的值我没有必要再去检查了
+          那我们想想，这值我们能不能进一步给它优化呀？
+          我们会发现我们的因数 比如说36  1*36得36
+                                      2*18得36  2和18是36的因数
+                                      3*12得36  3和12是36的因数
+                                      4*9得36  4和9也是36的因数
+                                      6*6得36  6是36的因数 (注意在这一刻这两个因数是相等的)
+          因数都是一对儿一对儿的
+          6*6得36  6是36的因数 (注意在这一刻这两个因数是相等的)，到这儿了往下还有没有新的因数了？
+          没了 6往下对于36来说都是重复的因数了
+          对于36来说，找因数，找到6就行了
+          同样对于97来说，用不用非得找到96啊？
+          不用。那找到谁合适？
+          36 这个6对于36来说是根号下36，同样我要是想找97的话我要找到根号下97就行了
+          因为根号下97以后，即使有因数，那是不就跟前面重复了。如果到根号97了还没有因数，那证明没有新的因数了
+          也就是说到根号97以后，我就没必要再看了
+
+          那么我们注意j < i这块儿 实际上这个值定的有点大了，应该是根号下i。
+          那问题来了 写个根号打不出来 它不认识。
+          那我需要对i进行开方
+          那怎么对一个数进行开方呢？
+          //可以通过Math.sqrt()对一个数进行开方
+          var result = Math.sqrt(4)
+          console.log //控制台结果为2。
+          var result = Math.sqrt(97)
+          console.log //控制台结果为9.848857801796104。
+          那就意味着9.8以后没有97新的因数了，没有了，在之前都已经检查过了，所以9.8就相当于97所有因数的中线。对于97来说只用检查到9.8了，10往后都不用看了。刚才还要检查到96呢，这一下检查效率提升很多。
+          所以这块注意了，我们要检查的话就不用j < i了，应该是j <= Math.sqrt(i)
+
+          for (var i = 2; i <= 100; i++) {
+            var flag = true;
+            for (var j = 2; j <= Math.sqrt(i); j++) {
+              if (i % j == 0) {
+                flag = false;
+                break;
+              }
+            }
+            if (flag) {
+              console.log(i);
+            }
+          }
+      */
+
+    </script>
+
+    <script id="对象的简介">
+      /*
+       *  js中数据类型
+            String 字符串
+            Number 数值
+            Boolean 布尔值
+            Null 空值
+            Undfined 未定义
+              以上五种数据类型属于基本数据类型，以后我们看到的值只要不是上边的五种，剩下的全都是对象
+            Object 对象
+            //上面五种类型基本上可以把我的任何值都可以表示了，那为什么还需要对象呢？既然要引入一个新的数据类型，说明上面五个还有不足的，有不足我才要引入一个新的内容
+
+            基本数据类型都是单一的值"hello" 123 true
+              值和值之间没有任何的联系
+
+            假设这js中表示一个人的信息，(name gender age),
+              var name = 张三
+              var gender = 男
+              var age = 18
+              //我们创建了三个变量 三个变量共同表示一个人的信息，用基本数据类型可以表示，但我们发现一个问题，它们三个没有关系，这三个是完全独立的
+              //光从变量上来看name是一个变量，gender是一个变量，age是一个变量，它们并不是一个整体
+            如果我们使用基本数据类型的数据，我们所创建的变量都是独立，不能成为一个整体
+            对象属于一种复合的数据类型，在对象中可以保存多个不同数据类型的属性
+              //对象就像一个容器 可以装不同的属性，用着方便。
+              //变量都放在一块容易乱，可以把它们保存到不同的对象里，通过对象去调用
+
+        *   对象的分类
+              1.内建对象
+                由ES标准中定义的对象，在任何的ES实现中都可以使用
+                比如Math String Number Boolean Function...
+              2.宿主对象
+                由JS的运行环境提供的对象，目前来讲主要指由浏览器提供的对象
+                比如BOM(浏览器对象模型) DOM(文档对象模型)，注意这个不是指两个对象 是指两组对象 BOM里有一堆对象 DOM里有一堆对象
+                  //比如说我们常用的console.log()这里的console就是一个对象
+                                   document.write这里的document也是一个对象
+                  //这两个对象我们没有创建，直接拿来用的，所以注意 这两个对象是由浏览器提供的 叫做属主对象
+              3.自定义对象
+                由开发人员自己创建的对象
+      */
+
+    </script>
+
+    <script id="对象的基本操作">
+      /*
+       *  创建对象
+          使用new关键字调用的函数，是构造函数constructor
+            构造函数是专门用来创建对象的函数
+          使用typeof检查一个对象时，会返回object
+            var obj = new Object()  //new Object()就表示我们创建好了一个对象并赋值给变量obj
+            console.log(obj)
+              //控制台输出[object Object] 那么这就是一个对象。那现在我们相等于有这么一个塑料袋了，但注意了这塑料袋它没有东西 它是一个空的
+              //在外部浏览器如果直接输出一个对象的话
+                //Object{} 表示我这个对象是通过Object函数创建的 但是{}里啥也没有，表示我这对象是一个空的对象
+            console.log(typeof obj)
+              //控制台输出object
+
+       *  在对象中保存的值称为属性
+          向对象添加属性
+            语法:
+              对象.属性名 = 属性值
+
+            //向obj中添加一个name属性
+            obj.name = "张三"
+            //向obj中添加一个gender属性
+            obj.gender = "男"
+            //向obj中添加一个age属性
+            obj.age = "18"
+            //控制台输入console.log(obj)
+            //控制台输出{name: '张三', gender: '男', age: 18}
+            //现在name gender age 它们有关系了 都属于同一个对象的属性
+
+          光往塑料袋里装没用，还得能取出来
+       *  读取对象中的属性
+            语法:
+              对象.属性名
+
+            console.log(obj.name)
+            //控制台输出张三
+          如果读取对象中没有的属性，不会报错 而是返回undefined
+            console.log(obj.hello)
+            //控制台输出undefined
+
+          我能读取了 那我能不能去修改这个属性啊？假如说我这个人不想叫张三了，我想换一个名，那怎么办呢？
+       *  修改对象的属性值
+            语法:
+              对象.属性名 = 新值//和向对象添加属性是一样的，只不过我这种是把之前的值给覆盖掉了
+
+       *  删除对象的属性
+            语法:
+              delete 对象.属性名
+
+            delete obj.name
+            console.log(obj.name)
+            //控制台输出undefined
+      */
+    </script>
+
+    <script id="属性名和属性值">
+      /*
+       *  var obj = new Object
+          obj.name = "孙悟空" //向obj这个对象里添加了一个属性 属性名是name 属性值是孙悟空
+
+       *  属性名
+            对象的属性名不强制要求遵守标识符的规范
+              什么乱七八糟的名字都可以使用
+            但是使用时还是尽量按照标识符的规范去做
+            如果使用特殊的属性名，不能采用.的方式来操作
+              需要使用另一种方式
+              语法:
+                对象["属性名"] = 属性值
+              读取时也需要采取这种方式
+
+              var obj = new Object();
+              obj.name = "张三";
+              obj["123"] = 789;
+              console.log(obj["123"]);    //控制台输出789
+
+            使用[]这种形式操作属性，更加的灵活
+              在[]中可以直接传递一个变量，这样变量值是多少就会读取哪个属性
+              var obj = new Object();
+              obj.name = "张三";
+              obj["123"] = 789;
+              var n = "123"            //变量n的值是123
+              console.log(obj[n]);    //控制台输出789
+
+       *  属性值
+            JS对象的属性值，可以是任意的数据类型
+              obj.test = undefined;
+              obj.test = null
+              obj.test = true
+
+
+              甚至也可以是一个对象
+
+                var obj = new Object();
+                obj.name = "张三";
+                obj.test = undefined;
+
+                var obj2 = new Object();
+                obj2.name = "猪八戒";
+
+                //将obj2设置为obj的属性
+                obj.test = obj2;  //让obj的test属性的值是一个对象
+
+                //控制台输入console.log(obj)
+                //浏览器输出{name: '张三', test: {…}}
+                              name: "张三"
+                              test: {name: '猪八戒'}
+
+              那我现在想读取obg2的属性怎么取？
+                console.log(obj.test.name)
+
+       *  in 运算符
+            通过该运算符可以检查一个对象中是否含有指定的属性
+              如果有则返回true
+              没有则返回false
+            语法:
+              "属性名" in 对象
+
+            //检查obj中是否含有test2属性
+              var obj = new Object();
+              obj.name = "张三";
+              obj.test = undefined;
+              var obj2 = new Object();
+              obj2.name = "猪八戒";
+              obj.test = obj2;
+              console.log(obj.test.name);
+              //控制台输入console.log("test2" in obj)
+              //控制台输出false
+      */
+    </script>
+
+    <script id="基本数据类型和引用数据类型">
+      /*
+       *  基本数据类型:
+            String 字符串
+            Number 数值
+            Boolean 布尔值
+            Null 空值
+            Undfined 未定义
+          引用数据类型:
+            Object
+
+          //为什么这么分 他们之间有什么区别？我们来看一下
+            var a = 123
+            var b = a
+            a++
+            console.log("a = "+a)  //控制台输出a = 124，a自增后等于124
+            console.log("b = "+b)  //控制台输出b = 123, b等于a自增前的123
+            //也就是说a和b是它们俩个的值是完全独立的，一个值的变化会不影响其他值
+
+          //我们再看一个
+            var obj = new Object()
+            obj.name = "孙悟空"
+            console.log(obj.name) //控制台输出 孙悟空
+
+            var obj = new Object();
+            obj.name = "孙悟空";
+            var obj2 = obj;
+            console.log(obj.name);
+            console.log(obj2.name);
+            //控制台输出:
+                        孙悟空
+                        孙悟空
+
+          //修改obj的name属性
+            var obj = new Object();
+            obj.name = "孙悟空";
+            var obj2 = obj;
+            obj.name = "猪八戒";
+            console.log(obj.name);
+            console.log(obj2.name);
+            //控制台输出:
+                        猪八戒
+                        猪八戒
+
+       *  基本数据类型和引用数据类型的区别
+            基本数据类型保存的是值
+            引用数据类型保存的是内存地址
+
+          变量和对象在内存里的结构
+          内存分为两大块
+            栈内存
+            堆内存
+          JS中的变量都是保存到栈内存中的
+            基本数据类型的值直接在栈内存中存储
+            值与值之间是独立存在的，修改一个变量不会影响其它的变量
+            var a = 123
+            var b = a
+            a++
+
+
+            栈内存
+            变量    值
+            a       123--->在a++后变成了124。此时不会对变量b产生任何影响
+            b       123//将变量a的值复制到b，a和b的值都是123，但是a的123和b的123没有关系，它们是互相独立的
+
+       *  对象是保存到堆内存中的，每创建一个新的对象，就会在堆内存中开辟出一个新的空间
+          而变量保存的是对象的内存地址(那这个内存地址就是我们所说的对象的引用)，如果两个变量保存的是同一个变量的引用，当一个通过一个变量修改属性时，另一个也受会到影响。因为它们不是独立的
+            var obj = new Object()
+            obj.name = "孙悟空"  //现在是往obj里添加name属性叫孙悟空，添加不是往变量里添加，我是往变量里对应的内存地址的对象里添加的。所以注意，在变量里只是保存的对象的引用 一个地址
+            var obj2 = obj       //没有创建新的对象，只是让obj2等于obj，就相当于把obj的地址往obj2复制一遍，它俩保存的是同一个内存地址。也就是说现在的obg2指向的也是这个对象。
+            obj.name = "猪八戒"  //现在我修改了obj的name为猪八戒了，obj2对应的对象也变了，因为它们是同一个对象
+
+            栈内存                                  堆内存
+            变量    值                              一旦看见new就意味着我要在堆内存里开辟出一个新的空间，这个空间专门用来保存这个对象
+            obj     0x123                           变量和对象没关系 没关系变量就操作不了这个空间
+            obj2    0x123                           这个空间是在内存里开辟的，既然是内存里开辟的它就有一个内存地址，假设这块儿的内存地址是0x123 这个内存地址专门用来保存obj这个对象的
+                                                    那它们俩怎么建立联系？
+                                                    在变量里保存的是对象的内存地址
+                                                    所以我这obj保存的实际上是0x123，那变量obj和对象有关系了
+                                                    所以注意 对象本身是它是没有名字的，它只有一段内存地址
+                                                    name = "猪八戒"
+
+            //设置obj2为null
+            var obj = new Object()
+            obj.name = "孙悟空"
+            var obj2 = obj
+            obj.name = "猪八戒"
+            obj2 = null
+            //控制台输出Object
+                        null
+            //奇怪，刚才不是说两个变量改一个会影响到另一个吗？这回怎么又不影响了，这是 为什么啊？
+            栈内存                                  堆内存
+            变量    值                              相当于之前我这个变量和对象建立了连接，但是当它把它设置为null了以后，它们的链接断开了。但是obj不受影响
+            obj     0x123                           所以注意，当修改变量值的时候，对我们其它对象不会产生影响
+            obj2    null
+
+       *  当我们比较两个基本数据类型的值时，就是比较值
+            var c = 10
+            var d = 10
+            console.log(c == d)
+            //控制台输出true
+
+       *  而比较两个引用数据类型时，它是比较的对象的内存地址。如果两个对象是一模一样的，但是地址不同，它也会返回false
+            var obj3 = new Object()
+            var obj4 = new Object()
+            obj3.name = "沙和尚"
+            obj4.name = "沙和尚"
+            console.log(obj3 == obj4)
+            //控制台输出false
+            栈内存                                  堆内存
+            变量    值                              开辟新空间0x111 name = 沙和尚
+            obj3    0x111                           开辟新空间0x222 name = 沙和尚
+            obj4    0x222
+            //虽然这两个对象name一样，但是内存地址不一样
+      */
+    </script>
+
+    <script id="对象字面量">
+      /*
+       *  //创建一个对象
+          var obj = new Object 使用new关键字调用构造函数来创建一个对象，但是这种方式实际上不是我们用的最多的，这种方式稍微有点麻烦，我们有一个更简单的方式
+
+       *  使用字面量来创建一个对象
+            就像写var a = 123 //123就是一个字面量
+            var obj = {}      //这个大括号我们就叫对象字面量
+            console.log(obj)  //控制台输出Object
+          用{}这种方式和new Object这种方式它们本质上是一样的，但{}这种方式更加省事儿
+
+          用构造函数创建的对象我们只能先创建对象，再往对象里添加属性
+          使用对象字面量，可以在创建对象时，直接指定对象中的属性
+       *  语法:
+            {属性名:属性值,属性名:属性值...}
+              对象字面量的属性名可以加引号也可以不加，建议不加，但是如果要使用一些特殊的名字，则必须加引号
+
+            var obj = {name:"猪八戒"}  //这就表示我创建了一个对象，同时为这个对象里添加了一个属性，属性的名字叫name，属性的值叫猪八戒
+            console.log(obj)
+            //控制台输出Object
+                          name: "猪八戒"
+            var obj = {name:"猪八戒",age:28}  //这就表示我创建了一个对象，对象里有两个属性，一个时name，一个时age
+            console.log(obj)
+            //控制台输出:Object
+                          age: 28
+                          name: "猪八戒"
+            但我们发现这种方式写完以后 结构不是很清楚，那怎么写呢？
+
+       *  属性名和属性值是一组一组的名值对结构
+            名和值之间使用:连接，多个名值对之间使用,隔开
+            如果一个属性之后没有其它的属性了，就不要写,了
+            var obj = {
+              name:"猪八戒",
+              age:28
+            }
+            这样写清晰，我一看我这对象里两个属性 name，age，保存后效果是一样的
+            console.log(obj)
+            //控制台输出Object
+                          age: 28
+                          name: "猪八戒"
+      /*
+    </script>
+
+    <script id="对象的方法">
+      /*
+       *  //创建一个对象
+            var obj = new Object()
+
+          //向对象中添加属性
+            obj.name = "孙悟空"
+            obj.age = 18                     //我向obj这个对象添加了两个属性
+
+          //对象的属性可以是任何的数据类型，也可以是个函数
+            obj.sayName = function(){        //我将匿名函数赋值给了obj的sayname属性
+            }
+            console.log(obj.sayName)
+            //控制台输出
+                        ƒ () {
+
+                        }
+
+
+            obj.sayName = function () {
+              console.log(obj.name);
+            };
+            console.log(obj.sayName);
+            //控制台输出
+                        ƒ () {
+                          console.log(obj.name);
+                        }                    //函数里有东西了
+
+            //对象的属性也可以是一个函数，那我能不能调用函数？
+            obj.sayName = function () {
+              console.log(obj.name);
+            };
+            //函数对象()调用函数
+            obj.sayName()
+            //控制台输出孙悟空
+
+          函数也可以成为对象的属性
+            如果一个函数作为一个对象的属性保存，
+            那么我们称这个函数是对象的方法
+            调用这个函数就是调用对象的方法(method)
+
+          //那现在来看 sayName这个属性对应着一个函数，那么我们称sayName是obj的方法
+
+            function fun(){
+                   console.log(obj.name);
+               };
+            fun()
+
+          //调方法
+            obj.sayName();
+          //调函数
+            fun();
+
+            var obj2 = {x
+              name: "猪八戒",
+              age: 18,
+              sayName: function () {
+                console.log(obj2.name);
+              },
+            };
+            obj2.sayName();
+            //控制台输出猪八戒
+
+
+       *  枚举对象中的属性
+            var obj = {
+              name:"孙悟空",
+              age:18,
+              gender:"男",
+              address:"花果山"
+            };
+          //在开发中，对象里有什么属性我们不一定都知道，我们需要知道对象里有哪些属性
+          //假设我不知道obj里有哪些属性，但现在我却需要使用这个对象，那怎么办呢？此时就用到了枚举对象中的属性
+          //什么叫枚举？就是把对象中的这些个属性一个个取出来
+
+          枚举对象中的属性
+          使用for...in语句
+            语法:
+              for(var 变量 in 对象){
+
+              }
+            for...in语句 对象中有几个属性，循环体就会执行几次
+
+              for(var n in obj){
+                console.log("hello")
+              }
+              控制台输出:
+                        hello
+                        hello
+                        hello
+                        hello
+
+            每次执行时，会将对象中的一个属性的名字赋值给变量
+
+              for(var n in obj){
+                console.log("属性名:" + n)
+              }
+              控制台输出:
+                        属性名:name
+                        属性名:age
+                        属性名:gender
+                        属性名:address
+
+              for(var n in obj){
+                 console.log("属性值:"+obj[n]);
+              }
+              控制台输出:
+                        属性值:孙悟空
+                        属性值:18
+                        属性值:男
+                        属性值:花果山
+
+
 
       */
 
     </script>
+
     <script id="函数">
       /*
        *  函数function
@@ -1396,25 +2150,31 @@
             函数中可以保存一些代码在需要的时候使用
             使用typeof检查函数对象时，会返回function
 
-          //创建一个函数对象
+       *  创建一个函数对象
             var fun = new Function()
             console.log(typeof fun)
           //可以将要封装的代码以字符串的形式传递给构造函数    //(换句话说 在构造函数里 我可以传一个字符串)
-            var fun = new function("console.log('hello 这是我的第一个函数');")    //我这个函数构造里传的是一个字符串，但是这字符串有特点了，这字符串是一段js代码，等于是我现在把这一段代码存到了我们函数对象里
-            console.log(fun)                                                    //控制台显示console.log('hello 这是我的第一个函数');
+            var fun = new Function("console.log('hello 这是我的第一个函数');");    //我这个函数构造里传的是一个字符串，但是这字符串有特点了，这字符串是一段js代码，等于是我现在把这一段代码存到了我们函数对象里
+            console.log(fun);
+            //控制台输出:
+                        ƒ anonymous(
+                        ) {
+                        console.log('hello 这是我的第一个函数');
+                        }
+
           //封装到函数中的代码不会立即执行                  //(也就是说我仅仅把它给存起来了，就像枪一样 我把子弹给装上了，它得等我开枪)
           //函数中的代码会在函数调用的时候执行
-          //调用函数 语法：
+          //调用函数 语法:
               函数对象()
               fun()
           //当调用函数时，函数中封装的代码会按照我编写的顺序执行
-            var fun = new function("console.log('hello 这是我的第一个函数');")
-            fun()                                                               //控制台显示 hello 这是我的第一个函数
+            var fun = new Function("console.log('hello 这是我的第一个函数');");
+            fun()                                                               //控制台输出:hello 这是我的第一个函数
           //调用几次执行几次
-            var fun = new function("console.log('hello 这是我的第一个函数');")
-            fun()                                                               //控制台显示 hello 这是我的第一个函数
-            fun()                                                               //控制台显示 hello 这是我的第一个函数
-            fun()                                                               //控制台显示 hello 这是我的第一个函数
+            var fun = new Function("console.log('hello 这是我的第一个函数');")
+            fun()                                                               //控制台输出:hello 这是我的第一个函数
+            fun()                                                               //控制台输出:hello 这是我的第一个函数
+            fun()                                                               //控制台输出:hello 这是我的第一个函数
             //这有什么好处？假如我想重复的去执行这行代码，我在24行想用我调用一下，我在240行想用我调一下，用起来比较方便。并且我想修改的话不用分别修改
           不过我们在实际开发中很少使用构造函数来创建一个函数对象
 
@@ -1427,12 +2187,12 @@
               function fun2 (){
 
               }
-              console.log(fun2)                                       //控制台显示function fun2 (){}里没有代码，因为我还没有往里填
+              console.log(fun2)                                       //控制台输出:ƒ fun2() {}//没有代码，因为我还没有往里填
           //那现在我要封装代码怎么封装啊?直接写在函数体里
               function fun2 (){
                 console.log("这是我的第二个函数")
               }
-              fun2()                                                  //控制台显示这是我的第二个函数(我可以在函数体里封装大量的代码，调用的时候只需要调用变量名fun2()一行代码搞定)
+              fun2()                                                  //控制台输出:这是我的第二个函数(我可以在函数体里封装大量的代码，调用的时候只需要调用变量名fun2()一行代码搞定)
 
        *  使用函数表达式来创建一个函数
             语法：
@@ -1471,26 +2231,27 @@
           //我希望在我调用的时候，我才决定我要算谁+谁。定义的时候不定，在调用的时候定
        *  可以在函数的()中来指定一个或多个形参(形式参数) //什么是形式参数 形式上的，它没有值 我先给你占个地儿
           多个形参之间使用,隔开。声明形参就相当于在函数的内部声明了对应的变量
-            但是并不赋值
+          但是并不赋值
             function sum(a,b){
               console.log(a+b)
             }
        *  在调用函数时，可以在()中指定实参(实际参数)
-              实参将会赋值给函数中对应的形参
-            sum(1,2)    //控制台结果位还是3        所以(1，2)就相当于在函数体中写了一个var a = 1 ();var b = 2
+            实参将会赋值给函数中对应的形参
+            sum(1,2)    //控制台输出:3
 
        *  调用函数时 解析器不会检查实参的类型
-             所以要注意，是否有可能会接收到非法的参数，
-               如果有可能，则需要对参数进行类型的检查
+            所以要注意，是否有可能会接收到非法的参数，
+            如果有可能，则需要对参数进行类型的检查
           函数的实参可以是任意的数据类型
            function sum(a,b){
               console.log(a+b)
             }
-           sum(123,"hello")            //控制台结果是123hello
+           sum(123,"hello")            //控制台输出:123hello
+
            function sum(a,b){
               console.log(a+b)
             }
-           sum(true,false)             //控制台结果是1
+           sum(true,false)             //控制台输出:1
 
        *  调用函数时，解析器也不会检查实参的数量
             多余实参不会被赋值
@@ -1501,17 +2262,19 @@
            sum(1,2,true,false)             //控制台结果是3
       */
     </script>
-    <script id="返回值">
+    <script id="函数的返回值">
       /*  首先 我们先创建一个函数，用来计算三个数的和
-          function sum(a,b,c){
-            console.log(a+b+b)
-          }
-          sum(4,7,8)   //控制台结果19
-          //算完的结果就给我输出出来了，你说这种东西它好不好啊？
-          //这个19的值是不是我想输出的呢？不一定。结果算出来我可能想干别的去用。就像你去称体重，刚站秤上 旁边有一人看见了给你念出来了说他体重两百！
-            那你是不希望他念出来啊？不用 我希望我称完这个体重 知道结果就行了。
-            同理 我只需要一个结果，而不需要你替我来处理这个结果
-            往往执行一个函数时，是需要将这个结果返回的，而不是输出。那问题来了 我们怎么将这个结果返回呢?
+            function sum(a , b , c){
+              console.log(a + b + c)
+            }
+            //调用函数
+            sum(4,7,8)   //控制台结果19
+
+            //算完的结果就给我输出出来了，你说这种东西它好不好啊？
+            //这个19的值是不是我想输出的呢？不一定。结果算出来我可能想干别的去用。就像你去称体重，刚站秤上 旁边有一人看见了给你念出来了说他体重两百！
+              那你是不希望他念出来啊？不用 我希望我称完这个体重 知道结果就行了。
+              同理 我只需要一个结果，而不需要你替我来处理这个结果
+              往往执行一个函数时，是需要将这个结果返回的，而不是输出。那问题来了 我们怎么将这个结果返回呢?
 
        *  可以使用return,来设置返回的值
             语法：
@@ -1520,23 +2283,21 @@
             return后的值将会作为函数的执行结果返回，
               可以定义一个变量，来接收该结果
 
+            function sum(a,b,c){
+              var d = a + b + c
+              return d
+            }
+            //调用函数
+            //变量result的值就是函数的执行结果
+            //函数返回什么result的值就是什么
+            var result = sun(4,7,8)
+            console.log("result = "+result)            //控制台结果是result=19
 
-          function sum(a,b,c){
-            //console.log(a+b+b)
-            var d = a + b + c
-            return d
-          }
-          //调用函数
-          //变量result的值就是函数的执行结果
-          //函数返回什么result的值就是什么
-          var result = sun(4,7,8)
-          console.log("result = "+result)            //控制台结果是result=19
-
-          在函数中return下面的语句都不会执行
+          在函数中return后面的语句都不会执行
             function sum(a,b,c){
             var d = a + b + c
             return d
-            alery=t("hello")                         //控制台结果是result=19，alert没有执行
+            alery=t("hello")                           //控制台结果是result=19，alert没有执行。因为函数的结果在return这儿已经返回了，下面的它已经没有执行的必要了。
             }
             var result = sun(4,7,8)
             console.log("result = "+result)
@@ -1565,9 +2326,462 @@
             console.log("result = "+result)          //控制台结果是result=hello
        *
       */
+    </script>
 
+    <script id="实参可以是任意值">
+      /*
+       *  //定义一个函数，判断一个数字是否是偶数，如果是返回true，否则返回false
+          function isOu(num) {
+            if (num % 2 == 0) {
+              return true;
+            } else {
+              return false;
+            }
+          }
+          var result = isOu(4);
+          console.log("result = " + result);
+          //这样写是可以的，但是不够优雅
+
+          function isOu(num) {
+            return num % 2 == 0                                     //num % 2 == 0这是一个式子，它是有结果的，如果num % 2如果它有余数返回false，如果没有余数返回true
+          }
+          var result = isOu(4);
+          console.log("result = " + result);
+
+
+
+
+       *  //定义一个函数，可以根据半径计算一个圆的面积，并返回计算结果
+          //圆面积的公式pai r方
+          //3.14*r*r
+
+          function mianji(r) {                                      //要计算圆的面积，得知道半径，所以需要传一个r
+            return 3.14 * r * r;
+          }
+          result = mianji(10);
+          console.log("result = " + result);
+
+       *  //创建一个函数，可以在控制台中输出一个人的信息
+              可以输出人的name age gender address
+
+          function information(name, age, gender, address) {
+              console.log(
+                "我是" +
+                  name +
+                  ",今年我" +
+                  age +
+                  "岁了," +
+                  "我是一个" +
+                  gender +
+                  "人" +
+                  ",我住在" +
+                  address
+              );
+            }
+            information("孙悟空", "18", "男", "花果山");
+            //控制台输出我是孙悟空,今年我18岁了,我是一个男人,我住在花果山
+            //现在的参数有点多，假如我还想输出它的身高体重等一系列信息，我需要更多的参数。参数多容易乱。像这种参数多的写时一定要注意顺序问题
+            //现在让我传4个参数，如果以后参数更多了可能让我传10个 20个...当我一个一个传它是很麻烦的，想想有什么更方便的方法
+            //创建一个对象
+            var obj = {
+              name:"孙悟空"
+              age:18
+              gender:"男"
+              address:"花果山"
+            }
+            //我这对象有4个属性，那我能不能把对象作为参数传进去？现在传肯定不行，现在的参数还是name age...不对
+            //那我这对象能不能作为实参？
+            实参可以是任意的数据类型，也可以是一个对象
+              当我们的参数过多时，可以将参数封装到一个对象中，然后通过对象传递
+
+            function information(o) {
+              console.log(
+                "我是" +
+                  o.name +
+                  ",今年我" +
+                  o.age +
+                  "岁了," +
+                  "我是一个" +
+                  o.gender +
+                  "人" +
+                  ",我住在" +
+                  o.address
+              );
+            }
+            var obj = {
+              name: "孙悟空",
+              age: 18,
+              gender: "男",
+              address: "花果山",
+            };
+            information(obj);
+            //控制台输出我是孙悟空,今年我18岁了,我是一个男人,我住在花果山
+
+       *  实参可以是一个对象，也可以是一个函数
+          function fun(a){
+            console.log("a = "+a)
+          }
+          fun(123)                 //控制台输出123
+
+          function fun(a){
+            console.log("a = "+a)
+          }
+          fun(information)         //information函数作为实参传给fun，那现在a等于谁？a = function information(o) {
+                                                                                        console.log(
+                                                                                          "我是" +
+                                                                                            o.name +
+                                                                                            ",今年我" +
+                                                                                            o.age +
+                                                                                            "岁了," +
+                                                                                            "我是一个" +
+                                                                                            o.gender +
+                                                                                            "人" +
+                                                                                            ",我住在" +
+                                                                                            o.address
+                                                                                        );
+                                                                                      }
+                                   //a等于function,function名叫information，换句话说现在a和information是一样的
+                                   //甚至我还可以在里面调用
+            function fun(a) {
+              a(obj);              //fun(information);  等价于 information(obj);
+            }
+            fun(information);
+            //控制台输出我是孙悟空,今年我18岁了,我是一个男人,我住在花果山
+
+       *  mianji()
+            调用函数
+            相当于使用函数的返回值
+          mianji 函数名
+            函数对象
+            相当于直接使用函数对象
+
+          function fun(a){
+          console.log("a = "+a)
+          }
+          fun(mianji(10))
+          //控制台输出a = 314
+
+          function fun(a){
+          console.log("a = "+a)
+          }
+          fun(mianji)
+          //控制台输出a = function mianji(r) {
+                        //要计算圆的面积，得知道半径，所以需要传一个r
+                        return 3.14 * r * r;
+                      }
+
+          普通对象可能像一个容器 像一个塑料袋，只能去装东西。
+          而函数它是一个有功能的对象，它就像一个做冰淇淋的机器，除了具有普通对象的功能外，它可以生产拉冰淇淋。
+            直接写mianji 相当于我把机器给别人了                                                    //函数对象本身
+            而mianji()   我是在调用冰淇淋机 我在使用它，相当于把冰淇淋机拉出来的冰淇淋给别人        //函数的返回值
+          所以注意 是想传函数对象本身还是想传它的返回值
+      */
+    </script>
+
+    <script id="返回值的类型">
+      /*
+       *  //return和break有点像，我们来对比一下它们
+          function fun() {
+            alert("函数要执行了~~~");
+            for (var i = 0; i < 5; i++) {
+              if (i == 2) {
+                //使用break可以退出当前的循环
+                //break;                                      //控制台结果0 1
+                //continue用于跳过当次循环
+                //continue;                                   //控制台结果0 1 3 4
+                //使用return可以结束整个函数
+                return;                                       //控制台结果0 1，并且return一执行它后面所有语句都不执行
+              }
+              console.log(i);
+            }
+            alert("函数执行完了~~~");
+          }
+          fun();
+
+       *  返回值可以是任意的数据类型
+          function fun2(){
+            return 10
+          }
+          var a = fun2()//让a等于fun2的返回值
+          console.log("a = "+a)
+          //控制台输出a = 10
+
+
+       *  返回值也可以是一个对象
+          function fun2(){
+            var obj = {name:"沙和尚"}
+            return obj
+          }
+          var a = fun2()//让a等于fun2的返回值
+          console.log("a = "+a)
+          //控制台输出a = [object Object]
+
+
+          function fun2(){
+            var obj = {name:"沙和尚"}
+            return obj
+          }
+          var a = fun2()//让a等于fun2的返回值
+          console.log("a = "+a.name)
+          //控制台输出a = 沙和尚
+
+
+          function fun2(){
+            return {name:"沙和尚"}
+          }
+          var a = fun2()//让a等于fun2的返回值
+          console.log("a = "+a.name)
+          //控制台输出a = 沙和尚
+
+       *  返回值也可以是一个函数
+          function fun3() {
+            //在函数内部再声明一个函数
+            function fun4() {
+              alert("我是fun4");
+            }
+            //将fun4函数对象作为返回值返回
+            return fun4;
+          }
+          a = fun3();
+          console.log("a = " + a);                       a()                                   fun3()();
+          //控制台输出a = function fun4() {              //控制台输出我是fun4                   //控制台输出我是fun4
+                        alert("我是fun4");
+                      }
+
+      */
 
     </script>
+
+    <script id="立即执行函数">
+      /*
+       *  什么是立即执行函数呢？函数定义完后，立即执行，只能执行一次
+          我们来写这么一个东西
+            function(){
+              alert("我是一个匿名函数~~~")
+            }
+          //函数没有名，像这种函数，语法是不允许的，因为它把这{}当成一个代码块了，然后前面的这个function()它不认识了，这样写完直接报错
+          //那我用一个()来圈起来一个匿名函数来表示我这个匿名函数是一个整体，这回我再刷新，就不报错了
+            (function(){
+              alert("我是一个匿名函数~~~")
+            })
+          //那这种函数我要去调用怎么调？
+
+       *  调用函数方法是:
+          (
+          function () {
+              alert("我是一个匿名函数，因为没有名字，所以只能被调用一次");
+          })(); //前面的括号是把匿名函数看成一个整体，后面的括号是为了调用该函数
+
+          (function (a, b) {
+            console.log("a = " + a);
+            console.log("b = " + b);
+          })(123, 456);
+          //控制台输出:
+                      a = 123
+                      b = 456
+      */
+
+    </script>
+
+    <script id="全局作用域">
+      /*
+       *  作用域
+            作用域指一个变量的作用的范围
+            举个例子:
+                    function fun(){
+                      var a = 123             //在函数内部声明一个变量a 它的值是123
+                    }
+                    fun()                     //调用函数
+                    console.log(a)            //控制台输出报错
+                    //也就是说我在函数外部不能看到函数里面的a，那就证明a的作用域就在函数里，在外面是看不见的，这就是作用域
+            在JS中一共有两种作用域
+              1.全局作用域
+              2.函数作用域
+
+       *  全局作用域
+            直接编写在script标签中的JS代码，都在全局作用域
+            全局作用域在页面打开时创建，在页面关闭时销毁
+            在全局作用域中 有一个全局对象window
+              它代表的是一个浏览器的窗口，它由浏览器创建 我们可以直接使用
+              console.log(typeof window)
+              //控制台输出:object
+            在全局作用域中
+              创建的变量都会作为window对象的属性保存
+              var a = 10                      //创建一个变量 a a的值是10
+              console.log(a)
+              //控制台输出:10
+              //a这个变量会作为window对象的属性保存，所以注意，虽然是一个变量，但这个变量实际上保存是保存到window对象里
+              //所以既然是window对象的属性
+              var a = 10                      //实际上是window.a
+              console.log(window.a)
+              //控制台输出:10
+
+              创建的函数都会作为window对象的方法保存
+              function fun(){
+                console.log("我是fun函数")
+              }
+              fun()                           //实际上是window.fun()
+              //控制台输出:我是fun函数
+              alert("hello")                  //实际上是window.alert("hello")
+
+       *  变量的声明提前
+            //我们先看一下
+              var a = 123
+              console.log("a = "+a)
+              //控制台输出: a = 123
+
+              声明变量使用war关键字，不写var行不行呢？
+              a = 123                                 也行，注意 不写var 就相当于window.a = 123
+              console.log("a = "+a)
+              //控制台输出: a = 123
+
+       *  变量的声明提前
+              console.log("a = "+a)
+              var a = 123
+              //控制台输出: a = undefined //值是undefined但这块儿却没报错!
+
+              console.log("a = "+a)
+              a = 123
+              //控制台输出: 报错!
+              那这是为什么呢？
+            使用var关键字声明的变量，会在所有的代码之前被声明好(但是不会赋值)
+              console.log("a = "+a)                 var a;                       //这个var a会在所有代码被执行之前执行，执行完声明一个变量a
+              var a = 123                           console.log("a = "+a)        //然后输出
+                                                    a = 123
+            但是如果声明变量时不使用var关键字，则变量不会被声明提前
+
+       *  函数的声明提前
+            使用函数声明形式创建的函数function 函数名()，它会在所有代码执行之前就被创建，所以我们可以在函数声明前来调用函数
+              fun();
+              function fun() {             //虽然写在后面，但是代码在执行之前它的优先级高，解析器会优先解析它。不仅声明提前，它还把函数直接创建好
+                console.log("我是函数声明");
+              }
+              控制台输出:我是函数声明
+            使用函数表达式创建的函数不会被声明提前，所以不能在声明前调用
+              fun2()
+              var fun2 = function(){       //函数表达式，首先变量会提前声明，但注意此时仅仅是提前声明，没有赋值，所以fun2是undefined。所以不能在声明之前调用
+                console.log("我是函数表达式");
+              }
+              控制台输出:报错!
+
+       *  全局作用域中的变量都是全局变量，在页面的任意的部分都可以访问的到
+      */
+    </script>
+
+    <script id="函数作用域">
+      /*
+       *  函数作用域
+            调用函数时创建函数作用域，函数执行完毕以后，函数作用域销毁
+            每调用一次函数就会创建一个新的函数作用域，它们之间是互相独立的
+              function fun(){
+
+              }
+              fun()
+              fun()
+              fun()
+              //以上三个函数作用域，他们之间是互相独立的
+
+            在函数作用域中可以访问到全局作用域的变量
+              //创建一个变量
+              var a = 10;
+              function fun() {
+                console.log("a = " + a);
+              }
+              fun();
+              //控制台输出: a = 10
+
+            在全局作用域中无法访问到函数作用域的变量
+              function fun() {
+                var b = 20
+              }
+              fun();
+              console.log("b = "+b)
+              //控制台输出: 报错!
+            //在局部可以访问到全局，在全局无法访问到局部
+
+       *  当函数作用域中操作一个变量时，它会现在自身作用域中寻找，如果有就直接使用
+            如果没有则向上一级作用域中寻找，直到找到全局作用域，
+            如果全局作用域中依然没有找到，则会报错ReferenceError
+              var a = 10
+              function fun(){
+                var a = ("我是函数中的变量a")
+                console.log("a = "+a)          //两个a 一个全局变量a，一个函数作用域变量，我在函数里去访问a，它会访问谁呢？(它会现在自身作用域中寻找，如果有就直接使用，如果没有则向上一级作用域中寻找)
+              }
+              fun()
+              console.log("a = "+a)
+              //控制台输出:
+                            a = 我是函数中的变量a
+                            a = 10
+
+       *  在函数中要访问全局变量可以使用window对象
+              var a = 10;
+              function fun() {
+                var a = "我是函数中的变量a";
+                function fun2() {
+                  console.log("a = " + window.a);  //我想找全局变量的a，全局变量的a是window的属性，所以可以写成window.a。在函数作用域里想访问全局变量直接加window，不加window就近访问，加window全局
+                }
+                fun2();
+              }
+              fun();
+              //控制台输出:
+                          a = 10
+
+       *  在函数作用域中也有声明提前的特性，
+            使用var关键字声明的变量，会在函数中所有的代码执行之前被声明(但是不会赋值)
+              function fun3() {                          function fun3() {
+                console.log(a);                            var a;
+                var a = 35;                                console.log(a);
+              }                                            a = 35
+              fun3();                                    }
+              //控制台输出:                                fun3();
+                           undefinde
+
+            函数声明也会在函数中所有的代码执行之前执行
+              function fun3(){
+                fun4()
+                function fun4(){
+                  alert("我是函数声明")
+                }
+              }
+              fun3()
+              //控制台输出: 我是函数声明
+
+       *  在函数中，不使用var声明的变量都会成为全局变量
+              var c = 33;
+              function fun5() {
+                console.log("c = " + c); //先找局部的c，未找到，就找全局的c
+                c = 10;                  //这个c是全局变，因为没有使用关键字var。和函数外的c是同一变量，等价于window.c= 10;
+              }
+              fun5();
+              //在全局中输出c
+              console.log("c = " + c);
+              //控制台输出:
+                          c = 33
+                          c = 10
+
+              var c = 33;
+              function fun5() {
+                d = 100                  //d因为没有使用关键字var，则会成为全局变量，等价于window.d= 100;
+              }
+              fun5();
+              //在全局中输出c
+              console.log("d = " + d);
+              //控制台输出:
+                          d = 100
+       *  定义形参就相当于在函数作用域中声明了变量
+              var e = 23
+              function fun6(e){
+                //所以我定形参e就相当于在声明了变量var e;
+                alert(e) //它找函数作用域 有这个e，但是没有赋值，所以控制台输出undefined
+              }
+              fun6()
+              //控制台输出:
+                          undefined
+
+      */
+
+    </script>
+
     <script type="xxx" id="函数练习">
       // 判断一个数是不是素数
       //  是的话返回true
@@ -1622,6 +2836,292 @@
         }
         return n == 1 //最后它真的能够在上面的一直除来除去的过程中 把2、3、5的因子除完并且它真的是丑数的话，那么它只会剩1
     };
+    </script>
+
+    <script id="练习">
+      var a = 123
+      function fun(){
+        alert(a)
+      }
+      fun()
+      //此网页显示123
+
+
+      var a = 123
+      function fun(){
+        alert(a)
+        var a = 456
+      }
+      fun()
+      alert(a)
+      //变量提前声明，此网页显示undefined。点击确定此网页显示123
+
+
+      var a = 123
+      function fun(){
+        alert(a)
+        a = 456
+      }
+      fun()
+      alert(a)
+      //此网页显示123。点击确定此网页显示456
+
+      var a = 123
+      function fun(a){
+        alert(a)
+        a = 456
+      }
+      fun()
+      alert(a)
+      //此网页显示undefined。点击确定此网页显示123
+
+      var a = 123
+      function fun(a){
+        alert(a)
+        a = 456
+      }
+      fun(123)
+      alert(a)
+      //此网页显示123。点击确定此网页显示123
+    </script>
+
+    <script id="this">
+      /*
+       *  解析器(浏览器)在调用函数时 每次都会向函数内部传递进一个隐含的参数
+          这个隐含的参数就是this(注意 这个东西浏览器每次都会传)
+            function fun(a,b){
+              console.log("a = "+a, "b = "+b)
+            }
+            fun(123,456)
+            //控制台输出:a = 123 b = 456
+
+            //那既然传了我们来看看有没有
+            function fun(a,b){
+              console.log(this)
+            }
+            fun(123,456)
+            //控制台输出:全局对象window
+            //那window你直接来个window不就完了，干嘛非得叫this啊？
+
+       *  this指向的是一个对象
+          这个对象我们称为函数执行的上下文对象//注意了 那是不是说这个对象一直都是window啊？不是。如果它一直都是window那就没有意义了
+          根据函数 调用方式 的不同，this会指向不同的对象
+            1.以函数的形式调用时，this永远都是window
+            2.以方法的形式调用时，this就是调用方法的对象(说白了这个方法是谁调的 this就是谁)
+
+                                                                                        如果一个函数作为一个对象的属性保存，
+                                                                                        那么我们称这个函数是对象的方法
+                                                                                        调用这个函数就是调用对象的方法(method)
+
+            function fun(){
+              console.log(this)
+            }
+            //fun()
+
+            //创建一个对象
+            var obj = {
+              name: "孙悟空",
+              sayName: fun, //我是把obj的一个属性设置成函数。那么现在obj.sayName()等于fun()
+            };
+            console.log(obj.sayName == fun);
+            //控制台输出:true
+
+            var obj = {
+              name: "孙悟空",
+              sayName: fun,
+            };
+            obj.sayName()
+            //控制台输出:
+                        Object
+                          name: "老孙"
+                          sayName: ƒ fun()
+
+            //fun()和obj.sayName()调的是同一个函数，但结果却不同
+            //fun()控制台输出:
+                              window
+            //obj.sayName()控制台输出:
+                                      Object
+                                        name: "孙悟空"
+                                        sayName: ƒ fun() //也就是说我这儿打印的对象就是obj
+
+
+       *  this 并不是固定不变的，根据调用方式不同发生变化
+            var name = "全局的name属性"
+            function fun(){
+              console.log(this.name)
+            }
+            //fun()
+            var obj = {
+              name: "孙悟空",
+              sayName: fun,
+            };
+
+          //以函数形式调用，this是window。所以我在这里面打印this.name就相当于window.name
+            fun();
+            //控制台输出:
+                        全局的name属性
+
+          //以方法的形式调用，this是调用方法的对象。对于这种方式来说，this就是obj。所以我打印this.name就相当于obj.name
+            obj.sayName()
+            //控制台输出:
+                        孙悟空
+
+      */
+    </script>
+
+    <script id="this补充">
+      /*
+       *  //创建一个name变量
+          var name = "全局";
+          //创建一个fun()函数
+          function fun() {
+            console.log(this.name);
+          }
+          //创建两个对象
+          var obj = {
+            name: "孙悟空",
+            sayName: fun,
+          };
+          var obj2 = {
+            name: "沙和尚",
+            sayName: fun,
+          };
+          //我希望调用obj.sayName()时，可以输出obj的名字
+          obj.sayName();
+          obj2.sayName();
+      */
+    </script>
+
+    <script id="使用工厂方法创建对象">
+      /*
+       *  //创建一个对象
+            var obj = {
+              name: "老孙",
+              age: 18,
+              gender: "男",
+              sayName: function () {
+                alert(this.name);
+              },
+            };
+          //obj.sayName();
+          //此网页显示: 老孙。
+          //现在创建一个不过瘾我希望再创建几个
+            var obj2 = {
+              name: "老朱",
+              age: 28,
+              gender: "男",
+              sayName: function () {
+                alert(this.name);
+              },
+            };
+            var obj3 = {
+              name: "老沙",
+              age: 38,
+              gender: "男",
+              sayName: function () {
+                alert(this.name);
+              },
+            };
+            obj.sayName();
+          //此网页显示: 老孙
+            obj2.sayName();
+          //此网页显示: 老朱
+            obj3.sayName();
+          //此网页显示: 老沙
+          但是我发现创建这3个对象有点笨，复制粘贴这种创建方式有点麻烦！
+          假如我要创建是个对象我得复制十次，不方便大批量的生产对象
+          我希望创建对象的方式能简单一点儿，换句话说我希望能优雅一点儿，至少这件事儿干起来不要像这样这么笨
+          我们发现在创建对象的过程中有大量的重复性的代码！那我能不能把重复性的东西提取出来呢？
+          提取到一个函数里，一个方法里，然后在我调的时候 我直接调函数就行了
+
+       *  使用工厂方法创建对象
+          //工厂 什么叫工厂？可以批量生产。你给我原料 我给你生产产品
+                                          而我们这个，你给我属性，我给你生产对象。可以大批量的生产对象，想要多少要多少
+
+          //创建一个对象
+            var obj = {
+              name:"老孙"
+              age:18
+              gender:"男"
+              sayname:function(){
+                alert(this.name)
+              }
+            }
+          //使用工厂方法创建对象
+            //通过该方法可以大批量创建对象
+            function createPerson(){
+              //创建一个新的对象
+              var obj = new Object()     //和上面的对象不是一个，这个在函数里创建的对象是局部的，上面的是全局的
+
+              //向对象中添加属性
+              obj.name = "老孙"
+              obj.age = 18
+              obj.gender = "男"
+              obj.sayName = function(){
+                alert(this.name)
+              }
+              //将新的对象返回
+              return obj
+            }
+            var obj2 = createPerson()     //以后我们再想创建对象，直接调createPerson就行了
+          //console.log(obj2)
+          //控制台输出:
+                        Object
+                          age: 18
+                          gender: "男"
+                          name: "老孙"
+                          sayName: ƒ ()
+            var obj3 = createPerson()
+            var obj4 = createPerson()
+            console.log(obj2)
+            console.log(obj3)
+            console.log(obj4)
+          //控制台输出:
+                        Object
+                          age: 18
+                          gender: "男"
+                          name: "老孙"
+                          sayName: ƒ ()
+                        Object
+                          age: 18
+                          gender: "男"
+                          name: "老孙"
+                          sayName: ƒ ()
+                        Object
+                          age: 18
+                          gender: "男"
+                          name: "老孙"
+                          sayName: ƒ ()
+          但是这块儿不对劲儿了，只能造老孙？我想造老朱老沙造不出来啊，为什么？name，age，gender都写死了
+          所以注意，这块儿不能写死了。不能写死怎么办？
+          我是不得从外边进来啊？
+          我想创建老孙 我可以传一个我要建老孙。我想创建老朱，我可以传一个我要建老朱
+          所以name，age，gender都应该是从外边传进来的
+          从外边怎么传？参数传
+
+            function createPerson(name, age, gender) {
+              var obj = new Object();   //所以我这块儿定义三个参数
+              obj.name = name;          //那现在呢我这就不等于老孙了，等于name
+              obj.age = age;            //那现在呢我这就不等于18了，等于age
+              obj.gender = gender;      //那现在呢我这就不等于男了，等于gender
+              obj.sayName = function () {
+                alert(this.name);
+              };
+              return obj;
+            }
+            var obj2 = createPerson("老孙", 18, "男");
+            var obj3 = createPerson("老朱", 28, "男");
+            var obj4 = createPerson("老沙", 38, "男");
+            console.log(obj2);
+            console.log(obj3);
+            console.log(obj4);
+            obj2.sayName()
+            obj3.sayName()
+            obj4.sayName()
+          这种方法更方便，我只需要传三个属性到参数中，其他的都在函数中封装起来了。这种方式更方便我们去批量的创建对象，相对来说比较简单一点
+
+      */
+
     </script>
 
     <script id="数组的基本用法">
@@ -1738,13 +3238,92 @@
           for(var i = a.length - 1 ; i >= 0 ; i--){ //倒叙循环 i下标2，1，0
             console.log(a[i])
           }
-
-
       /*
+    </script>
 
+    <script id="字符串的操作">
+      /*
+       *  其实字符串和数组还是比较像的，数组里面我每一项可以改的，但字符串不能改
+          例如:
+            s= 'slkgjkgs'
+            //同样可以通过s下标读到它的第几项，比如我要读到它的s
+            s[1]
+            'l'  //但求值结果依然是字符串
 
+            //那我能不能把s改成大写的？这是不能的，改不了，但它也不会报错
+            //我非想改怎么办？我可以由原来的构造成一个新的
+
+          s
+          s= 'slkgjkgs'
+          它除了中括号以外，还可以用s.charAt(2) //字符at第二下标
+          'k'
+
+          s
+          s= 'slkgjkgs'
+          s.charCodeAt(2)//第二位上的字符的code（ascii码编号）
+          111
+
+          s
+          s= 'slkgjkgs'
+          s.indexOf('kg') //找kg的下标在哪儿 那就看起始字符第几个
+          6
+
+          s
+          s = '25'
+          s.padStart(5) //我需要这让这个字符有多宽，然后我需要补什么字符如果不填默认就是用空格
+          '   25'
+          s.padStart(5,'0') //也可以补0
+          '00025'
+          s.padStart(5,'0-')//补0-，那就补0-0- 前面差多少 差3个，那这只有两个 重读一次就超过三个了
+          '0-025'
+      */
+    </script>
+
+    <script id="整数在计算机中的表示">
+      /*
+       *  总结一下自己理解的知识点：
+          1.原码、反码、补码是由8位二进制定点数组成，符号位位于最高位，且0代表正数，1代表负数。
+          2.正数的原码、反码和补码全部相同。
+          3.①负数的原码符号位为1
+            ②负数的反码是除符号位外全部取反。
+              例如：若已知负数 绝对值原码为10010111，求反码。
+                        答：1（符号位不变）1101000
+            ③已知原码求补码，先取反再加1。
+              例如：若已知负数绝对值原码为10010111，求补码。
+              答：先取反，首位不变，其余取反得11101000。
+              然后+1，得11101001。
+            ④若已知补码，求原码也是取反+1。
+              例如：若已知负数补码为11101001，求补码。
+              答：先取反，首位不变，其余取反得10010110。
+              后+1，得10010111。
+      */
 
     </script>
+
+    <script id="箭头函数">
+      /*
+       *  ES6的箭头函数 =>
+          语法
+            let 函数 = ()=> 555
+            console.log(函数())
+            等同于
+            function 函数(){
+              return 555
+            }
+            console.log(函数())
+
+            如果返回的是一个对象
+            let 函数 = _n=>({id:_n, name:'请求三连操作'})       //加上()因为在js解析引擎里，{}被认为是代码块，不加()会被报错
+            console.log(函数('点赞、收藏、投币'))
+
+
+
+
+      */
+
+    </script>
+
+
 
   <!-- </head> -->
   <body>
